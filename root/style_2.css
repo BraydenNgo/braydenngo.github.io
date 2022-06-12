@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap');
+
+:root{
+    --purple: #5D3FD3;
+}
+
+*{
+    font-family: 'Nunito', sans-serif;
+    margin:0; padding:0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none; border:none;
+    text-transform: capitalize;
+    transition: all .2s linear;
+    font-weight: 700;
+}
+
+*::selection{
+    background: var(--purple);
+    color:#333;
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+}
+
+html::-webkit-scrollbar{
+    width: 1.4rem;
+}
+
+html::-webkit-scrollbar-track{
+    background: #222;
+}
+
+html::-webkit-scrollbar-thumb{
+    background:var(--purple);
+}
+
+body{
+    background: #111;
+    overflow-x: hidden;
+}
+
+header{
+    position: fixed;
+    top:0; left:0;
+    z-index:1000;
+    height:100%;
+    width:35rem;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    text-align: center;
+    
+}
+
+header .user img{
+    height: 25rem;
+    width: 25rem;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border: .7rem solid var(--purple);
+}
+
+header .user .name{
+    font-size: 3.5rem;
+    color: #fff;
+}
+
+
+header .user .title{
+    font-size: 2rem;
+    color: #eee;
+}
+
+header .navigationbar{
+    width:100%;
+}
+
+header .navigationbar ul{
+    list-style: none;
+    padding: 1rem 3rem;
+}
+
+header .navigationbar ul li a{
+    display: block;
+    padding: 1rem;
+    margin:1.5rem 0;
+    background: #333;
+    color: #fff;
+    font-size: 2rem;
+    border-radius: 5rem;
+}
+
+header .navigationbar ul li a:hover{
+    background:var(--purple);
+}
