@@ -173,10 +173,10 @@ header .navigationbar ul li a:hover{
 }
 
 .socialbar .facebook{
-    height: 62px;
-    width: 62px;
+    height: 55px;
+    width: 55px;
     position:fixed;
-    bottom: 5.7rem;
+    bottom: 200;
     left: 24rem;
     z-index: 1000;
 }
