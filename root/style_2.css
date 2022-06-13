@@ -143,6 +143,44 @@ header .navigationbar ul li a:hover{
     background:var(--purple);
 }
 
+.socialbar ul{
+    list-style: none;
+}
+.socialbar .instagram{
+    height: 50px;
+    width: 50px;
+    position:fixed;
+    bottom: 200;
+    left: 3rem;
+    z-index: 1000;
+}
+.socialbar .linkedin{
+    height: 50px;
+    width: 50px;
+    position:fixed;
+    bottom: 200;
+    left: 10rem;
+    z-index: 1000;
+}
+
+.socialbar .github{
+    height: 50px;
+    width: 50px;
+    position:fixed;
+    bottom: 200;
+    left: 17rem;
+    z-index: 1000;
+}
+
+.socialbar .facebook{
+    height: 62px;
+    width: 62px;
+    position:fixed;
+    bottom: 5.7rem;
+    left: 24rem;
+    z-index: 1000;
+}
+
 #menu{
     position: fixed;
     top:2rem; right:2rem;
