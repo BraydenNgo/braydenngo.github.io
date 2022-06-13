@@ -2,6 +2,16 @@
 
 :root{
     --purple: #5D3FD3;
+    --gradient: linear-gradient(
+        45deg,
+        #552586,
+        #6A359C,
+        #804FB3,
+        #9969C7,
+        #B589D6,
+        #0b0b01
+
+    );
 }
 
 *{
@@ -38,8 +48,17 @@ html::-webkit-scrollbar-thumb{
 }
 
 body{
-    background: #111;
+    
+    background-image:var(--gradient);
+    background-size: 100000px 100000px;
     overflow-x: hidden;
+    animation: background-animation 5s infinite alternate;
+  
+}
+
+@keyframes background-animation{
+    0%{background-position: left}
+    100% {background-position: right;}
 }
 
 header{
@@ -111,3 +130,25 @@ header .navigationbar ul li a:hover{
     z-index: 1000;
     display:none;
 }
+
+/* the following media queries handles resizing of the screen and how the website reacts*/
+@media (max-width:1200px){
+    html{
+        font-size: 55%;
+    }
+}
+
+@media (max-width:990px){
+    header{
+        left:-120%;
+    }
+
+    #menu{
+        display:block;
+    }
+
+    header.toggle{
+        left:0%;
+    }
+}
+
