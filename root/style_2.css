@@ -131,6 +131,7 @@ header .navigationbar ul li a:hover{
     display:none;
 }
 
+
 /* the following media queries handles resizing of the screen and how the website reacts*/
 @media (max-width:1200px){
     html{
@@ -151,4 +152,18 @@ header .navigationbar ul li a:hover{
         left:0%;
     }
 }
+
+@media (max-width:768px){
+    html{
+        font-size: 50%;
+    }
+}
+
+@media (max-width:400px){
+    header{
+        width: 100vw;
+    }
+}
+
+
 
