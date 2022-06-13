@@ -52,6 +52,7 @@ body{
     background-image:var(--gradient);
     background-size: 100000px 100000px;
     overflow-x: hidden;
+    padding-left: 35rem;
     animation: background-animation 5s infinite alternate;
   
 }
@@ -59,6 +60,30 @@ body{
 @keyframes background-animation{
     0%{background-position: left}
     100% {background-position: right;}
+}
+
+section{
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.button{
+    padding: .7rem 2rem;
+    background:black;
+    color: white;
+    cursor: pointer;
+    margin-top: 1rem;
+    font-size: 2rem;
+    border-radius: 2rem;
+}
+
+.button i{
+    padding:0 .5rem;
+    font-size: 1.8rem;
+}
+
+.button:hover{
+    background:var(--purple);
 }
 
 header{
@@ -131,11 +156,46 @@ header .navigationbar ul li a:hover{
     display:none;
 }
 
+.Home{
+    display:flex;
+    justify-content: center;;
+    align-items: center;
+    flex-flow: column;
+    padding:0 15rem
+}
+
+.Home h3{
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: black;
+}
+
+.Home h1{
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: black;
+}
+
+.Home h1 span{
+    color:goldenrod;
+}
+
+
+.Home p{
+    font-size: 2rem;
+    color: black;
+    padding: 1.5rem 0;
+}
+
 
 /* the following media queries handles resizing of the screen and how the website reacts*/
 @media (max-width:1200px){
     html{
         font-size: 55%;
+    }
+
+    .home{
+        padding: 1rem 4rem;
     }
 }
 
@@ -150,6 +210,10 @@ header .navigationbar ul li a:hover{
 
     header.toggle{
         left:0%;
+    }
+
+    body{
+        padding:0;
     }
 }
 
