@@ -98,3 +98,16 @@ header .navigationbar ul li a{
 header .navigationbar ul li a:hover{
     background:var(--purple);
 }
+
+#menu{
+    position: fixed;
+    top:2rem; right:2rem;
+    background:#333;
+    color:#fff;
+    /* the pointer suggest to user that when hovering over something there's a link*/
+    cursor: pointer;
+    font-size: 3.5rem;
+    padding:1rem 1.5rem;
+    z-index: 1000;
+    display:none;
+}
