@@ -1,0 +1,400 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap');
+
+:root{
+    --purple: #5D3FD3;
+    --gradient: linear-gradient(
+        45deg,
+        #552586,
+        #6A359C,
+        #804FB3,
+        #9969C7,
+        #B589D6,
+        #0b0b01
+
+    );
+}
+
+*{
+    font-family: 'Nunito', sans-serif;
+    margin:0; padding:0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none; border:none;
+    text-transform: capitalize;
+    transition: all .2s linear;
+    font-weight: 700;
+}
+
+*::selection{
+    background: var(--purple);
+    color:#333;
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+}
+
+html::-webkit-scrollbar{
+    width: 1.4rem;
+}
+
+html::-webkit-scrollbar-track{
+    background: #222;
+}
+
+html::-webkit-scrollbar-thumb{
+    background:var(--purple);
+}
+
+body{
+    
+    background-image:var(--gradient);
+    background-size: 100000px 100000px;
+    overflow-x: hidden;
+    padding-left: 35rem;
+    animation: background-animation 8s infinite alternate;
+  
+}
+
+@keyframes background-animation{
+    0%{background-position: left}
+    100% {background-position: right;}
+}
+
+section{
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.button{
+    padding: .7rem 2rem;
+    background:black;
+    color: white;
+    cursor: pointer;
+    margin-top: 1rem;
+    font-size: 2rem;
+    border-radius: 2rem;
+}
+
+.button i{
+    padding:0 .5rem;
+    font-size: 1.8rem;
+}
+
+.button:hover{
+    background:var(--purple);
+}
+
+.heading{
+    text-align: center;
+    margin:0 6rem;
+    font-size: 4rem;
+    padding:1rem;
+    border-bottom: .1rem solid #fff4;
+    color:black;
+}
+
+.heading span{
+    color: goldenrod;
+}
+header{
+    position: fixed;
+    top:0; left:0;
+    z-index:1000;
+    height:100%;
+    width:35rem;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    text-align: center;
+    
+}
+
+header .user img{
+    height: 20rem;
+    width: 20rem;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border: .7rem solid var(--purple);
+}
+
+header .user .name{
+    font-size: 3.5rem;
+    color: #fff;
+}
+
+
+header .user .title{
+    font-size: 2rem;
+    color: #eee;
+}
+
+header .navigationbar{
+    width:100%;
+}
+
+header .navigationbar ul{
+    list-style: none;
+    padding: 1rem 3rem;
+}
+
+header .navigationbar ul li a{
+    display: block;
+    padding: 1rem;
+    margin:1.5rem 0;
+    background: #333;
+    color: #fff;
+    font-size: 2rem;
+    border-radius: 5rem;
+}
+
+header .navigationbar ul li a:hover{
+    background:var(--purple);
+}
+
+.socialbar ul{
+    position: relative;    
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    list-style: none;
+}
+
+.socialbar .instagram{
+    height: 45px;
+    width: 45px;
+    left: -14rem;
+    z-index: -10;
+    position: absolute;
+}
+
+.socialbar .linkedin{
+    height: 45px;
+    width: 45px;
+    left: -7rem;
+    position: absolute;
+    z-index: -10;
+}
+
+.socialbar .github{
+    height: 45px;
+    width: 45px;
+    
+    position: absolute;
+    z-index: -10;
+}
+
+.socialbar .facebook{
+    height: 45px;
+    width: 45px;
+    left: 7rem;
+    position: absolute;
+    z-index: -10;
+}
+
+
+
+#menu{
+    position: fixed;
+    top:2rem; right:2rem;
+    background:#333;
+    color:#fff;
+    /* the pointer suggest to user that when hovering over something there's a link*/
+    cursor: pointer;
+    font-size: 3.5rem;
+    padding:1rem 1.5rem;
+    z-index: 1000;
+    display:none;
+}
+
+.Home{
+    display:flex;
+    justify-content: center;;
+    align-items: center;
+    flex-flow: column;
+    padding:0 15rem
+}
+
+.Home h3{
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: black;
+}
+
+.Home h1{
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: black;
+}
+
+.Home h1 span{
+    color:goldenrod;
+}
+
+
+.Home p{
+    font-size: 2rem;
+    color: black;
+    padding: 1.5rem 0;
+}
+
+.About .row{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding:1rem 0;
+}
+
+.About .row .information{
+    flex: 1 1 48rem;
+    padding:2rem 1rem;
+    padding-left: 6rem;
+}
+
+.About .row .information h3{
+    font-size: 2rem;
+    color:goldenrod;
+    padding:1rem 0;
+    font-weight: bolder;
+}
+
+.About .row .information h3 span{
+    color: black;
+    padding: 0 .5rem;
+}
+
+.About .row .pictures{
+    flex: 1 1 48rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.About .row .pictures{
+    width: 58rem;
+    background: rgb(75, 49, 75);
+    padding: 2rem;
+    display: block;
+}
+
+
+.life{
+    padding-right: 0.5rem;
+    padding-left: 5rem;
+    height:35rem;
+    width: 55rem;
+    
+}
+
+.education .box-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding:1rem 0;
+    padding-left: 3rem;
+}
+
+.education .box-container .box{
+    width: 27rem;
+    margin: 4rem 1rem;
+    padding-left: 4rem;
+    border-left: .2rem solid #fff;
+    position:relative;
+}
+
+.education .box-container .box span{
+    font-size: 1.3rem;
+    background: #222;
+    color:#fff;
+    border-radius: 5rem;
+    padding: .5rem 2.5rem;
+}
+
+.education .box-container .box h4{
+    font-size: 2rem;
+    color:#fff;
+    padding-top: 1.5rem;
+}
+
+.education .box-container .box p{
+    font-size: 1.4rem;
+    color:#eee;
+    padding-top: 1rem 0;
+}
+
+.education .box-container .box i{
+    position:absolute;
+    top: -1.5rem; left: -2.5rem;
+    height: 5rem;
+    width: 5rem;
+    border-radius:50%;
+    line-height: 5rem;
+    text-align: center;
+    font-size: 2rem;
+    color:white;
+    background: goldenrod;
+}
+
+.projects h2{
+    font-size: 5rem;
+    justify-content: center;
+    text-align: center;
+}
+
+
+
+
+/* the following media queries handles resizing of the screen and how the website reacts*/
+@media (max-width:1200px){
+    html{
+        font-size: 55%;
+    }
+
+    .home{
+        padding: 1rem 4rem;
+    }
+}
+
+@media (max-width:990px){
+    header{
+        left:-120%;
+        size: 20%;
+    }
+
+    #menu{
+        display:block;
+    }
+
+    header.toggle{
+        left:0%;
+    }
+
+    body{
+        padding:0;
+    }
+}
+
+@media (max-width:768px){
+    html{
+        font-size: 50%;
+    }
+}
+
+@media (max-width:400px){
+    header{
+        width: 100vw;
+    }
+    .education .box-container .box{
+        width:100%;
+    }
+}
+
+
+
+
+
