@@ -340,6 +340,12 @@ header .navigationbar ul li a:hover{
     background: goldenrod;
 }
 
+.projects h2{
+    font-size: 5rem;
+    justify-content: center;
+    text-align: center;
+}
+
 
 
 
