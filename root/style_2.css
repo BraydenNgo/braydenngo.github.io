@@ -156,43 +156,46 @@ header .navigationbar ul li a:hover{
 }
 
 .socialbar ul{
+    position: relative;    
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
     list-style: none;
-    display: block;
 }
+
 .socialbar .instagram{
-    height: 50px;
-    width: 50px;
-    position:fixed;
-    bottom: 200;
-    left: 3rem;
+    height: 45px;
+    width: 45px;
+    left: -14rem;
     z-index: -10;
+    position: absolute;
 }
+
 .socialbar .linkedin{
-    height: 50px;
-    width: 50px;
-    position:fixed;
-    bottom: 200;
-    left: 10rem;
+    height: 45px;
+    width: 45px;
+    left: -7rem;
+    position: absolute;
     z-index: -10;
 }
 
 .socialbar .github{
-    height: 50px;
-    width: 50px;
-    position:fixed;
-    bottom: 200;
-    left: 17rem;
+    height: 45px;
+    width: 45px;
+    
+    position: absolute;
     z-index: -10;
 }
 
 .socialbar .facebook{
-    height: 50px;
-    width: 50px;
-    position:fixed;
-    bottom: 200;
-    left: 24rem;
-    z-index: -100;
+    height: 45px;
+    width: 45px;
+    left: 7rem;
+    position: absolute;
+    z-index: -10;
 }
+
+
 
 #menu{
     position: fixed;
@@ -383,10 +386,6 @@ header .navigationbar ul li a:hover{
     .education .box-container .box{
         width:100%;
     }
-}
-
-@media only screen and (max-width:990px){
-    .socialbar{display:none;}
 }
 
 
