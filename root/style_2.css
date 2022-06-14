@@ -113,8 +113,8 @@ header{
 }
 
 header .user img{
-    height: 25rem;
-    width: 25rem;
+    height: 20rem;
+    width: 20rem;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 1rem;
@@ -164,7 +164,7 @@ header .navigationbar ul li a:hover{
     position:fixed;
     bottom: 200;
     left: 3rem;
-    z-index: 1000;
+    z-index: -10;
 }
 .socialbar .linkedin{
     height: 50px;
@@ -172,7 +172,7 @@ header .navigationbar ul li a:hover{
     position:fixed;
     bottom: 200;
     left: 10rem;
-    z-index: 1000;
+    z-index: -10;
 }
 
 .socialbar .github{
@@ -181,7 +181,7 @@ header .navigationbar ul li a:hover{
     position:fixed;
     bottom: 200;
     left: 17rem;
-    z-index: 1000;
+    z-index: -10;
 }
 
 .socialbar .facebook{
@@ -190,7 +190,7 @@ header .navigationbar ul li a:hover{
     position:fixed;
     bottom: 200;
     left: 24rem;
-    z-index: 1000;
+    z-index: -100;
 }
 
 #menu{
@@ -270,18 +270,72 @@ header .navigationbar ul li a:hover{
     flex-wrap: wrap;
 }
 
-.box{
-    width: 60rem;
+.About .row .pictures{
+    width: 58rem;
     background: rgb(75, 49, 75);
     padding: 2rem;
+    display: block;
 }
+
 
 .life{
     padding-right: 0.5rem;
+    padding-left: 5rem;
     height:35rem;
     width: 55rem;
     
 }
+
+.education .box-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding:1rem 0;
+    padding-left: 3rem;
+}
+
+.education .box-container .box{
+    width: 27rem;
+    margin: 4rem 1rem;
+    padding-left: 4rem;
+    border-left: .2rem solid #fff;
+    position:relative;
+}
+
+.education .box-container .box span{
+    font-size: 1.3rem;
+    background: #222;
+    color:#fff;
+    border-radius: 5rem;
+    padding: .5rem 2.5rem;
+}
+
+.education .box-container .box h4{
+    font-size: 2rem;
+    color:#fff;
+    padding-top: 1.5rem;
+}
+
+.education .box-container .box p{
+    font-size: 1.4rem;
+    color:#eee;
+    padding-top: 1rem 0;
+}
+
+.education .box-container .box i{
+    position:absolute;
+    top: -1.5rem; left: -2.5rem;
+    height: 5rem;
+    width: 5rem;
+    border-radius:50%;
+    line-height: 5rem;
+    text-align: center;
+    font-size: 2rem;
+    color:white;
+    background: gold;
+}
+
 
 
 /* the following media queries handles resizing of the screen and how the website reacts*/
@@ -298,6 +352,7 @@ header .navigationbar ul li a:hover{
 @media (max-width:990px){
     header{
         left:-120%;
+        size: 20%;
     }
 
     #menu{
@@ -323,6 +378,13 @@ header .navigationbar ul li a:hover{
     header{
         width: 100vw;
     }
+    .education .box-container .box{
+        width:100%;
+    }
+}
+
+@media only screen and (max-width:990px){
+    .socialbar{display:none;}
 }
 
 
