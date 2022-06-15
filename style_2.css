@@ -281,7 +281,6 @@ header .navigationbar ul li a:hover{
     background: rgb(75, 49, 75);
     padding: 2rem;
     display: block;
-    align-items: center;
 }
 
 
@@ -347,6 +346,12 @@ header .navigationbar ul li a:hover{
     font-size: 5rem;
     justify-content: center;
     text-align: center;
+}
+
+.projects h2 i{
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .contact .row{
@@ -464,8 +469,3 @@ header .navigationbar ul li a:hover{
         width:100%;
     }
 }
-
-
-
-
-
