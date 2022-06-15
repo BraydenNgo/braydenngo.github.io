@@ -144,15 +144,27 @@
     </section>
 
     <section class = "contact" id = "Contact">
-        <form action="https://formsubmit.co/braydenngo2@gmail.com" method="POST" >
-            <input type = "text" placeholder = "name" required class = "box">
-            <input type = "email" placeholder = "email" required class = "box">
-            
-            <button type = "submit" class = "button">Send <i class = "fas fa-paper-plane"></i></button>
-            </form>
-    </section>
-    
+        <h1 class = "heading"> <span> Contact</span></h1>
+        <div class = "row">
+            <div class = "content">
+                <h3 class = "title"> Contact Information</h3>
 
+                <div class = "info">
+                    <h3><i class = "fas fa-envelope"></i>braydenngo2@gmail.com</h3>
+                    <h3><i class = "fas fa-phone"></i>443-882-8139</h3>
+                    <h3 class = "special"><i class = "fas fa-map-marked-alt"></i>Baltimore, Maryland</h3>
+                </div>
+            </div>
+        </div>
+
+        <form action="https://formsubmit.co/braydenngo2@gmail.com" method="POST" >
+            <input type = "text" placeholder = "Name" name = "name" required class = "box">
+            <input type = "email" placeholder = "Email" name = "email" required class = "box">
+            <textarea name = "message" cols = "30" rows = "10" class = "box message" placeholder="message" required></textarea>
+            <button type = "submit" class = "button">Send <i class = "fas fa-paper-plane"></i></button>
+        </form>
+    </section>
     
 </body>
 </html>
+
