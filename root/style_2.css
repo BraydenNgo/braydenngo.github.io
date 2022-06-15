@@ -267,11 +267,13 @@ header .navigationbar ul li a:hover{
     padding: 0 .5rem;
 }
 
-.About .row .pictures{
+.About .row .pictures .box{
     flex: 1 1 48rem;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    width: 100%;
+    align-items: center;
 }
 
 .About .row .pictures{
@@ -279,6 +281,7 @@ header .navigationbar ul li a:hover{
     background: rgb(75, 49, 75);
     padding: 2rem;
     display: block;
+    align-items: center;
 }
 
 
@@ -346,8 +349,76 @@ header .navigationbar ul li a:hover{
     text-align: center;
 }
 
+.contact .row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 
+.contact .row .content{
+    flex: 1 1 30rem;
+    padding: 4rem;
+    padding-bottom: 0;
+}
 
+ .contact .row form{
+    flex: 1 1 45rem;
+    padding: 2rem;
+    margin: 2rem;
+    margin-bottom: 4rem;
+}
+
+ .contact form .box{
+    padding: 1.5rem;
+    margin: 1rem 0;
+    background: #3333;
+    color: white;
+    text-transform: none;
+    font-size: 1.7rem;
+    width:100%;
+}
+
+.contact .row form .message{
+    height: 15rem;
+    resize:none;
+
+}
+
+.contact .row .content .title{
+    text-transform: uppercase;
+    color:white;
+    font-size: 3rem;
+    padding-bottom: 2rem;
+}
+
+.contact .row .content .info h3{
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    color: white;
+    padding: 1rem 0;
+    font-weight: bold;
+    text-transform: lowercase;
+}
+
+.contact .row .content .info .special{
+    text-transform: capitalize;
+}
+
+.contact .row .content .info h3 i{
+    padding-right: 1rem;
+    color: goldenrod;
+}
+
+.contact form .box::placeholder{
+    text-transform: capitalize;
+    color:black;
+}
+
+.contact .row form{
+    margin: 3rem 0;
+}
 
 /* the following media queries handles resizing of the screen and how the website reacts*/
 @media (max-width:1200px){

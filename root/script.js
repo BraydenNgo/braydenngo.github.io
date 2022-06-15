@@ -9,5 +9,14 @@ $(document).ready(function(){
         $('header').removeClass('toggle');
     });
 
+    //the below section gives the animation behind jumping sections on the site a smoother transition
+
+    $('a[href*= "#"]').on('click', function(e){
+        e.preventDefault();
+        $('html, body').animate({
+            scrollTop: $($(this).attr('href')).offset().top,
+        }, 300, 'linear')
+
+    });
     
 });
