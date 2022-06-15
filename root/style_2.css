@@ -348,6 +348,12 @@ header .navigationbar ul li a:hover{
     text-align: center;
 }
 
+.projects h2 i{
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .contact .row{
     display: flex;
     align-items: center;
