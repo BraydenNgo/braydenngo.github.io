@@ -18185,10 +18185,11 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">games_supp_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;games.csv&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">games_supp_df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">games_supp_df</span><span class="p">)</span>
 </pre></div>
 
@@ -18203,6 +18204,29 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>Index([&#39;game_id&#39;, &#39;season&#39;, &#39;game_type&#39;, &#39;week&#39;, &#39;gameday&#39;, &#39;weekday&#39;,
+       &#39;gametime&#39;, &#39;away_team&#39;, &#39;away_score&#39;, &#39;home_team&#39;, &#39;home_score&#39;,
+       &#39;location&#39;, &#39;result&#39;, &#39;total&#39;, &#39;overtime&#39;, &#39;old_game_id&#39;, &#39;gsis&#39;,
+       &#39;nfl_detail_id&#39;, &#39;pfr&#39;, &#39;pff&#39;, &#39;espn&#39;, &#39;away_rest&#39;, &#39;home_rest&#39;,
+       &#39;away_moneyline&#39;, &#39;home_moneyline&#39;, &#39;spread_line&#39;, &#39;away_spread_odds&#39;,
+       &#39;home_spread_odds&#39;, &#39;total_line&#39;, &#39;under_odds&#39;, &#39;over_odds&#39;, &#39;div_game&#39;,
+       &#39;roof&#39;, &#39;surface&#39;, &#39;temp&#39;, &#39;wind&#39;, &#39;away_qb_id&#39;, &#39;home_qb_id&#39;,
+       &#39;away_qb_name&#39;, &#39;home_qb_name&#39;, &#39;away_coach&#39;, &#39;home_coach&#39;, &#39;referee&#39;,
+       &#39;stadium_id&#39;, &#39;stadium&#39;],
+      dtype=&#39;object&#39;)</pre>
+</div>
+
+</div>
 
 <div class="jp-OutputArea-child">
 
@@ -19315,7 +19339,7 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>The next thing we need to do is to calculate new columns for our data frame. For example, one thing that will be helpful is to calculate the average winning percentage by team. Another thing we will want to consider is to add a new column so we can more easily tell who is the winner of the game instead of having to compare the scores for the home and away team every single time we examine an entry. Additionally, the format for columns such as third_down_away and third_downs_home are in a format of a string like '4-11' and this won't be useable for numerical analysis so we'll need to address this. Additionally, we will drop games that were tied since we can't determine a winner. Other things we'll add is a column separating the current format of penalities like '5-29' into 5 for the number of penalities and 29 for the yardage. We'll also add an additional column to indicate if the home team won or not and this will be useful for later anaylsis and our predictive model.</p>
+<p>The next thing we need to do is to calculate new columns for our data frame. For example, one thing that will be helpful is to calculate the average winning percentage by team. Another thing we will want to consider is to add a new column so we can more easily tell who is the winner of the game instead of having to compare the scores for the home and away team every single time we examine an entry. Additionally, the format for columns such as third_down_away and third_downs_home are in a format of a string like '4-11' and this won't be useable for numerical analysis so we'll need to address this. Additionally, we will drop games that were tied since we can't determine a winner. Other things we'll add is a column separating the current format of penalities like '5-29' into 5 for the number of penalities and 29 for the yardage.</p>
 
 </div>
 </div>
@@ -19366,6 +19390,10 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <span class="c1"># create a new column for the winner</span>
 <span class="n">game_df</span><span class="p">[</span><span class="s1">&#39;Winner&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
+<span class="c1">######################</span>
+<span class="n">game_df</span><span class="p">[</span><span class="s1">&#39;comp_att_away_ratio&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="n">game_df</span><span class="p">[</span><span class="s1">&#39;comp_att_home_ratio&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
 
 <span class="c1">#####################</span>
 <span class="n">game_df</span><span class="p">[</span><span class="s1">&#39;sacks_home_cnt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
@@ -19387,6 +19415,10 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
     
     <span class="n">game_df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;sacks_home_cnt&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">sacks_home</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">row</span><span class="o">.</span><span class="n">sacks_home</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)])</span>
     <span class="n">game_df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;sacks_away_cnt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">sacks_away</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">row</span><span class="o">.</span><span class="n">sacks_away</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)])</span>
+    
+    <span class="c1"># completion attempts</span>
+    <span class="n">game_df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;comp_att_away_ratio&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">comp_att_away</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">row</span><span class="o">.</span><span class="n">comp_att_away</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)])</span> <span class="o">/</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">comp_att_away</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">comp_att_away</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:])</span>
+    <span class="n">game_df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;comp_att_home_ratio&#39;</span><span class="p">]</span>   <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">comp_att_home</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">row</span><span class="o">.</span><span class="n">comp_att_home</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)])</span> <span class="o">/</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">comp_att_home</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">comp_att_home</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:])</span>
 
     
     <span class="k">if</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">score_away</span> <span class="o">&gt;</span> <span class="n">row</span><span class="o">.</span><span class="n">score_home</span><span class="p">):</span>
@@ -19469,14 +19501,14 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
       <th>passing_yards_home</th>
       <th>rushing_yards_away</th>
       <th>...</th>
-      <th>penalty_yards_away</th>
-      <th>redzone_visits_home</th>
       <th>redzone_ratio_home</th>
       <th>redzone_visits_away</th>
       <th>redzone_ratio_away</th>
       <th>third_down_ratio_home</th>
       <th>third_down_ratio_away</th>
       <th>Winner</th>
+      <th>comp_att_away_ratio</th>
+      <th>comp_att_home_ratio</th>
       <th>sacks_home_cnt</th>
       <th>sacks_away_cnt</th>
     </tr>
@@ -19495,14 +19527,14 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
       <td>201</td>
       <td>135</td>
       <td>...</td>
-      <td>56.0</td>
-      <td>4.0</td>
       <td>0.750000</td>
       <td>4.0</td>
       <td>0.500000</td>
       <td>0.588235</td>
       <td>0.642857</td>
       <td>Away</td>
+      <td>0.727273</td>
+      <td>0.656250</td>
       <td>5.0</td>
       <td>3.0</td>
     </tr>
@@ -19519,14 +19551,14 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
       <td>103</td>
       <td>134</td>
       <td>...</td>
-      <td>78.0</td>
-      <td>3.0</td>
       <td>0.666667</td>
       <td>4.0</td>
       <td>0.750000</td>
       <td>0.466667</td>
       <td>0.500000</td>
       <td>Home</td>
+      <td>0.666667</td>
+      <td>0.681818</td>
       <td>1.0</td>
       <td>2.0</td>
     </tr>
@@ -19543,14 +19575,14 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
       <td>187</td>
       <td>202</td>
       <td>...</td>
-      <td>30.0</td>
-      <td>3.0</td>
       <td>0.333333</td>
       <td>3.0</td>
       <td>0.666667</td>
       <td>0.500000</td>
       <td>0.666667</td>
       <td>Away</td>
+      <td>0.576923</td>
+      <td>0.717949</td>
       <td>5.0</td>
       <td>1.0</td>
     </tr>
@@ -19567,14 +19599,14 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
       <td>324</td>
       <td>110</td>
       <td>...</td>
-      <td>10.0</td>
-      <td>3.0</td>
       <td>1.000000</td>
       <td>4.0</td>
       <td>0.500000</td>
       <td>0.363636</td>
       <td>0.285714</td>
       <td>Home</td>
+      <td>0.674419</td>
+      <td>0.743590</td>
       <td>1.0</td>
       <td>2.0</td>
     </tr>
@@ -19591,20 +19623,20 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
       <td>172</td>
       <td>85</td>
       <td>...</td>
-      <td>108.0</td>
-      <td>5.0</td>
       <td>0.600000</td>
       <td>4.0</td>
       <td>1.000000</td>
       <td>0.470588</td>
       <td>0.222222</td>
       <td>Home</td>
+      <td>0.531250</td>
+      <td>0.567568</td>
       <td>3.0</td>
       <td>3.0</td>
     </tr>
   </tbody>
 </table>
-<p>5 rows × 51 columns</p>
+<p>5 rows × 53 columns</p>
 </div>
 </div>
 
@@ -20234,7 +20266,7 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>        
@@ -20272,7 +20304,7 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
 
 
 
@@ -20315,7 +20347,7 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>        
@@ -20391,7 +20423,7 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">winning_values</span> <span class="o">=</span> <span class="p">[]</span>
@@ -20490,7 +20522,7 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>        
@@ -20566,7 +20598,7 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">interception_values</span> <span class="o">=</span> <span class="p">[]</span>
@@ -20657,7 +20689,7 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>        
@@ -26003,7 +26035,7 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
@@ -26049,7 +26081,7 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">season_2020_df</span> <span class="o">=</span> <span class="n">game_df</span><span class="p">[</span><span class="n">game_df</span><span class="p">[</span><span class="s1">&#39;season&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2020</span><span class="p">]</span>
@@ -26110,14 +26142,14 @@ bh5U8D8q6I4qUfhil8g5T//Z
       <th>passing_yards_home</th>
       <th>rushing_yards_away</th>
       <th>...</th>
-      <th>penalty_yards_away</th>
-      <th>redzone_visits_home</th>
       <th>redzone_ratio_home</th>
       <th>redzone_visits_away</th>
       <th>redzone_ratio_away</th>
       <th>third_down_ratio_home</th>
       <th>third_down_ratio_away</th>
       <th>Winner</th>
+      <th>comp_att_away_ratio</th>
+      <th>comp_att_home_ratio</th>
       <th>sacks_home_cnt</th>
       <th>sacks_away_cnt</th>
     </tr>
@@ -26136,14 +26168,14 @@ bh5U8D8q6I4qUfhil8g5T//Z
       <td>203</td>
       <td>118</td>
       <td>...</td>
-      <td>37.0</td>
-      <td>5.0</td>
       <td>0.600</td>
       <td>3.0</td>
       <td>1.0</td>
       <td>0.538462</td>
       <td>0.400000</td>
       <td>Home</td>
+      <td>0.625000</td>
+      <td>0.750000</td>
       <td>1.0</td>
       <td>4.0</td>
     </tr>
@@ -26160,14 +26192,14 @@ bh5U8D8q6I4qUfhil8g5T//Z
       <td>434</td>
       <td>84</td>
       <td>...</td>
-      <td>46.0</td>
-      <td>4.0</td>
       <td>0.750</td>
       <td>4.0</td>
       <td>1.0</td>
       <td>0.500000</td>
       <td>0.333333</td>
       <td>Away</td>
+      <td>0.885714</td>
+      <td>0.685185</td>
       <td>2.0</td>
       <td>3.0</td>
     </tr>
@@ -26184,14 +26216,14 @@ bh5U8D8q6I4qUfhil8g5T//Z
       <td>306</td>
       <td>52</td>
       <td>...</td>
-      <td>95.0</td>
-      <td>8.0</td>
       <td>0.375</td>
       <td>2.0</td>
       <td>0.5</td>
       <td>0.500000</td>
       <td>0.363636</td>
       <td>Home</td>
+      <td>0.600000</td>
+      <td>0.717391</td>
       <td>3.0</td>
       <td>3.0</td>
     </tr>
@@ -26208,14 +26240,14 @@ bh5U8D8q6I4qUfhil8g5T//Z
       <td>288</td>
       <td>149</td>
       <td>...</td>
-      <td>48.0</td>
-      <td>5.0</td>
       <td>0.400</td>
       <td>4.0</td>
       <td>0.5</td>
       <td>0.375000</td>
       <td>0.181818</td>
       <td>Away</td>
+      <td>0.555556</td>
+      <td>0.571429</td>
       <td>1.0</td>
       <td>1.0</td>
     </tr>
@@ -26232,20 +26264,20 @@ bh5U8D8q6I4qUfhil8g5T//Z
       <td>248</td>
       <td>158</td>
       <td>...</td>
-      <td>63.0</td>
-      <td>4.0</td>
       <td>0.750</td>
       <td>6.0</td>
       <td>0.5</td>
       <td>0.500000</td>
       <td>0.545455</td>
       <td>Away</td>
+      <td>0.727273</td>
+      <td>0.760000</td>
       <td>2.0</td>
       <td>0.0</td>
     </tr>
   </tbody>
 </table>
-<p>5 rows × 51 columns</p>
+<p>5 rows × 53 columns</p>
 </div>
 </div>
 
@@ -26292,7 +26324,7 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">penalties_winning_teams</span> <span class="o">=</span> <span class="p">[]</span>
@@ -26383,7 +26415,7 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>        
@@ -26460,7 +26492,7 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>        
@@ -26545,7 +26577,7 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#display(team_df)</span>
@@ -26616,7 +26648,7 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>        
@@ -26705,7 +26737,7 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
@@ -26766,7 +26798,7 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[64]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># function for us to run hypothesis test on each of the different game factors</span>
@@ -26782,7 +26814,7 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <span class="c1"># create a new dataframe for the game factors and r^2 values</span>
 <span class="n">game_factors_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
 <span class="n">game_factors_lst</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;third_down_rate&#39;</span><span class="p">,</span> <span class="s1">&#39;passing_yards_avg&#39;</span><span class="p">,</span> <span class="s1">&#39;rushing_yards_avg&#39;</span><span class="p">,</span> <span class="s1">&#39;total_yards_avg&#39;</span><span class="p">,</span> <span class="s1">&#39;fumbles_avg&#39;</span><span class="p">,</span> <span class="s1">&#39;interceptions_avg&#39;</span><span class="p">,</span> <span class="s1">&#39;penalties_avg&#39;</span><span class="p">,</span> <span class="s1">&#39;penalties_yards_avg&#39;</span><span class="p">,</span> <span class="s1">&#39;drives_avg&#39;</span><span class="p">,</span> <span class="s1">&#39;redzone_trips_avg&#39;</span><span class="p">,</span> <span class="s1">&#39;redzone_ratio&#39;</span><span class="p">,</span>
-                    <span class="s1">&#39;turnover_avg&#39;</span><span class="p">,</span> <span class="s1">&#39;possession_avg&#39;</span><span class="p">]</span>
+                    <span class="s1">&#39;turnover_avg&#39;</span><span class="p">,</span> <span class="s1">&#39;possession_avg&#39;</span><span class="p">,</span> <span class="s1">&#39;comp_percentage&#39;</span><span class="p">,</span> <span class="s1">&#39;sack_avg&#39;</span><span class="p">]</span>
 <span class="n">pvalues_lst</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">r2values_lst</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -26920,6 +26952,18 @@ bh5U8D8q6I4qUfhil8g5T//Z
       <td>1.444383e-05</td>
       <td>0.471098</td>
     </tr>
+    <tr>
+      <th>13</th>
+      <td>comp_percentage</td>
+      <td>8.994303e-06</td>
+      <td>0.487035</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>sack_avg</td>
+      <td>3.897814e-04</td>
+      <td>0.346977</td>
+    </tr>
   </tbody>
 </table>
 </div>
@@ -26944,7 +26988,7 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">game_factors_df</span> <span class="o">=</span> <span class="n">game_factors_df</span><span class="p">[</span><span class="n">game_factors_df</span><span class="o">.</span><span class="n">factors</span> <span class="o">!=</span> <span class="s1">&#39;rushing_yards_avg&#39;</span><span class="p">]</span>
@@ -27068,8 +27112,8 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Now that we've decided on our factors let's select them from the game_df dataframe (e.g. since third_down_rate is a factor we will keep the third_down_rate for each team in a game). Then, we will build our decision tree model using the decisiontreeclassifier from the scikit-learn library. In our model, we will use hold out validation where 30% of the data will be used for the test set and 70% of the data will be used to train the model. Here our x will include all the different factors or features we will use to predict the winner of the game and our target is the winner of the game.</p>
-
+<p>Now that we've decided on our factors let's select them from the game_df dataframe (e.g. since third_down_rate is a factor we will keep the third_down_rate for each team in a game). Then, we will build our decision tree model using the decisiontreeclassifier from the scikit-learn library. In our model, we will use hold out validation where 35% of the data will be used for the test set and 65% of the data will be used to train the model. Here our x will include all the different factors or features we will use to predict the winner of the game and our target is the winner of the game.</p>
+<h1 id="ADD-SECTION-FOR-COMPLETION-ATTEMPTS-AND-SACKS"><strong>ADD SECTION FOR COMPLETION ATTEMPTS AND SACKS</strong><a class="anchor-link" href="#ADD-SECTION-FOR-COMPLETION-ATTEMPTS-AND-SACKS">&#182;</a></h1>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -27077,7 +27121,7 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[59]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[68]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#display(game_df.columns)</span>
@@ -27085,14 +27129,17 @@ bh5U8D8q6I4qUfhil8g5T//Z
        <span class="s1">&#39;total_yards_away&#39;</span><span class="p">,</span> <span class="s1">&#39;total_yards_home&#39;</span><span class="p">,</span> <span class="s1">&#39;fumbles_away&#39;</span><span class="p">,</span> <span class="s1">&#39;fumbles_home&#39;</span><span class="p">,</span> <span class="s1">&#39;int_away&#39;</span><span class="p">,</span>
        <span class="s1">&#39;int_home&#39;</span><span class="p">,</span> <span class="s1">&#39;turnovers_away&#39;</span><span class="p">,</span> <span class="s1">&#39;turnovers_home&#39;</span><span class="p">,</span> <span class="s1">&#39;redzone_visits_home&#39;</span><span class="p">,</span> <span class="s1">&#39;redzone_ratio_home&#39;</span><span class="p">,</span><span class="s1">&#39;redzone_visits_away&#39;</span><span class="p">,</span> <span class="s1">&#39;redzone_ratio_away&#39;</span><span class="p">,</span>
         <span class="s1">&#39;third_down_ratio_home&#39;</span><span class="p">,</span>
-       <span class="s1">&#39;third_down_ratio_away&#39;</span><span class="p">,</span> <span class="s1">&#39;possession_away&#39;</span><span class="p">,</span> <span class="s1">&#39;possession_home&#39;</span><span class="p">]</span>
+       <span class="s1">&#39;third_down_ratio_away&#39;</span><span class="p">,</span> <span class="s1">&#39;possession_away&#39;</span><span class="p">,</span> <span class="s1">&#39;possession_home&#39;</span><span class="p">,</span> <span class="s1">&#39;comp_att_away_ratio&#39;</span><span class="p">,</span> <span class="s1">&#39;comp_att_home_ratio&#39;</span><span class="p">,</span> <span class="s1">&#39;sacks_home_cnt&#39;</span><span class="p">,</span> <span class="s1">&#39;sacks_away_cnt&#39;</span><span class="p">]</span>
         
 <span class="n">target</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Winner&#39;</span><span class="p">]</span>
+
+<span class="c1">#game_df[&#39;away&#39;] = game_df[&#39;away&#39;].str.get_dummies().values.tolist()</span>
+<span class="c1">#game_df[&#39;home&#39;] = game_df[&#39;home&#39;].str.get_dummies().values.tolist()</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">game_df</span><span class="p">[</span><span class="n">factors</span><span class="p">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">game_df</span><span class="p">[</span><span class="n">target</span><span class="p">]</span>
 
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.30</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span> <span class="mi">1</span><span class="p">)</span> 
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span> <span class="mi">1</span><span class="p">)</span> 
 
 <span class="c1"># create decision tree instance</span>
 <span class="n">dt_classifier</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">()</span>
@@ -27127,7 +27174,7 @@ bh5U8D8q6I4qUfhil8g5T//Z
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Decision Tree Accuracy: 0.7501626545217958
+<pre>Decision Tree Accuracy: 0.7529280535415505
 </pre>
 </div>
 </div>
@@ -27149,10 +27196,10 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[68]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[70]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X_train2</span><span class="p">,</span> <span class="n">X_test2</span><span class="p">,</span> <span class="n">y_train2</span><span class="p">,</span> <span class="n">y_test2</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.30</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span> <span class="mi">1</span><span class="p">)</span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X_train2</span><span class="p">,</span> <span class="n">X_test2</span><span class="p">,</span> <span class="n">y_train2</span><span class="p">,</span> <span class="n">y_test2</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span> <span class="mi">1</span><span class="p">)</span> 
 <span class="c1"># create random forest instance</span>
 <span class="n">rf_classifier</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">()</span>
 
@@ -27168,8 +27215,12 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Random Forest Accuracy: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test2</span><span class="p">,</span> <span class="n">predictions</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Predictions</span><span class="se">\n</span><span class="s1">-------------------------------------------------&#39;</span><span class="p">)</span>
 
 
+<span class="c1"># grab first 200 rows (this is just to avoid outputing over 1000 lines of output)</span>
+<span class="n">output_df</span> <span class="o">=</span> <span class="n">game_df</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span> <span class="mi">200</span><span class="p">]</span>
+<span class="c1">#display(output_df)</span>
+
 <span class="c1"># output the predictions</span>
-<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">game_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">output_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
     <span class="n">predicted_winner</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
     <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">predictions</span><span class="p">):</span>
         <span class="k">break</span>
@@ -27203,7 +27254,7 @@ bh5U8D8q6I4qUfhil8g5T//Z
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Random Forest Accuracy: 0.8295380611581002
+<pre>Random Forest Accuracy: 0.8432794199665365
 Predictions
 -------------------------------------------------
 Actual Winner: 49ers Predicted Winner: 49ers
@@ -27215,15 +27266,15 @@ Acutal Winner: Packers Predicted Winner: Packers
 Acutal Winner: Titans Predicted Winner: Titans
 Acutal Winner: Dolphins Predicted Winner: Dolphins
 Acutal Winner: Washington Predicted Winner: Washington
-Acutal Winner: Panthers Predicted Winner: Panthers
+Acutal Winner: Panthers Predicted Winner: Ravens
 Actual Winner: Colts Predicted Winner: Colts
 Acutal Winner: Broncos Predicted Winner: Broncos
 Acutal Winner: Raiders Predicted Winner: Raiders
-Actual Winner: Saints Predicted Winner: Saints
+Actual Winner: Saints Predicted Winner: Buccaneers
 Acutal Winner: Texans Predicted Winner: Cowboys
 Acutal Winner: Patriots Predicted Winner: Patriots
 Actual Winner: Bears Predicted Winner: Falcons
-Acutal Winner: Browns Predicted Winner: Browns
+Acutal Winner: Browns Predicted Winner: Bengals
 Acutal Winner: Cowboys Predicted Winner: Titans
 Actual Winner: Dolphins Predicted Winner: Dolphins
 Actual Winner: Jaguars Predicted Winner: Chiefs
@@ -27236,12 +27287,12 @@ Actual Winner: Cardinals Predicted Winner: Seahawks
 Actual Winner: Bills Predicted Winner: Vikings
 Acutal Winner: Chargers Predicted Winner: Chargers
 Actual Winner: Broncos Predicted Winner: 49ers
-Actual Winner: Raiders Predicted Winner: Steelers
+Actual Winner: Raiders Predicted Winner: Raiders
 Actual Winner: Eagles Predicted Winner: Washington
 Actual Winner: Saints Predicted Winner: Bears
 Actual Winner: Browns Predicted Winner: Titans
 Acutal Winner: Dolphins Predicted Winner: Jets
-Actual Winner: Panthers Predicted Winner: Panthers
+Actual Winner: Panthers Predicted Winner: Vikings
 Acutal Winner: Patriots Predicted Winner: Patriots
 Acutal Winner: Eagles Predicted Winner: Cowboys
 Actual Winner: Colts Predicted Winner: Texans
@@ -27259,9 +27310,9 @@ Acutal Winner: Chiefs Predicted Winner: Chiefs
 Actual Winner: Cowboys Predicted Winner: Rams
 Acutal Winner: Eagles Predicted Winner: Eagles
 Acutal Winner: Steelers Predicted Winner: Steelers
-Acutal Winner: Jaguars Predicted Winner: Jaguars
+Acutal Winner: Jaguars Predicted Winner: Jets
 Actual Winner: Buccaneers Predicted Winner: Buccaneers
-Acutal Winner: Cardinals Predicted Winner: Giants
+Acutal Winner: Cardinals Predicted Winner: Cardinals
 Acutal Winner: Raiders Predicted Winner: Raiders
 Acutal Winner: Chargers Predicted Winner: Chargers
 Acutal Winner: Seahawks Predicted Winner: Seahawks
@@ -27272,7 +27323,7 @@ Actual Winner: Giants Predicted Winner: Giants
 Actual Winner: Washington Predicted Winner: Washington
 Acutal Winner: Colts Predicted Winner: Colts
 Acutal Winner: Dolphins Predicted Winner: Patriots
-Acutal Winner: Saints Predicted Winner: Steelers
+Acutal Winner: Saints Predicted Winner: Saints
 Actual Winner: Cardinals Predicted Winner: Panthers
 Acutal Winner: Broncos Predicted Winner: Broncos
 Actual Winner: Chiefs Predicted Winner: Chiefs
@@ -27282,14 +27333,14 @@ Actual Winner: Ravens Predicted Winner: Browns
 Actual Winner: Packers Predicted Winner: Bears
 Actual Winner: Steelers Predicted Winner: Bengals
 Acutal Winner: Cowboys Predicted Winner: Cowboys
-Acutal Winner: Colts Predicted Winner: Ravens
+Acutal Winner: Colts Predicted Winner: Colts
 Acutal Winner: Vikings Predicted Winner: Vikings
 Actual Winner: Packers Predicted Winner: Patriots
 Actual Winner: Falcons Predicted Winner: Giants
 Acutal Winner: Buccaneers Predicted Winner: Buccaneers
 Actual Winner: Saints Predicted Winner: Washington
 Actual Winner: Bills Predicted Winner: Bills
-Acutal Winner: Titans Predicted Winner: Titans
+Acutal Winner: Titans Predicted Winner: Jaguars
 Acutal Winner: Rams Predicted Winner: Rams
 Acutal Winner: Chargers Predicted Winner: Chargers
 Actual Winner: Dolphins Predicted Winner: Dolphins
@@ -27298,18 +27349,18 @@ Acutal Winner: Falcons Predicted Winner: Panthers
 Acutal Winner: Lions Predicted Winner: Bears
 Actual Winner: Broncos Predicted Winner: Broncos
 Acutal Winner: Rams Predicted Winner: Rams
-Actual Winner: Bills Predicted Winner: Bills
+Actual Winner: Bills Predicted Winner: Dolphins
 Acutal Winner: Saints Predicted Winner: 49ers
 Acutal Winner: Jets Predicted Winner: Vikings
 Acutal Winner: Ravens Predicted Winner: Ravens
-Acutal Winner: Browns Predicted Winner: Browns
+Acutal Winner: Browns Predicted Winner: Texans
 Actual Winner: Chargers Predicted Winner: Raiders
 Acutal Winner: Packers Predicted Winner: Washington
 Acutal Winner: Eagles Predicted Winner: Buccaneers
 Acutal Winner: Cardinals Predicted Winner: Cowboys
-Acutal Winner: Steelers Predicted Winner: Steelers
+Acutal Winner: Steelers Predicted Winner: Colts
 Acutal Winner: Bills Predicted Winner: Lions
-Actual Winner: Titans Predicted Winner: Titans
+Actual Winner: Titans Predicted Winner: Bengals
 Actual Winner: Seahawks Predicted Winner: Cowboys
 Acutal Winner: Chiefs Predicted Winner: Raiders
 Acutal Winner: Vikings Predicted Winner: Vikings
@@ -27318,7 +27369,7 @@ Actual Winner: Browns Predicted Winner: Browns
 Actual Winner: Buccaneers Predicted Winner: Panthers
 Actual Winner: Steelers Predicted Winner: Ravens
 Acutal Winner: 49ers Predicted Winner: 49ers
-Actual Winner: Broncos Predicted Winner: Broncos
+Actual Winner: Broncos Predicted Winner: Patriots
 Actual Winner: Texans Predicted Winner: Jaguars
 Acutal Winner: Washington Predicted Winner: Washington
 Acutal Winner: Eagles Predicted Winner: Eagles
@@ -27332,12 +27383,12 @@ Acutal Winner: Buccaneers Predicted Winner: Buccaneers
 Actual Winner: Bengals Predicted Winner: Texans
 Actual Winner: Jets Predicted Winner: Jets
 Actual Winner: 49ers Predicted Winner: 49ers
-Actual Winner: Rams Predicted Winner: Cardinals
+Actual Winner: Rams Predicted Winner: Rams
 Actual Winner: Washington Predicted Winner: Seahawks
 Acutal Winner: Giants Predicted Winner: Giants
 Acutal Winner: Packers Predicted Winner: Packers
 Acutal Winner: Packers Predicted Winner: Packers
-Acutal Winner: Titans Predicted Winner: Texans
+Acutal Winner: Titans Predicted Winner: Titans
 Acutal Winner: Rams Predicted Winner: Chargers
 Actual Winner: Giants Predicted Winner: Vikings
 Actual Winner: Colts Predicted Winner: Eagles
@@ -27369,9 +27420,9 @@ Acutal Winner: Bears Predicted Winner: Bears
 Acutal Winner: Cowboys Predicted Winner: Cowboys
 Acutal Winner: Dolphins Predicted Winner: Dolphins
 Acutal Winner: Patriots Predicted Winner: Vikings
-Actual Winner: Browns Predicted Winner: Saints
+Actual Winner: Browns Predicted Winner: Browns
 Acutal Winner: Jets Predicted Winner: Bills
-Acutal Winner: Steelers Predicted Winner: Bengals
+Acutal Winner: Steelers Predicted Winner: Steelers
 Acutal Winner: Washington Predicted Winner: Washington
 Actual Winner: Falcons Predicted Winner: Falcons
 Acutal Winner: Ravens Predicted Winner: Titans
@@ -27406,1287 +27457,6 @@ Acutal Winner: Buccaneers Predicted Winner: Buccaneers
 Actual Winner: Giants Predicted Winner: Washington
 Acutal Winner: Panthers Predicted Winner: Panthers
 Actual Winner: Browns Predicted Winner: Browns
-Acutal Winner: Cardinals Predicted Winner: Lions
-Actual Winner: Eagles Predicted Winner: Seahawks
-Actual Winner: Saints Predicted Winner: Saints
-Acutal Winner: Jets Predicted Winner: Broncos
-Actual Winner: Raiders Predicted Winner: Chargers
-Acutal Winner: Packers Predicted Winner: Packers
-Acutal Winner: Dolphins Predicted Winner: Bears
-Actual Winner: Seahawks Predicted Winner: Falcons
-Acutal Winner: Bills Predicted Winner: Bills
-Acutal Winner: Bears Predicted Winner: Jets
-Actual Winner: Jaguars Predicted Winner: Bengals
-Actual Winner: Colts Predicted Winner: Browns
-Actual Winner: Buccaneers Predicted Winner: Buccaneers
-Acutal Winner: Dolphins Predicted Winner: Dolphins
-Actual Winner: Vikings Predicted Winner: Saints
-Acutal Winner: Eagles Predicted Winner: Eagles
-Acutal Winner: Steelers Predicted Winner: Steelers
-Actual Winner: Ravens Predicted Winner: Ravens
-Acutal Winner: Broncos Predicted Winner: Broncos
-Acutal Winner: Giants Predicted Winner: Cowboys
-Actual Winner: Packers Predicted Winner: 49ers
-Acutal Winner: Rams Predicted Winner: Rams
-Acutal Winner: Titans Predicted Winner: Titans
-Acutal Winner: Vikings Predicted Winner: Vikings
-Actual Winner: 49ers Predicted Winner: Cardinals
-Actual Winner: Eagles Predicted Winner: Cowboys
-Acutal Winner: Falcons Predicted Winner: Falcons
-Acutal Winner: Bengals Predicted Winner: Bengals
-Acutal Winner: Packers Predicted Winner: Bills
-Actual Winner: Giants Predicted Winner: Giants
-Acutal Winner: Chiefs Predicted Winner: Chiefs
-Acutal Winner: Washington Predicted Winner: Washington
-Acutal Winner: Panthers Predicted Winner: Bears
-Actual Winner: Titans Predicted Winner: Titans
-Acutal Winner: Seahawks Predicted Winner: Seahawks
-Acutal Winner: Raiders Predicted Winner: Raiders
-Actual Winner: Browns Predicted Winner: Browns
-Actual Winner: Jets Predicted Winner: Jets
-Actual Winner: Steelers Predicted Winner: Buccaneers
-Acutal Winner: Giants Predicted Winner: Giants
-Acutal Winner: Raiders Predicted Winner: Raiders
-Acutal Winner: Bills Predicted Winner: Bills
-Acutal Winner: Browns Predicted Winner: Falcons
-Actual Winner: Vikings Predicted Winner: Lions
-Acutal Winner: Patriots Predicted Winner: Patriots
-Actual Winner: Panthers Predicted Winner: Saints
-Acutal Winner: Steelers Predicted Winner: Ravens
-Acutal Winner: Washington Predicted Winner: Washington
-Actual Winner: Titans Predicted Winner: Titans
-Acutal Winner: Colts Predicted Winner: Jaguars
-Acutal Winner: Broncos Predicted Winner: Cardinals
-Acutal Winner: Jets Predicted Winner: Jets
-Actual Winner: Seahawks Predicted Winner: Seahawks
-Actual Winner: Buccaneers Predicted Winner: Bears
-Acutal Winner: Rams Predicted Winner: Rams
-Acutal Winner: Washington Predicted Winner: Washington
-Acutal Winner: Bills Predicted Winner: Patriots
-Actual Winner: Broncos Predicted Winner: Bengals
-Actual Winner: Colts Predicted Winner: Browns
-Acutal Winner: Lions Predicted Winner: Lions
-Actual Winner: Vikings Predicted Winner: Vikings
-Acutal Winner: Chiefs Predicted Winner: Chiefs
-Actual Winner: Texans Predicted Winner: Dolphins
-Acutal Winner: Giants Predicted Winner: Giants
-Acutal Winner: Steelers Predicted Winner: Ravens
-Acutal Winner: Panthers Predicted Winner: Panthers
-Actual Winner: Falcons Predicted Winner: Falcons
-Acutal Winner: 49ers Predicted Winner: Bears
-Acutal Winner: Seahawks Predicted Winner: Saints
-Acutal Winner: Titans Predicted Winner: Raiders
-Actual Winner: Buccaneers Predicted Winner: Eagles
-Actual Winner: Washington Predicted Winner: Washington
-Acutal Winner: Packers Predicted Winner: Packers
-Acutal Winner: Colts Predicted Winner: Colts
-Acutal Winner: Chiefs Predicted Winner: Steelers
-Acutal Winner: Rams Predicted Winner: Rams
-Acutal Winner: Saints Predicted Winner: Texans
-Actual Winner: Dolphins Predicted Winner: Dolphins
-Actual Winner: Bills Predicted Winner: Jaguars
-Acutal Winner: Ravens Predicted Winner: Browns
-Actual Winner: Seahawks Predicted Winner: Cardinals
-Actual Winner: Panthers Predicted Winner: Buccaneers
-Acutal Winner: Raiders Predicted Winner: Bengals
-Actual Winner: Patriots Predicted Winner: Patriots
-Actual Winner: Broncos Predicted Winner: Broncos
-Acutal Winner: Vikings Predicted Winner: Bears
-Actual Winner: Cowboys Predicted Winner: Cowboys
-Actual Winner: Buccaneers Predicted Winner: Falcons
-Actual Winner: Steelers Predicted Winner: Bengals
-Actual Winner: Vikings Predicted Winner: Lions
-Acutal Winner: Titans Predicted Winner: Titans
-Acutal Winner: Colts Predicted Winner: Jaguars
-Acutal Winner: Patriots Predicted Winner: Patriots
-Actual Winner: Chiefs Predicted Winner: Texans
-Acutal Winner: Cardinals Predicted Winner: Packers
-Acutal Winner: Seahawks Predicted Winner: Rams
-Actual Winner: Giants Predicted Winner: Giants
-Actual Winner: Ravens Predicted Winner: Chargers
-Actual Winner: Browns Predicted Winner: 49ers
-Acutal Winner: Dolphins Predicted Winner: Bills
-Acutal Winner: Broncos Predicted Winner: Broncos
-Actual Winner: Eagles Predicted Winner: Bills
-Actual Winner: Bengals Predicted Winner: Bengals
-Acutal Winner: Rams Predicted Winner: Rams
-Acutal Winner: Vikings Predicted Winner: Vikings
-Actual Winner: Titans Predicted Winner: Steelers
-Acutal Winner: Washington Predicted Winner: Patriots
-Acutal Winner: Texans Predicted Winner: Texans
-Acutal Winner: Raiders Predicted Winner: Raiders
-Actual Winner: Chiefs Predicted Winner: Chiefs
-Acutal Winner: Broncos Predicted Winner: Broncos
-Actual Winner: Cowboys Predicted Winner: Cowboys
-Acutal Winner: Panthers Predicted Winner: Panthers
-Actual Winner: Colts Predicted Winner: Saints
-Actual Winner: Packers Predicted Winner: Packers
-Actual Winner: Vikings Predicted Winner: Falcons
-Acutal Winner: Bills Predicted Winner: Bills
-Acutal Winner: Bears Predicted Winner: Bears
-Acutal Winner: Cowboys Predicted Winner: Cowboys
-Acutal Winner: Packers Predicted Winner: Packers
-Acutal Winner: Chiefs Predicted Winner: Broncos
-Acutal Winner: Patriots Predicted Winner: Titans
-Actual Winner: Dolphins Predicted Winner: Giants
-Acutal Winner: Panthers Predicted Winner: Panthers
-Acutal Winner: Jaguars Predicted Winner: Jaguars
-Acutal Winner: Eagles Predicted Winner: Washington
-Acutal Winner: 49ers Predicted Winner: 49ers
-Actual Winner: Browns Predicted Winner: Steelers
-Actual Winner: Colts Predicted Winner: Buccaneers
-Acutal Winner: Browns Predicted Winner: Browns
-Acutal Winner: Cowboys Predicted Winner: Cowboys
-Actual Winner: Chiefs Predicted Winner: Packers
-Acutal Winner: Titans Predicted Winner: Titans
-Actual Winner: Panthers Predicted Winner: Panthers
-Acutal Winner: Patriots Predicted Winner: Giants
-Acutal Winner: Saints Predicted Winner: Saints
-Actual Winner: Buccaneers Predicted Winner: Washington
-Actual Winner: Dolphins Predicted Winner: Jaguars
-Acutal Winner: Broncos Predicted Winner: Steelers
-Acutal Winner: Jets Predicted Winner: Jets
-Actual Winner: Ravens Predicted Winner: Cardinals
-Acutal Winner: Seahawks Predicted Winner: Seahawks
-Acutal Winner: Rams Predicted Winner: Rams
-Actual Winner: Patriots Predicted Winner: Patriots
-Actual Winner: Saints Predicted Winner: Falcons
-Acutal Winner: Bengals Predicted Winner: Ravens
-Actual Winner: Chargers Predicted Winner: Chargers
-Actual Winner: Cowboys Predicted Winner: Lions
-Acutal Winner: Rams Predicted Winner: Rams
-Acutal Winner: Vikings Predicted Winner: Vikings
-Actual Winner: Eagles Predicted Winner: Eagles
-Actual Winner: Titans Predicted Winner: Titans
-Actual Winner: Jets Predicted Winner: Texans
-Acutal Winner: Bills Predicted Winner: Bills
-Acutal Winner: 49ers Predicted Winner: 49ers
-Acutal Winner: Seahawks Predicted Winner: Seahawks
-Actual Winner: Chiefs Predicted Winner: Chiefs
-Acutal Winner: Bears Predicted Winner: Bears
-Acutal Winner: Bengals Predicted Winner: Bengals
-Actual Winner: Giants Predicted Winner: Vikings
-Acutal Winner: Patriots Predicted Winner: Browns
-Actual Winner: Panthers Predicted Winner: Panthers
-Actual Winner: Rams Predicted Winner: Steelers
-Acutal Winner: Buccaneers Predicted Winner: Buccaneers
-Actual Winner: Titans Predicted Winner: Titans
-Acutal Winner: Ravens Predicted Winner: Ravens
-Acutal Winner: Cardinals Predicted Winner: Cardinals
-Acutal Winner: Colts Predicted Winner: Colts
-Acutal Winner: Eagles Predicted Winner: Jets
-Acutal Winner: Chiefs Predicted Winner: Chiefs
-Actual Winner: Dolphins Predicted Winner: Dolphins
-Acutal Winner: Bears Predicted Winner: Chargers
-Acutal Winner: Lions Predicted Winner: Lions
-Actual Winner: Colts Predicted Winner: Dolphins
-Actual Winner: Giants Predicted Winner: Giants
-Actual Winner: Saints Predicted Winner: Saints
-Acutal Winner: Ravens Predicted Winner: Ravens
-Acutal Winner: Texans Predicted Winner: Panthers
-Acutal Winner: Cardinals Predicted Winner: Cardinals
-Acutal Winner: Seahawks Predicted Winner: Seahawks
-Actual Winner: Eagles Predicted Winner: Falcons
-Acutal Winner: Cowboys Predicted Winner: Washington
-Acutal Winner: 49ers Predicted Winner: 49ers
-Actual Winner: Packers Predicted Winner: Packers
-Actual Winner: Patriots Predicted Winner: Broncos
-Acutal Winner: Bengals Predicted Winner: Texans
-Acutal Winner: Lions Predicted Winner: Lions
-Acutal Winner: Titans Predicted Winner: Titans
-Acutal Winner: Chiefs Predicted Winner: Browns
-Actual Winner: Falcons Predicted Winner: Giants
-Acutal Winner: Steelers Predicted Winner: Steelers
-Acutal Winner: Washington Predicted Winner: Seahawks
-Acutal Winner: Panthers Predicted Winner: Panthers
-Acutal Winner: Jaguars Predicted Winner: Colts
-Acutal Winner: Chargers Predicted Winner: Chargers
-Acutal Winner: Cowboys Predicted Winner: Bills
-Actual Winner: Jets Predicted Winner: Raiders
-Acutal Winner: Rams Predicted Winner: Rams
-Actual Winner: Eagles Predicted Winner: Eagles
-Actual Winner: Texans Predicted Winner: Bills
-Actual Winner: Rams Predicted Winner: Bears
-Acutal Winner: Bengals Predicted Winner: Bengals
-Acutal Winner: Browns Predicted Winner: Cardinals
-Acutal Winner: Titans Predicted Winner: Titans
-Acutal Winner: Dolphins Predicted Winner: Dolphins
-Acutal Winner: Saints Predicted Winner: Falcons
-Acutal Winner: Eagles Predicted Winner: Giants
-Acutal Winner: Panthers Predicted Winner: Panthers
-Acutal Winner: Broncos Predicted Winner: Chargers
-Acutal Winner: Colts Predicted Winner: Colts
-Acutal Winner: Raiders Predicted Winner: Raiders
-Acutal Winner: Seahawks Predicted Winner: Seahawks
-Actual Winner: Packers Predicted Winner: Buccaneers
-Acutal Winner: Patriots Predicted Winner: Patriots
-Acutal Winner: 49ers Predicted Winner: 49ers
-Actual Winner: Colts Predicted Winner: Bills
-Actual Winner: Steelers Predicted Winner: Browns
-Acutal Winner: Cowboys Predicted Winner: Cowboys
-Acutal Winner: Packers Predicted Winner: 49ers
-Acutal Winner: Vikings Predicted Winner: Lions
-Acutal Winner: Jets Predicted Winner: Jaguars
-Acutal Winner: Eagles Predicted Winner: Saints
-Acutal Winner: Ravens Predicted Winner: Ravens
-Actual Winner: Patriots Predicted Winner: Texans
-Actual Winner: Bears Predicted Winner: Broncos
-Actual Winner: Rams Predicted Winner: Cardinals
-Actual Winner: Titans Predicted Winner: Falcons
-Acutal Winner: Chiefs Predicted Winner: Raiders
-Actual Winner: Bengals Predicted Winner: Bengals
-Acutal Winner: Dolphins Predicted Winner: Dolphins
-Acutal Winner: Buccaneers Predicted Winner: Giants
-Acutal Winner: Lions Predicted Winner: Lions
-Actual Winner: Dolphins Predicted Winner: Cowboys
-Acutal Winner: Bears Predicted Winner: Bears
-Actual Winner: Patriots Predicted Winner: Colts
-Acutal Winner: Rams Predicted Winner: Vikings
-Actual Winner: Bills Predicted Winner: Bills
-Actual Winner: Bengals Predicted Winner: Bengals
-Actual Winner: Eagles Predicted Winner: Panthers
-Acutal Winner: Ravens Predicted Winner: 49ers
-Acutal Winner: Texans Predicted Winner: Texans
-Actual Winner: Saints Predicted Winner: Washington
-Actual Winner: Broncos Predicted Winner: Broncos
-Actual Winner: Chiefs Predicted Winner: Chargers
-Acutal Winner: Seahawks Predicted Winner: Browns
-Acutal Winner: Jaguars Predicted Winner: Jaguars
-Acutal Winner: Jets Predicted Winner: Titans
-Actual Winner: Chargers Predicted Winner: Chargers
-Acutal Winner: Packers Predicted Winner: Bears
-Actual Winner: Colts Predicted Winner: Titans
-Acutal Winner: Vikings Predicted Winner: Vikings
-Actual Winner: Buccaneers Predicted Winner: Saints
-Actual Winner: Washington Predicted Winner: Giants
-Acutal Winner: Eagles Predicted Winner: Eagles
-Acutal Winner: Steelers Predicted Winner: Raiders
-Acutal Winner: Jaguars Predicted Winner: Texans
-Acutal Winner: Ravens Predicted Winner: Ravens
-Acutal Winner: 49ers Predicted Winner: 49ers
-Acutal Winner: Bills Predicted Winner: Bills
-Acutal Winner: Broncos Predicted Winner: Chiefs
-Acutal Winner: Patriots Predicted Winner: Patriots
-Acutal Winner: Falcons Predicted Winner: Panthers
-Actual Winner: Rams Predicted Winner: Rams
-Acutal Winner: Bears Predicted Winner: Bears
-Acutal Winner: Bengals Predicted Winner: 49ers
-Acutal Winner: Titans Predicted Winner: Titans
-Acutal Winner: Colts Predicted Winner: Falcons
-Acutal Winner: Chiefs Predicted Winner: Chiefs
-Acutal Winner: Rams Predicted Winner: Rams
-Acutal Winner: Patriots Predicted Winner: Patriots
-Acutal Winner: Jets Predicted Winner: Steelers
-Acutal Winner: Buccaneers Predicted Winner: Buccaneers
-Acutal Winner: Broncos Predicted Winner: Broncos
-Acutal Winner: Raiders Predicted Winner: Raiders
-Actual Winner: Panthers Predicted Winner: Panthers
-Actual Winner: Packers Predicted Winner: Chargers
-Actual Winner: Cowboys Predicted Winner: Washington
-Acutal Winner: Saints Predicted Winner: Saints
-Actual Winner: Eagles Predicted Winner: Eagles
-Actual Winner: Falcons Predicted Winner: Falcons
-Acutal Winner: Vikings Predicted Winner: Vikings
-Actual Winner: Patriots Predicted Winner: Jets
-Actual Winner: Dolphins Predicted Winner: Dolphins
-Acutal Winner: Bears Predicted Winner: Washington
-Actual Winner: Ravens Predicted Winner: Browns
-Acutal Winner: Cowboys Predicted Winner: Giants
-Acutal Winner: Rams Predicted Winner: Bengals
-Acutal Winner: Panthers Predicted Winner: Lions
-Acutal Winner: Jaguars Predicted Winner: Saints
-Actual Winner: Titans Predicted Winner: Texans
-Acutal Winner: Steelers Predicted Winner: Steelers
-Actual Winner: 49ers Predicted Winner: 49ers
-Acutal Winner: Seahawks Predicted Winner: Seahawks
-Actual Winner: Broncos Predicted Winner: Broncos
-Actual Winner: Packers Predicted Winner: Raiders
-Acutal Winner: Patriots Predicted Winner: Patriots
-Actual Winner: Seahawks Predicted Winner: Seahawks
-Actual Winner: Eagles Predicted Winner: Washington
-Acutal Winner: Falcons Predicted Winner: Falcons
-Actual Winner: Browns Predicted Winner: Bengals
-Acutal Winner: Lions Predicted Winner: Lions
-Acutal Winner: Titans Predicted Winner: Titans
-Acutal Winner: Chiefs Predicted Winner: Chiefs
-Acutal Winner: Dolphins Predicted Winner: Dolphins
-Acutal Winner: Saints Predicted Winner: Saints
-Actual Winner: Colts Predicted Winner: Colts
-Actual Winner: Panthers Predicted Winner: Giants
-Acutal Winner: Cardinals Predicted Winner: Vikings
-Acutal Winner: Packers Predicted Winner: Packers
-Acutal Winner: Chargers Predicted Winner: Chargers
-Acutal Winner: Ravens Predicted Winner: Steelers
-Acutal Winner: Patriots Predicted Winner: Patriots
-Actual Winner: Titans Predicted Winner: Titans
-Actual Winner: Jaguars Predicted Winner: Bills
-Actual Winner: Lions Predicted Winner: Bears
-Acutal Winner: Browns Predicted Winner: Browns
-Acutal Winner: Rams Predicted Winner: Rams
-Actual Winner: Seahawks Predicted Winner: Saints
-Acutal Winner: Jets Predicted Winner: Jets
-Acutal Winner: Steelers Predicted Winner: Raiders
-Acutal Winner: Washington Predicted Winner: Washington
-Actual Winner: Chargers Predicted Winner: Texans
-Acutal Winner: Vikings Predicted Winner: Vikings
-Acutal Winner: Eagles Predicted Winner: Giants
-Actual Winner: Falcons Predicted Winner: Falcons
-Acutal Winner: Broncos Predicted Winner: Chiefs
-Actual Winner: Packers Predicted Winner: Packers
-Acutal Winner: Falcons Predicted Winner: Rams
-Acutal Winner: Lions Predicted Winner: Lions
-Actual Winner: Bears Predicted Winner: Packers
-Actual Winner: Colts Predicted Winner: Colts
-Actual Winner: Panthers Predicted Winner: Panthers
-Acutal Winner: Saints Predicted Winner: 49ers
-Acutal Winner: Giants Predicted Winner: Washington
-Acutal Winner: Jaguars Predicted Winner: Broncos
-Acutal Winner: Ravens Predicted Winner: Steelers
-Actual Winner: Seahawks Predicted Winner: Buccaneers
-Acutal Winner: Cowboys Predicted Winner: Browns
-Acutal Winner: Raiders Predicted Winner: Raiders
-Actual Winner: Patriots Predicted Winner: Patriots
-Actual Winner: Jets Predicted Winner: Chargers
-Acutal Winner: Bengals Predicted Winner: Dolphins
-Acutal Winner: Eagles Predicted Winner: Eagles
-Acutal Winner: Falcons Predicted Winner: Falcons
-Actual Winner: Ravens Predicted Winner: Ravens
-Actual Winner: Eagles Predicted Winner: Eagles
-Actual Winner: Jaguars Predicted Winner: Jaguars
-Actual Winner: Texans Predicted Winner: Texans
-Actual Winner: Saints Predicted Winner: Saints
-Acutal Winner: Vikings Predicted Winner: Vikings
-Acutal Winner: Giants Predicted Winner: Giants
-Acutal Winner: Broncos Predicted Winner: Broncos
-Acutal Winner: Colts Predicted Winner: Colts
-Acutal Winner: Seahawks Predicted Winner: 49ers
-Acutal Winner: Raiders Predicted Winner: Raiders
-Actual Winner: Steelers Predicted Winner: Dolphins
-Actual Winner: Cowboys Predicted Winner: Washington
-Actual Winner: Patriots Predicted Winner: Patriots
-Actual Winner: Eagles Predicted Winner: Bears
-Acutal Winner: Browns Predicted Winner: Browns
-Actual Winner: Giants Predicted Winner: Giants
-Acutal Winner: Steelers Predicted Winner: Steelers
-Actual Winner: Colts Predicted Winner: Colts
-Acutal Winner: Texans Predicted Winner: Texans
-Acutal Winner: Cardinals Predicted Winner: Cardinals
-Actual Winner: Falcons Predicted Winner: Panthers
-Actual Winner: Jets Predicted Winner: Jets
-Acutal Winner: Chargers Predicted Winner: Chargers
-Actual Winner: Broncos Predicted Winner: Buccaneers
-Actual Winner: Rams Predicted Winner: 49ers
-Actual Winner: Chiefs Predicted Winner: Ravens
-Actual Winner: Lions Predicted Winner: Falcons
-Actual Winner: Giants Predicted Winner: Giants
-Acutal Winner: Colts Predicted Winner: Colts
-Acutal Winner: Patriots Predicted Winner: Dolphins
-Actual Winner: Buccaneers Predicted Winner: Buccaneers
-Acutal Winner: Steelers Predicted Winner: Browns
-Actual Winner: Vikings Predicted Winner: Texans
-Acutal Winner: Jets Predicted Winner: Bills
-Acutal Winner: Chargers Predicted Winner: Jaguars
-Acutal Winner: Broncos Predicted Winner: Panthers
-Acutal Winner: 49ers Predicted Winner: Cardinals
-Actual Winner: Rams Predicted Winner: Rams
-Actual Winner: Ravens Predicted Winner: Washington
-Actual Winner: Titans Predicted Winner: Packers
-Acutal Winner: Falcons Predicted Winner: Falcons
-Acutal Winner: Bills Predicted Winner: Dolphins
-Actual Winner: Washington Predicted Winner: Bears
-Acutal Winner: Browns Predicted Winner: Browns
-Actual Winner: Packers Predicted Winner: Packers
-Actual Winner: Texans Predicted Winner: Titans
-Acutal Winner: Patriots Predicted Winner: Patriots
-Acutal Winner: Jets Predicted Winner: 49ers
-Acutal Winner: Eagles Predicted Winner: Panthers
-Acutal Winner: Jaguars Predicted Winner: Jaguars
-Actual Winner: Steelers Predicted Winner: Cowboys
-Actual Winner: Broncos Predicted Winner: Raiders
-Actual Winner: Vikings Predicted Winner: Vikings
-Acutal Winner: Rams Predicted Winner: Rams
-Actual Winner: Eagles Predicted Winner: Eagles
-Actual Winner: Jaguars Predicted Winner: Jaguars
-Acutal Winner: Chiefs Predicted Winner: Chiefs
-Acutal Winner: Dolphins Predicted Winner: Rams
-Acutal Winner: Vikings Predicted Winner: Vikings
-Actual Winner: Lions Predicted Winner: Lions
-Acutal Winner: Buccaneers Predicted Winner: Buccaneers
-Actual Winner: Chargers Predicted Winner: Chargers
-Acutal Winner: Ravens Predicted Winner: Ravens
-Acutal Winner: Patriots Predicted Winner: Patriots
-Acutal Winner: Packers Predicted Winner: Packers
-Actual Winner: Saints Predicted Winner: Raiders
-Acutal Winner: Cardinals Predicted Winner: Seahawks
-Acutal Winner: Bengals Predicted Winner: Bengals
-Acutal Winner: Bills Predicted Winner: Cardinals
-Acutal Winner: Cowboys Predicted Winner: Cowboys
-Acutal Winner: Titans Predicted Winner: Bengals
-Acutal Winner: Chiefs Predicted Winner: Chiefs
-Actual Winner: Giants Predicted Winner: Giants
-Acutal Winner: Eagles Predicted Winner: Ravens
-Actual Winner: Packers Predicted Winner: Washington
-Acutal Winner: Texans Predicted Winner: Texans
-Actual Winner: Falcons Predicted Winner: Broncos
-Acutal Winner: Seahawks Predicted Winner: Seahawks
-Acutal Winner: Steelers Predicted Winner: Patriots
-Acutal Winner: Chargers Predicted Winner: Raiders
-Acutal Winner: Bears Predicted Winner: Bears
-Acutal Winner: Jets Predicted Winner: Jets
-Acutal Winner: Bills Predicted Winner: Bills
-Acutal Winner: Bengals Predicted Winner: Bengals
-Actual Winner: Washington Predicted Winner: Lions
-Actual Winner: Cardinals Predicted Winner: Dolphins
-Acutal Winner: Steelers Predicted Winner: Steelers
-Acutal Winner: Buccaneers Predicted Winner: Chiefs
-Actual Winner: Raiders Predicted Winner: Panthers
-Actual Winner: Bears Predicted Winner: Giants
-Acutal Winner: Chargers Predicted Winner: Saints
-Actual Winner: Seahawks Predicted Winner: 49ers
-Acutal Winner: Broncos Predicted Winner: Broncos
-Actual Winner: Patriots Predicted Winner: Patriots
-Acutal Winner: Ravens Predicted Winner: Browns
-Acutal Winner: Colts Predicted Winner: Vikings
-Acutal Winner: Falcons Predicted Winner: Falcons
-Actual Winner: Steelers Predicted Winner: Browns
-Actual Winner: Bears Predicted Winner: Titans
-Acutal Winner: Colts Predicted Winner: Colts
-Acutal Winner: Rams Predicted Winner: Rams
-Acutal Winner: Saints Predicted Winner: Chiefs
-Actual Winner: Ravens Predicted Winner: Jets
-Acutal Winner: Jaguars Predicted Winner: Jaguars
-Actual Winner: Bengals Predicted Winner: Washington
-Acutal Winner: Packers Predicted Winner: Packers
-Acutal Winner: Cardinals Predicted Winner: Giants
-Actual Winner: Panthers Predicted Winner: 49ers
-Acutal Winner: Patriots Predicted Winner: Bills
-Actual Winner: Eagles Predicted Winner: Cowboys
-Acutal Winner: Bills Predicted Winner: Bills
-Actual Winner: Colts Predicted Winner: Bears
-Actual Winner: Steelers Predicted Winner: Steelers
-Actual Winner: Jets Predicted Winner: Jets
-Acutal Winner: Vikings Predicted Winner: Vikings
-Actual Winner: Broncos Predicted Winner: Saints
-Acutal Winner: Buccaneers Predicted Winner: Buccaneers
-Acutal Winner: Panthers Predicted Winner: Cardinals
-Actual Winner: Titans Predicted Winner: Jaguars
-Acutal Winner: Ravens Predicted Winner: Ravens
-Actual Winner: Chargers Predicted Winner: Raiders
-Acutal Winner: Seahawks Predicted Winner: Dolphins
-Actual Winner: Falcons Predicted Winner: Giants
-Acutal Winner: Eagles Predicted Winner: Eagles
-Actual Winner: Packers Predicted Winner: Texans
-Actual Winner: Patriots Predicted Winner: Patriots
-Actual Winner: Colts Predicted Winner: Colts
-Acutal Winner: Cowboys Predicted Winner: Cowboys
-Acutal Winner: Bengals Predicted Winner: Bengals
-Actual Winner: Chargers Predicted Winner: Chiefs
-Acutal Winner: Vikings Predicted Winner: Jaguars
-Actual Winner: Eagles Predicted Winner: Eagles
-Acutal Winner: Steelers Predicted Winner: Washington
-Acutal Winner: Panthers Predicted Winner: Panthers
-Acutal Winner: Texans Predicted Winner: Texans
-Acutal Winner: Falcons Predicted Winner: Falcons
-Acutal Winner: Patriots Predicted Winner: Ravens
-Actual Winner: Jets Predicted Winner: Jets
-Actual Winner: Dolphins Predicted Winner: 49ers
-Actual Winner: Bills Predicted Winner: Seahawks
-Actual Winner: Raiders Predicted Winner: Broncos
-Acutal Winner: Packers Predicted Winner: Rams
-Acutal Winner: Bears Predicted Winner: Bears
-Actual Winner: Patriots Predicted Winner: Patriots
-Acutal Winner: Lions Predicted Winner: Lions
-Acutal Winner: Colts Predicted Winner: Titans
-Acutal Winner: Rams Predicted Winner: Rams
-Actual Winner: Bills Predicted Winner: Dolphins
-Actual Winner: Panthers Predicted Winner: Panthers
-Acutal Winner: Jets Predicted Winner: Texans
-Acutal Winner: Buccaneers Predicted Winner: Buccaneers
-Actual Winner: Bengals Predicted Winner: Bengals
-Actual Winner: Chiefs Predicted Winner: Raiders
-Acutal Winner: Chargers Predicted Winner: Chargers
-Acutal Winner: Eagles Predicted Winner: Packers
-Acutal Winner: Washington Predicted Winner: Giants
-Actual Winner: Steelers Predicted Winner: Jaguars
-Actual Winner: Cowboys Predicted Winner: Seahawks
-Acutal Winner: Falcons Predicted Winner: Raiders
-Acutal Winner: Bills Predicted Winner: Bills
-Actual Winner: Saints Predicted Winner: Saints
-Actual Winner: Seahawks Predicted Winner: Vikings
-Acutal Winner: Patriots Predicted Winner: Bengals
-Acutal Winner: Jaguars Predicted Winner: Jaguars
-Acutal Winner: Ravens Predicted Winner: Ravens
-Actual Winner: Colts Predicted Winner: Texans
-Acutal Winner: Broncos Predicted Winner: Broncos
-Acutal Winner: Steelers Predicted Winner: Jets
-Acutal Winner: Packers Predicted Winner: Packers
-Actual Winner: 49ers Predicted Winner: Cardinals
-Acutal Winner: Chargers Predicted Winner: Chargers
-Acutal Winner: Panthers Predicted Winner: Panthers
-Actual Winner: Eagles Predicted Winner: Washington
-Actual Winner: Chiefs Predicted Winner: Titans
-Actual Winner: Steelers Predicted Winner: Giants
-Actual Winner: Washington Predicted Winner: 49ers
-Acutal Winner: Falcons Predicted Winner: Falcons
-Actual Winner: Texans Predicted Winner: Bears
-Actual Winner: Bills Predicted Winner: Bills
-Actual Winner: Chargers Predicted Winner: Chargers
-Actual Winner: Vikings Predicted Winner: Vikings
-Acutal Winner: Chiefs Predicted Winner: Broncos
-Acutal Winner: Jets Predicted Winner: Seahawks
-Acutal Winner: Eagles Predicted Winner: Eagles
-Acutal Winner: Cardinals Predicted Winner: Rams
-Actual Winner: Saints Predicted Winner: Buccaneers
-Actual Winner: Jaguars Predicted Winner: Jaguars
-Acutal Winner: Raiders Predicted Winner: Raiders
-Acutal Winner: Colts Predicted Winner: Colts
-Acutal Winner: Dolphins Predicted Winner: Patriots
-Actual Winner: Packers Predicted Winner: Packers
-Acutal Winner: Chiefs Predicted Winner: Raiders
-Actual Winner: Broncos Predicted Winner: Titans
-Acutal Winner: Bengals Predicted Winner: Giants
-Acutal Winner: Lions Predicted Winner: Lions
-Acutal Winner: Colts Predicted Winner: Chargers
-Acutal Winner: Saints Predicted Winner: Saints
-Acutal Winner: Steelers Predicted Winner: Ravens
-Actual Winner: Texans Predicted Winner: Jaguars
-Actual Winner: Patriots Predicted Winner: Jets
-Actual Winner: Bills Predicted Winner: Bills
-Acutal Winner: Cowboys Predicted Winner: Cowboys
-Acutal Winner: Seahawks Predicted Winner: Cardinals
-Actual Winner: Panthers Predicted Winner: Buccaneers
-Acutal Winner: Dolphins Predicted Winner: Dolphins
-Acutal Winner: Rams Predicted Winner: Rams
-Actual Winner: Steelers Predicted Winner: Bills
-Actual Winner: Packers Predicted Winner: Packers
-Acutal Winner: Titans Predicted Winner: Titans
-Acutal Winner: Rams Predicted Winner: Jets
-Acutal Winner: Patriots Predicted Winner: Patriots
-Actual Winner: Bengals Predicted Winner: Eagles
-Acutal Winner: Washington Predicted Winner: Vikings
-Actual Winner: Saints Predicted Winner: Panthers
-Acutal Winner: Ravens Predicted Winner: Ravens
-Actual Winner: Browns Predicted Winner: Browns
-Acutal Winner: Cardinals Predicted Winner: Cardinals
-Acutal Winner: Seahawks Predicted Winner: Seahawks
-Acutal Winner: Broncos Predicted Winner: Colts
-Actual Winner: Jaguars Predicted Winner: Raiders
-Acutal Winner: Chargers Predicted Winner: Chiefs
-Acutal Winner: Giants Predicted Winner: Giants
-Acutal Winner: Patriots Predicted Winner: Patriots
-Acutal Winner: Bills Predicted Winner: Texans
-Actual Winner: Bengals Predicted Winner: Browns
-Acutal Winner: Chiefs Predicted Winner: Chiefs
-Acutal Winner: Dolphins Predicted Winner: Dolphins
-Actual Winner: Buccaneers Predicted Winner: Vikings
-Acutal Winner: Steelers Predicted Winner: Steelers
-Acutal Winner: Washington Predicted Winner: Bears
-Actual Winner: Saints Predicted Winner: Panthers
-Acutal Winner: Jaguars Predicted Winner: Jaguars
-Acutal Winner: Lions Predicted Winner: Lions
-Acutal Winner: Giants Predicted Winner: Giants
-Actual Winner: Cowboys Predicted Winner: Chargers
-Acutal Winner: 49ers Predicted Winner: 49ers
-Actual Winner: Colts Predicted Winner: Colts
-Acutal Winner: Falcons Predicted Winner: Eagles
-Acutal Winner: Bears Predicted Winner: Bears
-Acutal Winner: Bengals Predicted Winner: Bengals
-Acutal Winner: Titans Predicted Winner: Titans
-Acutal Winner: Colts Predicted Winner: Colts
-Acutal Winner: Eagles Predicted Winner: 49ers
-Acutal Winner: Buccaneers Predicted Winner: Bills
-Acutal Winner: Panthers Predicted Winner: Panthers
-Actual Winner: Steelers Predicted Winner: Texans
-Actual Winner: Rams Predicted Winner: Cardinals
-Acutal Winner: Seahawks Predicted Winner: Seahawks
-Acutal Winner: Broncos Predicted Winner: Chargers
-Actual Winner: Browns Predicted Winner: Browns
-Acutal Winner: Jets Predicted Winner: Dolphins
-Actual Winner: Chiefs Predicted Winner: Chiefs
-Actual Winner: Giants Predicted Winner: Giants
-Actual Winner: Washington Predicted Winner: Cowboys
-Actual Winner: Falcons Predicted Winner: Falcons
-Actual Winner: Bengals Predicted Winner: Bears
-Actual Winner: Buccaneers Predicted Winner: Buccaneers
-Acutal Winner: Colts Predicted Winner: Colts
-Acutal Winner: Rams Predicted Winner: Rams
-Acutal Winner: Dolphins Predicted Winner: Panthers
-Acutal Winner: Vikings Predicted Winner: Vikings
-Actual Winner: Jaguars Predicted Winner: Jets
-Acutal Winner: Eagles Predicted Winner: Eagles
-Actual Winner: Cowboys Predicted Winner: 49ers
-Acutal Winner: Seahawks Predicted Winner: Cardinals
-Actual Winner: Patriots Predicted Winner: Steelers
-Acutal Winner: Chargers Predicted Winner: Giants
-Acutal Winner: Broncos Predicted Winner: Chiefs
-Acutal Winner: Bengals Predicted Winner: Bengals
-Actual Winner: Colts Predicted Winner: Titans
-Actual Winner: Chargers Predicted Winner: Patriots
-Acutal Winner: Saints Predicted Winner: Saints
-Acutal Winner: Giants Predicted Winner: Rams
-Acutal Winner: Buccaneers Predicted Winner: Buccaneers
-Acutal Winner: Washington Predicted Winner: Seahawks
-Actual Winner: Broncos Predicted Winner: Jaguars
-Acutal Winner: Ravens Predicted Winner: Ravens
-Acutal Winner: Falcons Predicted Winner: Vikings
-Actual Winner: Eagles Predicted Winner: Chiefs
-Acutal Winner: Raiders Predicted Winner: Cowboys
-Acutal Winner: Cardinals Predicted Winner: 49ers
-Acutal Winner: Panthers Predicted Winner: Panthers
-Actual Winner: Patriots Predicted Winner: Falcons
-Acutal Winner: Bills Predicted Winner: Bills
-Acutal Winner: Browns Predicted Winner: Browns
-Acutal Winner: Lions Predicted Winner: Lions
-Acutal Winner: Packers Predicted Winner: Packers
-Actual Winner: Seahawks Predicted Winner: Rams
-Acutal Winner: Jets Predicted Winner: Jets
-Actual Winner: Titans Predicted Winner: Texans
-Actual Winner: Colts Predicted Winner: 49ers
-Acutal Winner: Cowboys Predicted Winner: Eagles
-Acutal Winner: Broncos Predicted Winner: Broncos
-Actual Winner: Panthers Predicted Winner: Cardinals
-Acutal Winner: Jaguars Predicted Winner: Jaguars
-Actual Winner: Steelers Predicted Winner: Steelers
-Acutal Winner: Bears Predicted Winner: Bears
-Acutal Winner: Cowboys Predicted Winner: Giants
-Actual Winner: Panthers Predicted Winner: Panthers
-Actual Winner: Bengals Predicted Winner: Titans
-Acutal Winner: Chiefs Predicted Winner: Chiefs
-Actual Winner: Falcons Predicted Winner: Falcons
-Actual Winner: Jaguars Predicted Winner: Jaguars
-Acutal Winner: Buccaneers Predicted Winner: Dolphins
-Acutal Winner: Ravens Predicted Winner: Browns
-Acutal Winner: Bills Predicted Winner: Bills
-Acutal Winner: Broncos Predicted Winner: Patriots
-Actual Winner: Chargers Predicted Winner: Raiders
-Acutal Winner: Seahawks Predicted Winner: Texans
-Acutal Winner: Colts Predicted Winner: Colts
-Actual Winner: Chiefs Predicted Winner: Chiefs
-Actual Winner: Steelers Predicted Winner: Bengals
-Actual Winner: Lions Predicted Winner: Lions
-Acutal Winner: Rams Predicted Winner: Rams
-Acutal Winner: Vikings Predicted Winner: Packers
-Acutal Winner: Eagles Predicted Winner: Eagles
-Acutal Winner: Washington Predicted Winner: 49ers
-Actual Winner: Colts Predicted Winner: Colts
-Acutal Winner: Seahawks Predicted Winner: Seahawks
-Acutal Winner: Bears Predicted Winner: Ravens
-Acutal Winner: Raiders Predicted Winner: Bills
-Acutal Winner: Giants Predicted Winner: Giants
-Acutal Winner: Cardinals Predicted Winner: Titans
-Acutal Winner: Falcons Predicted Winner: Falcons
-Acutal Winner: Bengals Predicted Winner: Bengals
-Acutal Winner: Cowboys Predicted Winner: Cowboys
-Actual Winner: Bears Predicted Winner: Lions
-Actual Winner: Raiders Predicted Winner: Raiders
-Acutal Winner: Rams Predicted Winner: Rams
-Acutal Winner: Giants Predicted Winner: Giants
-Acutal Winner: Panthers Predicted Winner: Panthers
-Acutal Winner: Texans Predicted Winner: Texans
-Actual Winner: Dolphins Predicted Winner: Saints
-Acutal Winner: Chargers Predicted Winner: Chiefs
-Acutal Winner: Broncos Predicted Winner: Broncos
-Acutal Winner: 49ers Predicted Winner: Buccaneers
-Acutal Winner: Patriots Predicted Winner: Bills
-Acutal Winner: Steelers Predicted Winner: Steelers
-Acutal Winner: Browns Predicted Winner: Browns
-Acutal Winner: Chiefs Predicted Winner: Chiefs
-Actual Winner: Falcons Predicted Winner: Falcons
-Acutal Winner: Vikings Predicted Winner: Vikings
-Actual Winner: Chargers Predicted Winner: Jets
-Actual Winner: Panthers Predicted Winner: Panthers
-Acutal Winner: Jaguars Predicted Winner: Jaguars
-Actual Winner: Bengals Predicted Winner: Ravens
-Actual Winner: Bears Predicted Winner: Saints
-Actual Winner: Seahawks Predicted Winner: Cardinals
-Actual Winner: Giants Predicted Winner: Giants
-Actual Winner: Steelers Predicted Winner: Packers
-Acutal Winner: Washington Predicted Winner: Washington
-Actual Winner: Colts Predicted Winner: Colts
-Acutal Winner: Bills Predicted Winner: Bills
-Acutal Winner: Bears Predicted Winner: 49ers
-Acutal Winner: Lions Predicted Winner: Lions
-Acutal Winner: Colts Predicted Winner: Colts
-Actual Winner: Patriots Predicted Winner: Dolphins
-Actual Winner: Vikings Predicted Winner: Vikings
-Acutal Winner: Jaguars Predicted Winner: Ravens
-Actual Winner: Broncos Predicted Winner: Raiders
-Acutal Winner: Panthers Predicted Winner: Jets
-Actual Winner: Packers Predicted Winner: Falcons
-Acutal Winner: Seahawks Predicted Winner: Rams
-Acutal Winner: Buccaneers Predicted Winner: Buccaneers
-Acutal Winner: Steelers Predicted Winner: Steelers
-Actual Winner: Cowboys Predicted Winner: Eagles
-Actual Winner: Buccaneers Predicted Winner: Falcons
-Acutal Winner: Bears Predicted Winner: Panthers
-Acutal Winner: Browns Predicted Winner: Dolphins
-Acutal Winner: Cowboys Predicted Winner: Lions
-Actual Winner: Jaguars Predicted Winner: Jaguars
-Actual Winner: Cardinals Predicted Winner: Rams
-Acutal Winner: Patriots Predicted Winner: Patriots
-Acutal Winner: Giants Predicted Winner: Eagles
-Actual Winner: Raiders Predicted Winner: Washington
-Acutal Winner: Ravens Predicted Winner: Steelers
-Actual Winner: Seahawks Predicted Winner: 49ers
-Actual Winner: Colts Predicted Winner: Bengals
-Acutal Winner: Broncos Predicted Winner: Jets
-Acutal Winner: Chargers Predicted Winner: Bills
-Actual Winner: Chiefs Predicted Winner: Texans
-Actual Winner: Vikings Predicted Winner: Vikings
-Actual Winner: Falcons Predicted Winner: Lions
-Actual Winner: Broncos Predicted Winner: Broncos
-Actual Winner: Panthers Predicted Winner: Bills
-Acutal Winner: Bengals Predicted Winner: Ravens
-Acutal Winner: Titans Predicted Winner: Titans
-Acutal Winner: Chiefs Predicted Winner: Chiefs
-Acutal Winner: Vikings Predicted Winner: Browns
-Actual Winner: Bears Predicted Winner: Bears
-Actual Winner: Chargers Predicted Winner: Washington
-Actual Winner: Rams Predicted Winner: Texans
-Actual Winner: Dolphins Predicted Winner: Dolphins
-Actual Winner: Jaguars Predicted Winner: Cardinals
-Acutal Winner: Eagles Predicted Winner: Eagles
-Acutal Winner: Seahawks Predicted Winner: Giants
-Actual Winner: Saints Predicted Winner: Jets
-Acutal Winner: Colts Predicted Winner: Colts
-Acutal Winner: Bears Predicted Winner: Bears
-Actual Winner: Jaguars Predicted Winner: Browns
-Actual Winner: Vikings Predicted Winner: Lions
-Acutal Winner: Colts Predicted Winner: Colts
-Acutal Winner: Dolphins Predicted Winner: Bills
-Actual Winner: Buccaneers Predicted Winner: Saints
-Acutal Winner: Giants Predicted Winner: Giants
-Actual Winner: Bengals Predicted Winner: Bengals
-Acutal Winner: Panthers Predicted Winner: Panthers
-Acutal Winner: Ravens Predicted Winner: Texans
-Actual Winner: Washington Predicted Winner: Rams
-Actual Winner: Cardinals Predicted Winner: 49ers
-Acutal Winner: Chiefs Predicted Winner: Chiefs
-Acutal Winner: Patriots Predicted Winner: Jets
-Acutal Winner: Chargers Predicted Winner: Chargers
-Actual Winner: Seahawks Predicted Winner: Eagles
-Actual Winner: Patriots Predicted Winner: Bills
-Acutal Winner: Bengals Predicted Winner: Bengals
-Acutal Winner: Titans Predicted Winner: Texans
-Acutal Winner: Vikings Predicted Winner: Vikings
-Acutal Winner: Jets Predicted Winner: Jets
-Acutal Winner: Steelers Predicted Winner: Steelers
-Actual Winner: Buccaneers Predicted Winner: Panthers
-Actual Winner: Colts Predicted Winner: Colts
-Actual Winner: Giants Predicted Winner: Eagles
-Actual Winner: Washington Predicted Winner: Washington
-Acutal Winner: Seahawks Predicted Winner: Seahawks
-Acutal Winner: Cowboys Predicted Winner: Cowboys
-Acutal Winner: Broncos Predicted Winner: Ravens
-Actual Winner: Dolphins Predicted Winner: Chargers
-Acutal Winner: Packers Predicted Winner: Lions
-Acutal Winner: Falcons Predicted Winner: Saints
-Acutal Winner: Patriots Predicted Winner: Buccaneers
-Acutal Winner: Giants Predicted Winner: Chiefs
-Actual Winner: Broncos Predicted Winner: Broncos
-Actual Winner: Seahawks Predicted Winner: Seahawks
-Actual Winner: Chargers Predicted Winner: Colts
-Actual Winner: Eagles Predicted Winner: Rams
-Acutal Winner: Dolphins Predicted Winner: Jets
-Actual Winner: Steelers Predicted Winner: Vikings
-Actual Winner: Panthers Predicted Winner: Saints
-Acutal Winner: Jaguars Predicted Winner: 49ers
-Acutal Winner: Texans Predicted Winner: Cardinals
-Actual Winner: Bengals Predicted Winner: Bengals
-Actual Winner: Browns Predicted Winner: Raiders
-Acutal Winner: Washington Predicted Winner: Washington
-Acutal Winner: Bears Predicted Winner: Bears
-Acutal Winner: Ravens Predicted Winner: Packers
-Actual Winner: Bills Predicted Winner: Bengals
-Actual Winner: Steelers Predicted Winner: Browns
-Acutal Winner: Chiefs Predicted Winner: Chiefs
-Actual Winner: 49ers Predicted Winner: 49ers
-Acutal Winner: Dolphins Predicted Winner: Dolphins
-Actual Winner: Lions Predicted Winner: Saints
-Acutal Winner: Buccaneers Predicted Winner: Falcons
-Acutal Winner: Washington Predicted Winner: Washington
-Actual Winner: Cowboys Predicted Winner: Cowboys
-Actual Winner: Jaguars Predicted Winner: Texans
-Acutal Winner: Cardinals Predicted Winner: Eagles
-Acutal Winner: Broncos Predicted Winner: Broncos
-Acutal Winner: Seahawks Predicted Winner: Seahawks
-Actual Winner: Bears Predicted Winner: Packers
-Acutal Winner: Ravens Predicted Winner: Vikings
-Actual Winner: Patriots Predicted Winner: Patriots
-Actual Winner: Broncos Predicted Winner: Broncos
-Actual Winner: Giants Predicted Winner: Giants
-Actual Winner: Panthers Predicted Winner: Panthers
-Acutal Winner: Browns Predicted Winner: Ravens
-Acutal Winner: Packers Predicted Winner: Packers
-Acutal Winner: Colts Predicted Winner: Colts
-Acutal Winner: Chiefs Predicted Winner: Bengals
-Actual Winner: Dolphins Predicted Winner: Dolphins
-Acutal Winner: Jets Predicted Winner: Jets
-Acutal Winner: Steelers Predicted Winner: Steelers
-Acutal Winner: Buccaneers Predicted Winner: Saints
-Acutal Winner: 49ers Predicted Winner: Texans
-Acutal Winner: Jaguars Predicted Winner: Jaguars
-Acutal Winner: Vikings Predicted Winner: Vikings
-Actual Winner: Washington Predicted Winner: Washington
-Actual Winner: Rams Predicted Winner: Cowboys
-Acutal Winner: Steelers Predicted Winner: Steelers
-Actual Winner: Saints Predicted Winner: Browns
-Actual Winner: Seahawks Predicted Winner: Lions
-Actual Winner: Jets Predicted Winner: Jets
-Actual Winner: Bengals Predicted Winner: Chiefs
-Acutal Winner: Rams Predicted Winner: Rams
-Acutal Winner: Patriots Predicted Winner: Patriots
-Actual Winner: Ravens Predicted Winner: Ravens
-Actual Winner: Falcons Predicted Winner: Falcons
-Actual Winner: Eagles Predicted Winner: Eagles
-Actual Winner: Bears Predicted Winner: Bears
-Acutal Winner: Cardinals Predicted Winner: Cardinals
-Acutal Winner: Jaguars Predicted Winner: Cowboys
-Actual Winner: Colts Predicted Winner: Colts
-Actual Winner: Vikings Predicted Winner: Washington
-Actual Winner: Chargers Predicted Winner: Chargers
-Acutal Winner: Falcons Predicted Winner: Falcons
-Acutal Winner: Bears Predicted Winner: Lions
-Acutal Winner: Bengals Predicted Winner: Bengals
-Actual Winner: Saints Predicted Winner: Saints
-Acutal Winner: Colts Predicted Winner: Colts
-Actual Winner: Bills Predicted Winner: Dolphins
-Acutal Winner: Vikings Predicted Winner: Panthers
-Actual Winner: Giants Predicted Winner: Giants
-Acutal Winner: Ravens Predicted Winner: Ravens
-Acutal Winner: 49ers Predicted Winner: 49ers
-Acutal Winner: Seahawks Predicted Winner: Cardinals
-Acutal Winner: Broncos Predicted Winner: Broncos
-Actual Winner: Patriots Predicted Winner: Patriots
-Acutal Winner: Chargers Predicted Winner: Chargers
-Acutal Winner: Cowboys Predicted Winner: Cowboys
-Acutal Winner: Jaguars Predicted Winner: Jaguars
-Actual Winner: Jets Predicted Winner: Bills
-Actual Winner: Packers Predicted Winner: Packers
-Acutal Winner: Colts Predicted Winner: Jaguars
-Acutal Winner: Dolphins Predicted Winner: Dolphins
-Actual Winner: Bears Predicted Winner: Vikings
-Actual Winner: Bengals Predicted Winner: Steelers
-Actual Winner: Panthers Predicted Winner: Panthers
-Actual Winner: Washington Predicted Winner: Texans
-Actual Winner: Ravens Predicted Winner: Browns
-Actual Winner: Rams Predicted Winner: Cardinals
-Actual Winner: Eagles Predicted Winner: 49ers
-Acutal Winner: Seahawks Predicted Winner: Seahawks
-Actual Winner: Broncos Predicted Winner: Broncos
-Acutal Winner: Saints Predicted Winner: Saints
-Acutal Winner: Falcons Predicted Winner: Falcons
-Acutal Winner: Bills Predicted Winner: Bills
-Actual Winner: Cowboys Predicted Winner: Cowboys
-Acutal Winner: Chiefs Predicted Winner: Chiefs
-Actual Winner: Colts Predicted Winner: Jets
-Acutal Winner: Panthers Predicted Winner: Saints
-Acutal Winner: Ravens Predicted Winner: Chargers
-Acutal Winner: Texans Predicted Winner: Dolphins
-Acutal Winner: Rams Predicted Winner: Lions
-Actual Winner: Patriots Predicted Winner: Bengals
-Actual Winner: Browns Predicted Winner: Raiders
-Acutal Winner: Washington Predicted Winner: Washington
-Acutal Winner: Bears Predicted Winner: Seahawks
-Acutal Winner: Eagles Predicted Winner: Eagles
-Acutal Winner: Bears Predicted Winner: Bears
-Actual Winner: Rams Predicted Winner: Rams
-Acutal Winner: Colts Predicted Winner: Colts
-Acutal Winner: Vikings Predicted Winner: Vikings
-Acutal Winner: Patriots Predicted Winner: Patriots
-Acutal Winner: Saints Predicted Winner: Saints
-Acutal Winner: Giants Predicted Winner: Giants
-Acutal Winner: Panthers Predicted Winner: Browns
-Actual Winner: Chiefs Predicted Winner: Cardinals
-Acutal Winner: 49ers Predicted Winner: Raiders
-Acutal Winner: Jaguars Predicted Winner: Jaguars
-Acutal Winner: Eagles Predicted Winner: Eagles
-Acutal Winner: Chargers Predicted Winner: Steelers
-Acutal Winner: Broncos Predicted Winner: Ravens
-Actual Winner: Giants Predicted Winner: Falcons
-Acutal Winner: Cowboys Predicted Winner: Texans
-Acutal Winner: Lions Predicted Winner: Bills
-Actual Winner: Seahawks Predicted Winner: Rams
-Acutal Winner: Saints Predicted Winner: Saints
-Acutal Winner: Buccaneers Predicted Winner: Buccaneers
-Actual Winner: Titans Predicted Winner: Titans
-Actual Winner: Panthers Predicted Winner: Ravens
-Acutal Winner: Jets Predicted Winner: Jets
-Acutal Winner: Steelers Predicted Winner: Steelers
-Actual Winner: Chargers Predicted Winner: 49ers
-Acutal Winner: Broncos Predicted Winner: Raiders
-Actual Winner: Bears Predicted Winner: Bears
-Acutal Winner: Falcons Predicted Winner: Steelers
-Actual Winner: Patriots Predicted Winner: Bills
-Acutal Winner: Bengals Predicted Winner: Panthers
-Acutal Winner: Chiefs Predicted Winner: Chargers
-Actual Winner: Packers Predicted Winner: Packers
-Acutal Winner: Jets Predicted Winner: Jets
-Acutal Winner: Buccaneers Predicted Winner: Buccaneers
-Acutal Winner: Texans Predicted Winner: Texans
-Actual Winner: Broncos Predicted Winner: Browns
-Acutal Winner: Colts Predicted Winner: Colts
-Acutal Winner: Raiders Predicted Winner: Raiders
-Actual Winner: Vikings Predicted Winner: Vikings
-Actual Winner: Giants Predicted Winner: Giants
-Acutal Winner: Bears Predicted Winner: 49ers
-Actual Winner: Falcons Predicted Winner: Falcons
-Acutal Winner: Packers Predicted Winner: Cardinals
-Acutal Winner: Titans Predicted Winner: Texans
-Acutal Winner: Chiefs Predicted Winner: Seahawks
-Actual Winner: Ravens Predicted Winner: Saints
-Acutal Winner: Giants Predicted Winner: Giants
-Actual Winner: Jaguars Predicted Winner: Jaguars
-Acutal Winner: Chargers Predicted Winner: Rams
-Acutal Winner: Browns Predicted Winner: Jets
-Actual Winner: Colts Predicted Winner: Broncos
-Acutal Winner: Raiders Predicted Winner: Steelers
-Actual Winner: Cowboys Predicted Winner: Cowboys
-Actual Winner: Patriots Predicted Winner: Patriots
-Acutal Winner: Bills Predicted Winner: Bills
-Actual Winner: Dolphins Predicted Winner: Dolphins
-Acutal Winner: Lions Predicted Winner: Lions
-Actual Winner: Chiefs Predicted Winner: Rams
-Acutal Winner: Giants Predicted Winner: Giants
-Actual Winner: Saints Predicted Winner: Buccaneers
-Acutal Winner: Washington Predicted Winner: Washington
-Acutal Winner: Jaguars Predicted Winner: Jaguars
-Acutal Winner: Ravens Predicted Winner: Bengals
-Acutal Winner: 49ers Predicted Winner: 49ers
-Actual Winner: Broncos Predicted Winner: Steelers
-Acutal Winner: Chargers Predicted Winner: Browns
-Actual Winner: Colts Predicted Winner: Patriots
-Acutal Winner: Seahawks Predicted Winner: Seahawks
-Actual Winner: Browns Predicted Winner: Falcons
-Actual Winner: Chargers Predicted Winner: Bengals
-Actual Winner: 49ers Predicted Winner: 49ers
-Actual Winner: Ravens Predicted Winner: Ravens
-Acutal Winner: Colts Predicted Winner: Colts
-Acutal Winner: Dolphins Predicted Winner: Chiefs
-Actual Winner: Packers Predicted Winner: Vikings
-Actual Winner: Jets Predicted Winner: Patriots
-Acutal Winner: Eagles Predicted Winner: Washington
-Actual Winner: Texans Predicted Winner: Jaguars
-Actual Winner: Broncos Predicted Winner: Broncos
-Actual Winner: Cowboys Predicted Winner: Cardinals
-Acutal Winner: Steelers Predicted Winner: Saints
-Acutal Winner: Seahawks Predicted Winner: Seahawks
-Actual Winner: Bears Predicted Winner: Giants
-Acutal Winner: Panthers Predicted Winner: Panthers
-Actual Winner: Steelers Predicted Winner: Browns
-Actual Winner: Patriots Predicted Winner: Patriots
-Acutal Winner: Chiefs Predicted Winner: Chiefs
-Acutal Winner: Dolphins Predicted Winner: Vikings
-Actual Winner: Bengals Predicted Winner: Bengals
-Actual Winner: Bears Predicted Winner: Bears
-Actual Winner: Titans Predicted Winner: Eagles
-Acutal Winner: Buccaneers Predicted Winner: Buccaneers
-Acutal Winner: Panthers Predicted Winner: Rams
-Acutal Winner: Ravens Predicted Winner: Ravens
-Actual Winner: Bills Predicted Winner: Texans
-Acutal Winner: Cardinals Predicted Winner: Cardinals
-Acutal Winner: 49ers Predicted Winner: 49ers
-Acutal Winner: Cowboys Predicted Winner: Colts
-Actual Winner: Chargers Predicted Winner: Broncos
-Acutal Winner: Jaguars Predicted Winner: Giants
-Actual Winner: Dolphins Predicted Winner: Dolphins
-Acutal Winner: Cowboys Predicted Winner: Cowboys
-Acutal Winner: Chiefs Predicted Winner: Broncos
-Actual Winner: Saints Predicted Winner: Saints
-Acutal Winner: Bills Predicted Winner: Bills
-Actual Winner: Bengals Predicted Winner: Bengals
-Acutal Winner: Rams Predicted Winner: 49ers
-Acutal Winner: Vikings Predicted Winner: Cardinals
-Acutal Winner: Jets Predicted Winner: Texans
-Acutal Winner: Washington Predicted Winner: Panthers
-Acutal Winner: Ravens Predicted Winner: Ravens
-Acutal Winner: Chargers Predicted Winner: Chargers
-Acutal Winner: Titans Predicted Winner: Titans
-Acutal Winner: Patriots Predicted Winner: Patriots
-Acutal Winner: Colts Predicted Winner: Eagles
-Acutal Winner: Seahawks Predicted Winner: Packers
-Acutal Winner: Bengals Predicted Winner: Ravens
-Actual Winner: Chargers Predicted Winner: Bills
-Acutal Winner: Bears Predicted Winner: Bears
-Acutal Winner: Browns Predicted Winner: Chiefs
-Actual Winner: Jets Predicted Winner: Jets
-Acutal Winner: Titans Predicted Winner: Colts
-Actual Winner: Cardinals Predicted Winner: Rams
-Acutal Winner: Patriots Predicted Winner: Patriots
-Acutal Winner: Saints Predicted Winner: Saints
-Actual Winner: Falcons Predicted Winner: Washington
-Actual Winner: Cowboys Predicted Winner: Giants
-Actual Winner: Texans Predicted Winner: Texans
-Actual Winner: Jaguars Predicted Winner: Dolphins
-Acutal Winner: Steelers Predicted Winner: Buccaneers
-Actual Winner: Seahawks Predicted Winner: Broncos
-Acutal Winner: Eagles Predicted Winner: Panthers
-Acutal Winner: Steelers Predicted Winner: Browns
-Acutal Winner: Bengals Predicted Winner: Bengals
-Actual Winner: Vikings Predicted Winner: Lions
-Actual Winner: Ravens Predicted Winner: Chiefs
-Acutal Winner: Dolphins Predicted Winner: Patriots
-Actual Winner: Falcons Predicted Winner: Falcons
-Actual Winner: Eagles Predicted Winner: Eagles
-Actual Winner: Giants Predicted Winner: Panthers
-Acutal Winner: Jaguars Predicted Winner: Jaguars
-Actual Winner: Titans Predicted Winner: Texans
-Acutal Winner: Cardinals Predicted Winner: Seahawks
-Actual Winner: Packers Predicted Winner: 49ers
-Actual Winner: Bills Predicted Winner: Jets
-Acutal Winner: Chargers Predicted Winner: Chargers
-Actual Winner: Saints Predicted Winner: Cowboys
-Actual Winner: Bears Predicted Winner: Rams
-Actual Winner: 49ers Predicted Winner: 49ers
-Actual Winner: Cowboys Predicted Winner: Cowboys
-Acutal Winner: Bills Predicted Winner: Bills
-Acutal Winner: Bears Predicted Winner: Buccaneers
-Acutal Winner: Packers Predicted Winner: Packers
-Acutal Winner: Titans Predicted Winner: Titans
-Actual Winner: Jets Predicted Winner: Vikings
-Acutal Winner: Patriots Predicted Winner: Patriots
-Actual Winner: Washington Predicted Winner: Washington
-Actual Winner: Steelers Predicted Winner: Panthers
-Acutal Winner: Ravens Predicted Winner: Browns
-Actual Winner: Broncos Predicted Winner: Cardinals
-Actual Winner: Rams Predicted Winner: Raiders
-Actual Winner: Eagles Predicted Winner: Giants
-Acutal Winner: Chargers Predicted Winner: Chargers
-Acutal Winner: Colts Predicted Winner: Colts
-Acutal Winner: Packers Predicted Winner: Packers
-Actual Winner: Chiefs Predicted Winner: Raiders
-Actual Winner: Panthers Predicted Winner: Panthers
-Actual Winner: Titans Predicted Winner: Titans
-Actual Winner: Buccaneers Predicted Winner: Browns
-Actual Winner: Bears Predicted Winner: Lions
-Acutal Winner: Rams Predicted Winner: Rams
-Actual Winner: Saints Predicted Winner: Giants
-Actual Winner: Ravens Predicted Winner: Steelers
-Actual Winner: Patriots Predicted Winner: Jaguars
-Acutal Winner: Texans Predicted Winner: Colts
-Actual Winner: Cardinals Predicted Winner: 49ers
-Acutal Winner: Broncos Predicted Winner: Broncos
-Actual Winner: Chargers Predicted Winner: Chargers
-Actual Winner: Eagles Predicted Winner: Cowboys
-Actual Winner: Jets Predicted Winner: Jets
-Actual Winner: Giants Predicted Winner: Giants
-Actual Winner: Steelers Predicted Winner: Bengals
-Actual Winner: Lions Predicted Winner: Cowboys
-Actual Winner: Patriots Predicted Winner: Titans
-Acutal Winner: Chiefs Predicted Winner: Jaguars
-Actual Winner: Rams Predicted Winner: Vikings
-Actual Winner: Panthers Predicted Winner: Panthers
-Acutal Winner: Jets Predicted Winner: Raiders
-Actual Winner: Seahawks Predicted Winner: Seahawks
-Acutal Winner: Texans Predicted Winner: Browns
-Actual Winner: 49ers Predicted Winner: Broncos
-Acutal Winner: Colts Predicted Winner: Colts
-Acutal Winner: Eagles Predicted Winner: Falcons
-Acutal Winner: Chargers Predicted Winner: Chargers
-Acutal Winner: Ravens Predicted Winner: Ravens
-Actual Winner: Packers Predicted Winner: Packers
-Acutal Winner: Colts Predicted Winner: Colts
-Actual Winner: Broncos Predicted Winner: Bills
-Actual Winner: Steelers Predicted Winner: Browns
-Acutal Winner: Packers Predicted Winner: Eagles
-Actual Winner: Panthers Predicted Winner: Rams
-Acutal Winner: Vikings Predicted Winner: Vikings
-Actual Winner: Patriots Predicted Winner: Jets
-Acutal Winner: Washington Predicted Winner: Washington
-Actual Winner: Titans Predicted Winner: Jaguars
-Acutal Winner: Texans Predicted Winner: Chiefs
-Actual Winner: Lions Predicted Winner: Raiders
-Acutal Winner: Chargers Predicted Winner: Bears
-Acutal Winner: Seahawks Predicted Winner: Buccaneers
-Acutal Winner: Cowboys Predicted Winner: Cowboys
-Acutal Winner: Bengals Predicted Winner: Ravens
-Acutal Winner: 49ers Predicted Winner: Cardinals
-Acutal Winner: Browns Predicted Winner: Bengals
-Actual Winner: Colts Predicted Winner: Titans
-Actual Winner: 49ers Predicted Winner: 49ers
-Actual Winner: Packers Predicted Winner: Giants
-Acutal Winner: Steelers Predicted Winner: Steelers
-Acutal Winner: Buccaneers Predicted Winner: Saints
-Actual Winner: Texans Predicted Winner: Texans
-Acutal Winner: Jaguars Predicted Winner: Jaguars
-Acutal Winner: Lions Predicted Winner: Lions
-Actual Winner: Cowboys Predicted Winner: Dolphins
-Acutal Winner: Cardinals Predicted Winner: Seahawks
-Acutal Winner: Bears Predicted Winner: Bears
-Acutal Winner: Broncos Predicted Winner: Raiders
-Acutal Winner: Ravens Predicted Winner: Ravens
-Acutal Winner: Patriots Predicted Winner: Patriots
-Actual Winner: Washington Predicted Winner: Eagles
-Acutal Winner: Packers Predicted Winner: Packers
-Acutal Winner: Chiefs Predicted Winner: Chiefs
-Acutal Winner: Patriots Predicted Winner: Bills
-Acutal Winner: Jets Predicted Winner: Dolphins
-Acutal Winner: Eagles Predicted Winner: Lions
-Acutal Winner: Steelers Predicted Winner: 49ers
-Acutal Winner: Buccaneers Predicted Winner: Rams
-Acutal Winner: Ravens Predicted Winner: Ravens
-Actual Winner: Colts Predicted Winner: Colts
-Actual Winner: Jaguars Predicted Winner: Jaguars
-Acutal Winner: Raiders Predicted Winner: Raiders
-Acutal Winner: Seahawks Predicted Winner: Seahawks
-Actual Winner: Panthers Predicted Winner: Falcons
-Actual Winner: Giants Predicted Winner: Washington
-Actual Winner: Cowboys Predicted Winner: Bears
-Actual Winner: Titans Predicted Winner: Titans
-Acutal Winner: Falcons Predicted Winner: Texans
-Acutal Winner: Bills Predicted Winner: Jets
-Acutal Winner: Browns Predicted Winner: Browns
-Acutal Winner: Cowboys Predicted Winner: Rams
-Acutal Winner: Lions Predicted Winner: Lions
-Actual Winner: Raiders Predicted Winner: Dolphins
-Actual Winner: Packers Predicted Winner: Packers
-Actual Winner: Seahawks Predicted Winner: 49ers
-Actual Winner: Buccaneers Predicted Winner: Buccaneers
-Acutal Winner: Colts Predicted Winner: Colts
-Acutal Winner: Cardinals Predicted Winner: Cardinals
-Actual Winner: Chiefs Predicted Winner: Chargers
-Acutal Winner: Giants Predicted Winner: Giants
-Actual Winner: Patriots Predicted Winner: Patriots
-Acutal Winner: Titans Predicted Winner: Titans
-Actual Winner: Jaguars Predicted Winner: Jaguars
-Actual Winner: Cardinals Predicted Winner: Rams
-Acutal Winner: Patriots Predicted Winner: Browns
-Actual Winner: Panthers Predicted Winner: Panthers
-Acutal Winner: Giants Predicted Winner: Jets
-Acutal Winner: Steelers Predicted Winner: Steelers
-Acutal Winner: Washington Predicted Winner: Lions
-Acutal Winner: Texans Predicted Winner: Dolphins
-Acutal Winner: Colts Predicted Winner: Colts
-Actual Winner: Chargers Predicted Winner: Broncos
-Actual Winner: Ravens Predicted Winner: 49ers
-Actual Winner: Bears Predicted Winner: Bears
-Actual Winner: Cowboys Predicted Winner: Cowboys
-Acutal Winner: Packers Predicted Winner: Washington
-Actual Winner: Vikings Predicted Winner: Vikings
-Acutal Winner: Browns Predicted Winner: Browns
-Acutal Winner: Chiefs Predicted Winner: Chiefs
-Actual Winner: Eagles Predicted Winner: Jets
-Acutal Winner: Buccaneers Predicted Winner: Buccaneers
-Acutal Winner: Jaguars Predicted Winner: Texans
-Acutal Winner: Ravens Predicted Winner: Rams
-Actual Winner: Panthers Predicted Winner: Cardinals
-Actual Winner: Patriots Predicted Winner: Cowboys
-Acutal Winner: Chargers Predicted Winner: Raiders
-Actual Winner: Saints Predicted Winner: Seahawks
-Actual Winner: Giants Predicted Winner: Falcons
-Acutal Winner: Bills Predicted Winner: Bills
-Acutal Winner: Lions Predicted Winner: Lions
-Actual Winner: Patriots Predicted Winner: Dolphins
-Acutal Winner: Saints Predicted Winner: Falcons
-Acutal Winner: Giants Predicted Winner: Giants
-Acutal Winner: Washington Predicted Winner: Washington
-Actual Winner: Titans Predicted Winner: Texans
-Acutal Winner: Bengals Predicted Winner: Jets
-Actual Winner: Chiefs Predicted Winner: Raiders
-Acutal Winner: Cowboys Predicted Winner: Cowboys
-Actual Winner: Bears Predicted Winner: Bears
-Acutal Winner: Seahawks Predicted Winner: Rams
-Acutal Winner: Broncos Predicted Winner: Broncos
-Actual Winner: Colts Predicted Winner: Jaguars
-Actual Winner: Lions Predicted Winner: Lions
-Actual Winner: Steelers Predicted Winner: Steelers
-Acutal Winner: Titans Predicted Winner: Titans
-Actual Winner: Browns Predicted Winner: Rams
-Actual Winner: Giants Predicted Winner: Giants
-Actual Winner: Eagles Predicted Winner: Eagles
-Actual Winner: Colts Predicted Winner: Panthers
-Actual Winner: Bills Predicted Winner: Jets
-Acutal Winner: Chargers Predicted Winner: Chargers
-Actual Winner: Jaguars Predicted Winner: Buccaneers
-Acutal Winner: Patriots Predicted Winner: Washington
-Actual Winner: Saints Predicted Winner: Saints
-Actual Winner: Packers Predicted Winner: Broncos
-Acutal Winner: Falcons Predicted Winner: Falcons
-Acutal Winner: Bills Predicted Winner: Bills
-Acutal Winner: Lions Predicted Winner: Broncos
-Acutal Winner: Titans Predicted Winner: Titans
-Actual Winner: Packers Predicted Winner: Packers
-Acutal Winner: Vikings Predicted Winner: Vikings
-Acutal Winner: Saints Predicted Winner: Jaguars
-Actual Winner: Washington Predicted Winner: Washington
-Acutal Winner: Buccaneers Predicted Winner: Cardinals
-Acutal Winner: Browns Predicted Winner: Seahawks
-Actual Winner: Patriots Predicted Winner: Patriots
-Actual Winner: Texans Predicted Winner: Texans
-Actual Winner: Cowboys Predicted Winner: Eagles
-Acutal Winner: Steelers Predicted Winner: Ravens
-Acutal Winner: Packers Predicted Winner: Packers
-Actual Winner: Jaguars Predicted Winner: Titans
-Actual Winner: Broncos Predicted Winner: Broncos
-Actual Winner: Bills Predicted Winner: Dolphins
-Actual Winner: Rams Predicted Winner: Saints
-Acutal Winner: Steelers Predicted Winner: Steelers
-Actual Winner: Eagles Predicted Winner: Washington
-Actual Winner: Falcons Predicted Winner: Falcons
-Actual Winner: Bengals Predicted Winner: Ravens
-Actual Winner: Bears Predicted Winner: Bears
-Actual Winner: Cowboys Predicted Winner: Giants
-Acutal Winner: Cardinals Predicted Winner: Cardinals
-Acutal Winner: Chargers Predicted Winner: Chargers
-Acutal Winner: Seahawks Predicted Winner: Seahawks
-Actual Winner: Buccaneers Predicted Winner: Falcons
-Actual Winner: Cardinals Predicted Winner: Bengals
-Actual Winner: Giants Predicted Winner: Giants
-Acutal Winner: Packers Predicted Winner: Packers
-Acutal Winner: Colts Predicted Winner: Chiefs
-Acutal Winner: Vikings Predicted Winner: Raiders
-Acutal Winner: Eagles Predicted Winner: Eagles
-Acutal Winner: Jaguars Predicted Winner: Jaguars
-Actual Winner: Browns Predicted Winner: Ravens
-Acutal Winner: Texans Predicted Winner: Saints
-Acutal Winner: Jets Predicted Winner: Jets
-Acutal Winner: Cowboys Predicted Winner: Washington
-Actual Winner: Rams Predicted Winner: Rams
-Acutal Winner: Seahawks Predicted Winner: Seahawks
-Actual Winner: Patriots Predicted Winner: Bills
-Acutal Winner: Broncos Predicted Winner: Broncos
-Actual Winner: Packers Predicted Winner: Lions
-Acutal Winner: Cowboys Predicted Winner: Cowboys
-Actual Winner: Colts Predicted Winner: Colts
-Acutal Winner: Bengals Predicted Winner: Bengals
-Acutal Winner: Browns Predicted Winner: Texans
-Actual Winner: Raiders Predicted Winner: Chiefs
-Actual Winner: Seahawks Predicted Winner: Rams
-Actual Winner: Vikings Predicted Winner: Vikings
-Acutal Winner: Buccaneers Predicted Winner: Buccaneers
-Actual Winner: Saints Predicted Winner: Saints
-Acutal Winner: Jaguars Predicted Winner: Jaguars
-Actual Winner: 49ers Predicted Winner: 49ers
-Acutal Winner: Bears Predicted Winner: Bears
-Acutal Winner: Chargers Predicted Winner: Ravens
-Acutal Winner: Patriots Predicted Winner: Eagles
-Acutal Winner: Steelers Predicted Winner: Dolphins
-Acutal Winner: Cowboys Predicted Winner: Packers
-Acutal Winner: Titans Predicted Winner: Titans
-Acutal Winner: Colts Predicted Winner: Colts
-Actual Winner: Chargers Predicted Winner: Chiefs
-Acutal Winner: Rams Predicted Winner: Falcons
-Actual Winner: Jets Predicted Winner: Jets
-Acutal Winner: Vikings Predicted Winner: Vikings
-Actual Winner: Seahawks Predicted Winner: Eagles
-Actual Winner: Bills Predicted Winner: Washington
-Acutal Winner: Panthers Predicted Winner: Panthers
-Acutal Winner: Raiders Predicted Winner: Broncos
-Acutal Winner: Cardinals Predicted Winner: Cardinals
-Actual Winner: Giants Predicted Winner: Giants
-Actual Winner: Buccaneers Predicted Winner: Buccaneers
-Acutal Winner: Steelers Predicted Winner: Steelers
-Actual Winner: Patriots Predicted Winner: Ravens
-Acutal Winner: Washington Predicted Winner: Washington
-Acutal Winner: Bills Predicted Winner: Dolphins
-Acutal Winner: Bengals Predicted Winner: Bengals
-Actual Winner: Cowboys Predicted Winner: Lions
-Acutal Winner: Packers Predicted Winner: Raiders
-Actual Winner: Chargers Predicted Winner: Titans
-Actual Winner: Giants Predicted Winner: Giants
-Acutal Winner: Jaguars Predicted Winner: Jaguars
-Acutal Winner: Texans Predicted Winner: Texans
-Actual Winner: Vikings Predicted Winner: Vikings
 </pre>
 </div>
 </div>
@@ -28710,22 +27480,14 @@ Actual Winner: Vikings Predicted Winner: Vikings
 <h2 id="5.1-Communication-of-Insights">5.1 Communication of Insights<a class="anchor-link" href="#5.1-Communication-of-Insights">&#182;</a></h2>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div>
 <div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>From this</p>
 
-     </div>
 </div>
 </div>
-</div>
-
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
