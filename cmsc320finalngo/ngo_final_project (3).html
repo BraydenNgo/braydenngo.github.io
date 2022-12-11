@@ -17692,8 +17692,8 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="1.1:-Introduction">1.1: Introduction<a class="anchor-link" href="#1.1:-Introduction">&#182;</a></h2><p>The NFL is arguably the most popular sport in America. American football originated as a combination of soccer and rugby and was introduced at the college level in the late 1800s. By the 1920s, American football had grown in popularity to the degree where a professional league, the NFL was established. Over the years the NFL has grown tremendously in popularity as it now is estimated to be a nearly 9 billion dollar industry. In fact, the typical NFL regular season game will pull in up to 15.4 million viewers. This is significant margin compared to viewership of the other major US sports as the NBA has around 1.34 million viewers per game, the MLB has around 0.17 million, and the NHL has around 2.15 million viewers per game. As the NFL has expanded during the past decade, the use of technology has also been very prevalant. For instance, in the last few years the NFl has partenered with Amazon and its AWS software to apply machine learning algorithms to better communicate and engage with fans. For instance, AWS has been used to determine stats like passing score, 4th down decisions, expected rushing yards, and more unexpected ways. As we can see data analytics has become a more integral part of the modern NFL. However, we ourselves can get started with the basics of data analysis and getting familiar with fundamental data science concepts through the NFL. With all the different moving parts that can influence the potential of the game like passing efficiency, turnover differentials, and redzone efficiency there are potentially many different factors which can impact the outcome of an NFL game and warrant further analysis. Furthermore, we can determine if other concepts such as "home-field advantage" actually means anything in impacting the winner of an NFL game. Overall, in this following tutorial we will go through our own data science process in exploring the relationship between data and the winner of NFL games. Our hope is that this tutorial will not only give you some experience with the data science pipeline, but will help you gain insights into the NFl and maybe even use the information from here to play into what teams you bet on.</p>
-<p>Sources to learn more about the NFl and data analytics within the NFL:</p>
+<h2 id="1.1:-Introduction">1.1: Introduction<a class="anchor-link" href="#1.1:-Introduction">&#182;</a></h2><p>The NFL is arguably the most popular sport in America. American football originated as a combination of soccer and rugby and was introduced at the college level in the late 1800s. By the 1920s, American football had grown in popularity to the degree where a professional league, the NFL was established. Over the years the NFL has grown tremendously in popularity as it now is estimated to be a nearly 9 billion dollar industry. In fact, the typical NFL regular season game will pull in up to 15.4 million viewers. This is significant margin compared to viewership of the other major US sports as the NBA has around 1.34 million viewers per game, the MLB has around 0.17 million, and the NHL has around 2.15 million viewers per game. As the NFL has expanded during the past decade, the use of technology has also been very prevalant. For instance, in the last few years the NFl has partenered with Amazon and its AWS software to apply machine learning algorithms to better communicate and engage with fans. For instance, AWS has been used to determine stats like passing score, 4th down decisions, expected rushing yards, and more unexpected ways. As we can see data analytics has become a more integral part of the modern NFL. However, we ourselves can get started with the basics of data analysis and getting familiar with fundamental data science concepts through the NFL. With all the different moving parts that can influence the potential of the game like passing efficiency, turnover differentials, and redzone efficiency there are potentially many different factors which can impact the outcome of an NFL game and warrant further analysis. Furthermore, we can determine if other concepts such as "home-field advantage" actually means anything in impacting the winner of an NFL game. Overall, in this following tutorial we will go through our own data science process in exploring the relationship between data and the winner of NFL games. Our hope is that this tutorial will not only give you some experience with the data science pipeline, but will help you gain insights into the NFL and maybe even use the information from here to play into what teams you bet on based on what factors impact games the most.</p>
+<p>If you desire, here are some sources to learn more about the NFl and data analytics within the NFL:</p>
 <p><strong><a href="https://www.sportszion.com/nfl-most-popular-sport-in-america/">https://www.sportszion.com/nfl-most-popular-sport-in-america/</a></strong></p>
 <p><strong><a href="https://aws.amazon.com/sports/nfl/#:~:text=The%20NFL%20uses%20AWS%20to,for%20players%20on%20the%20field">https://aws.amazon.com/sports/nfl/#:~:text=The%20NFL%20uses%20AWS%20to,for%20players%20on%20the%20field</a>.</strong></p>
 
@@ -17717,7 +17717,8 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># import our libraries</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
@@ -17728,10 +17729,11 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">KFold</span><span class="p">,</span> <span class="n">cross_val_score</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">svm</span>
 
+<span class="c1"># load in our csv file into a dataframe</span>
 <span class="n">game_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;nfl_team_stats_2002-2021.csv&#39;</span><span class="p">)</span>
 
+<span class="c1"># examine the dataframe</span>
 <span class="n">display</span><span class="p">(</span><span class="n">game_df</span><span class="p">)</span>
 </pre></div>
 
@@ -18160,7 +18162,8 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">game_df</span> <span class="o">=</span> <span class="n">game_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;def_st_td_away&#39;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># drop the columns from the dataframe</span>
+<span class="n">game_df</span> <span class="o">=</span> <span class="n">game_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;def_st_td_away&#39;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">game_df</span> <span class="o">=</span> <span class="n">game_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;def_st_td_home&#39;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">game_df</span> <span class="o">=</span> <span class="n">game_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;fourth_downs_away&#39;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">game_df</span> <span class="o">=</span> <span class="n">game_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;fourth_downs_home&#39;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
@@ -18177,6 +18180,7 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>The next thing that we might need to consider is separating out regular season games from playoff games. Afterall, there's a reason why commentators say the playoffs are a whole different beast. While it would be logical here to simply sort through the different dates and assign a new column to the type of game (either playoff or regular) an entry in the dataset corresponds to, the difficulty here is that the dates from season to season can differ widely. Also, with the addition of the 17th game during the 2021 NFl season, it will be very difficult to determine if games that were played in January or later are actually playoff or regular games from the season. In order to rectify this, we will use another data set that already provides the classification for each of the games and we will merge the two datasets together. Here is the Github Link to where you can find this particular data set (we will be using the Games table in particular):</p>
 <p><strong><a href="https://github.com/nflverse/nfldata/blob/master/DATASETS.md#games">https://github.com/nflverse/nfldata/blob/master/DATASETS.md#games</a></strong></p>
+<p>Note, in order to download the CSV I simply went to the URL that was provided on the Github repo <strong><a href="http://www.habitatring.com/games.csv">http://www.habitatring.com/games.csv</a></strong> and directly downloaded the dataset onto my local machine.</p>
 
 </div>
 </div>
@@ -18188,8 +18192,8 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">games_supp_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;games.csv&#39;</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">games_supp_df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># load in the second data frame and output it</span>
+<span class="n">games_supp_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;games.csv&#39;</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">games_supp_df</span><span class="p">)</span>
 </pre></div>
 
@@ -18204,29 +18208,6 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>Index([&#39;game_id&#39;, &#39;season&#39;, &#39;game_type&#39;, &#39;week&#39;, &#39;gameday&#39;, &#39;weekday&#39;,
-       &#39;gametime&#39;, &#39;away_team&#39;, &#39;away_score&#39;, &#39;home_team&#39;, &#39;home_score&#39;,
-       &#39;location&#39;, &#39;result&#39;, &#39;total&#39;, &#39;overtime&#39;, &#39;old_game_id&#39;, &#39;gsis&#39;,
-       &#39;nfl_detail_id&#39;, &#39;pfr&#39;, &#39;pff&#39;, &#39;espn&#39;, &#39;away_rest&#39;, &#39;home_rest&#39;,
-       &#39;away_moneyline&#39;, &#39;home_moneyline&#39;, &#39;spread_line&#39;, &#39;away_spread_odds&#39;,
-       &#39;home_spread_odds&#39;, &#39;total_line&#39;, &#39;under_odds&#39;, &#39;over_odds&#39;, &#39;div_game&#39;,
-       &#39;roof&#39;, &#39;surface&#39;, &#39;temp&#39;, &#39;wind&#39;, &#39;away_qb_id&#39;, &#39;home_qb_id&#39;,
-       &#39;away_qb_name&#39;, &#39;home_qb_name&#39;, &#39;away_coach&#39;, &#39;home_coach&#39;, &#39;referee&#39;,
-       &#39;stadium_id&#39;, &#39;stadium&#39;],
-      dtype=&#39;object&#39;)</pre>
-</div>
-
-</div>
 
 <div class="jp-OutputArea-child">
 
@@ -18606,7 +18587,59 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>From the columns here the ones the only ones that we will need to keep include the season, game_type, gameday, the away_team, the home_team, and the result.</p>
+<p>Here's an explanation of some of the columns which was been directly taken from the Github page the dataset was obtained from.</p>
+<ul>
+<li>game_id: The ID of the game as assigned by the NFL. Note that this value matches the game_id field in nflscrapR if you wish to join the data.</li>
+<li>alt_game_id: This is a more human-readable ID. It consists of: The season, an underscore, the two-digit week number, an underscore, the away team, an underscore, the home team.</li>
+<li>season: The year of the NFL season. This reperesents the whole season, so regular season games that happen in January as well as playoff games will occur in the year after this number.</li>
+<li>game_type: What type of game? One of the following values:<ul>
+<li>REG: a regular season game</li>
+<li>WC: a wildcard playoff game</li>
+<li>DIV: a divisional round playoff game</li>
+<li>CON: a conference championship</li>
+<li>`SB': a Super Bowl</li>
+</ul>
+</li>
+<li>week: The week of the NFL season the game occurs in. This will be 1-17 for the regular season, 18 for wildcard playoff games, 19 for divisional playoff games, 20 for conference championships and 21 for Super Bowls.</li>
+<li>gameday: The date on which the game occurred.</li>
+<li>weekday: The day of the week on which the game occcured.</li>
+<li>gametime: The kickoff time of the game. This is represented in 24-hour time and the Eastern time zone, regardless of what time zone the game was being played in.</li>
+<li>away_team: The away team.</li>
+<li>away_score: The number of points the away team scored. Is NA for games which haven't yet been played.</li>
+<li>home_team: The home team. Note that this contains the designated home team for games which no team is playing at home such as Super Bowls or NFL International games.</li>
+<li>home_score: The number of points the home team scored. Is NA for games which haven't yet been played.</li>
+<li>location: Either Home if the home team is playing in their home stadium, or Neutral if the game is being played at a neutral location. This still shows as Home for games between the Giants and Jets even though they share the same home stadium.</li>
+<li>result: The number of points the home team scored minus the number of points the visiting team scored. Equals h_score - v_score. Is NA for games which haven't yet been played. Convenient for evaluating against the spread bets</li>
+<li>total: The sum of each team's score in the game. Equals h_score + v_score. Is NA for games which haven't yet been played. Convenient for evaluating over/under total bets.</li>
+<li>gsis: The id of the game issued by the NFL Game Statistics &amp; Information System.</li>
+<li>pfr: The id of the game issued by Pro Football Reference</li>
+<li>pff: The id of the game issued by Pro Football Focus</li>
+<li>espn: The id of the game issued by ESPN</li>
+<li>spread_line: The spread line for the game. A positive number means the home team was favored by that many points, a negative number means the away team was favored by that many points. This lines up with the result column.</li>
+<li>total_line: The total line for the game.</li>
+<li>roof: What was the status of the stadium's roof? Will be one of the following values:<ul>
+<li>outdoors: An outdoor stadium</li>
+<li>open: Stadium has a retractable roof which was open</li>
+<li>closed: Stadium has a retractable roof which was closed</li>
+<li>dome: An indoor stadium</li>
+</ul>
+</li>
+<li>surface: What type of ground the game was played on</li>
+<li>temp: The temperature at the stadium (for outdoors and open only)</li>
+<li>wind: The speed of the wind in miles/hour (for outdoors and open only)</li>
+<li>away_coach: Name of the head coach of the away team</li>
+<li>home_coach: Name of the head coach of the home team</li>
+<li>referee: Name of the game's referee (head official)</li>
+<li>stadium: Name of the stadium</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>As we can see from the columns there is a lot of columns that we won't use such as gsis, the surface, referee, stadium, etc. The only columns that we will keep include the season, game_type, gameday, the away_team, the home_team, and the result. The reason is that the season is the main thing we're after so we can actually distinguish regular season games, the game_type, gameday, away_team, and home_team are needed so we can match with our first dataframe and we will use result because it's an extra numerical statistic for the game that could be useful later on in our exploratory analysis.</p>
 
 </div>
 </div>
@@ -18618,7 +18651,8 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">games_supp_df</span> <span class="o">=</span> <span class="n">games_supp_df</span><span class="p">[[</span><span class="s1">&#39;season&#39;</span><span class="p">,</span> <span class="s1">&#39;game_type&#39;</span><span class="p">,</span> <span class="s1">&#39;gameday&#39;</span><span class="p">,</span> <span class="s1">&#39;away_team&#39;</span><span class="p">,</span> <span class="s1">&#39;home_team&#39;</span><span class="p">,</span> <span class="s1">&#39;result&#39;</span><span class="p">]]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># select the columns we want to keep and store it in a new dataframe</span>
+<span class="n">games_supp_df</span> <span class="o">=</span> <span class="n">games_supp_df</span><span class="p">[[</span><span class="s1">&#39;season&#39;</span><span class="p">,</span> <span class="s1">&#39;game_type&#39;</span><span class="p">,</span> <span class="s1">&#39;gameday&#39;</span><span class="p">,</span> <span class="s1">&#39;away_team&#39;</span><span class="p">,</span> <span class="s1">&#39;home_team&#39;</span><span class="p">,</span> <span class="s1">&#39;result&#39;</span><span class="p">]]</span>
 <span class="n">display</span><span class="p">(</span><span class="n">games_supp_df</span><span class="p">)</span>
 </pre></div>
 
@@ -18784,7 +18818,7 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Now we can merge together the two tables by the gameday and the away and home teams. First we will rename the columns in our new table, change the abbreviationsw for team names and then we can proceed by using a left join.</p>
+<p>Now we can merge together the two tables by the gameday and the away and home teams. First we will rename the columns in our new table, change the abbreviations for team names (since our second data frame is using the abbreviations instead of the full team name so we need to change it to merge with the first) and then we can proceed by using a left join.</p>
 
 </div>
 </div>
@@ -18796,15 +18830,20 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">games_supp_df_copy</span> <span class="o">=</span> <span class="n">games_supp_df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># make a copy of the dataframe</span>
+<span class="n">games_supp_df_copy</span> <span class="o">=</span> <span class="n">games_supp_df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="c1"># rename the columns</span>
 <span class="n">games_supp_df_copy</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;gameday&#39;</span><span class="p">:</span> <span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;away_team&#39;</span><span class="p">:</span> <span class="s1">&#39;away&#39;</span><span class="p">,</span> <span class="s1">&#39;home_team&#39;</span><span class="p">:</span> <span class="s1">&#39;home&#39;</span><span class="p">},</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 
+<span class="c1"># create a dictionary to map the team abbreviations to the full name</span>
 <span class="n">team_hash</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;MIN&#39;</span><span class="p">:</span> <span class="s1">&#39;Vikings&#39;</span><span class="p">,</span><span class="s1">&#39;KC&#39;</span><span class="p">:</span> <span class="s1">&#39;Chiefs&#39;</span><span class="p">,</span><span class="s1">&#39;PIT&#39;</span><span class="p">:</span> <span class="s1">&#39;Steelers&#39;</span><span class="p">,</span><span class="s1">&#39;OAK&#39;</span><span class="p">:</span> <span class="s1">&#39;Raiders&#39;</span><span class="p">,</span><span class="s1">&#39;BUF&#39;</span><span class="p">:</span> <span class="s1">&#39;Bills&#39;</span><span class="p">,</span><span class="s1">&#39;SF&#39;</span><span class="p">:</span><span class="s1">&#39;49ers&#39;</span><span class="p">,</span><span class="s1">&#39;CAR&#39;</span><span class="p">:</span><span class="s1">&#39;Panthers&#39;</span><span class="p">,</span>
              <span class="s1">&#39;NE&#39;</span><span class="p">:</span> <span class="s1">&#39;Patriots&#39;</span><span class="p">,</span><span class="s1">&#39;ARI&#39;</span><span class="p">:</span> <span class="s1">&#39;Cardinals&#39;</span><span class="p">,</span><span class="s1">&#39;DET&#39;</span><span class="p">:</span> <span class="s1">&#39;Lions&#39;</span><span class="p">,</span><span class="s1">&#39;BAL&#39;</span><span class="p">:</span> <span class="s1">&#39;Ravens&#39;</span><span class="p">,</span><span class="s1">&#39;NYG&#39;</span><span class="p">:</span> <span class="s1">&#39;Giants&#39;</span><span class="p">,</span><span class="s1">&#39;CIN&#39;</span><span class="p">:</span><span class="s1">&#39;Bengals&#39;</span><span class="p">,</span>
              <span class="s1">&#39;DAL&#39;</span><span class="p">:</span><span class="s1">&#39;Cowboys&#39;</span><span class="p">,</span><span class="s1">&#39;MIA&#39;</span><span class="p">:</span><span class="s1">&#39;Dolphins&#39;</span><span class="p">,</span><span class="s1">&#39;NYJ&#39;</span><span class="p">:</span> <span class="s1">&#39;Jets&#39;</span><span class="p">,</span><span class="s1">&#39;JAX&#39;</span><span class="p">:</span><span class="s1">&#39;Jaguars&#39;</span><span class="p">,</span><span class="s1">&#39;SEA&#39;</span><span class="p">:</span><span class="s1">&#39;Seahawks&#39;</span><span class="p">,</span><span class="s1">&#39;SD&#39;</span><span class="p">:</span> <span class="s1">&#39;Chargers&#39;</span><span class="p">,</span> <span class="s1">&#39;GB&#39;</span><span class="p">:</span> <span class="s1">&#39;Packers&#39;</span><span class="p">,</span>
              <span class="s1">&#39;DEN&#39;</span><span class="p">:</span><span class="s1">&#39;Broncos&#39;</span><span class="p">,</span><span class="s1">&#39;IND&#39;</span><span class="p">:</span><span class="s1">&#39;Colts&#39;</span><span class="p">,</span> <span class="s1">&#39;WAS&#39;</span><span class="p">:</span> <span class="s1">&#39;Washington&#39;</span><span class="p">,</span> <span class="s1">&#39;TB&#39;</span><span class="p">:</span><span class="s1">&#39;Buccaneers&#39;</span><span class="p">,</span> <span class="s1">&#39;NO&#39;</span><span class="p">:</span><span class="s1">&#39;Saints&#39;</span><span class="p">,</span><span class="s1">&#39;CLE&#39;</span><span class="p">:</span><span class="s1">&#39;Browns&#39;</span><span class="p">,</span>
              <span class="s1">&#39;ATL&#39;</span><span class="p">:</span><span class="s1">&#39;Falcons&#39;</span><span class="p">,</span> <span class="s1">&#39;PHI&#39;</span><span class="p">:</span><span class="s1">&#39;Eagles&#39;</span><span class="p">,</span> <span class="s1">&#39;TEN&#39;</span><span class="p">:</span><span class="s1">&#39;Titans&#39;</span><span class="p">,</span> <span class="s1">&#39;CHI&#39;</span><span class="p">:</span><span class="s1">&#39;Bears&#39;</span><span class="p">,</span><span class="s1">&#39;STL&#39;</span><span class="p">:</span><span class="s1">&#39;Rams&#39;</span><span class="p">,</span><span class="s1">&#39;HOU&#39;</span><span class="p">:</span><span class="s1">&#39;Texans&#39;</span><span class="p">,</span> <span class="s1">&#39;LA&#39;</span><span class="p">:</span><span class="s1">&#39;Rams&#39;</span><span class="p">,</span> <span class="s1">&#39;LAC&#39;</span><span class="p">:</span><span class="s1">&#39;Chargers&#39;</span><span class="p">,</span>
              <span class="s1">&#39;LV&#39;</span><span class="p">:</span> <span class="s1">&#39;Raiders&#39;</span><span class="p">}</span>
+
+<span class="c1"># go through the data frame and change the name to the full name</span>
 <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">games_supp_df_copy</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
     <span class="n">games_supp_df_copy</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;home&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">team_hash</span><span class="p">[</span><span class="n">games_supp_df_copy</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;home&#39;</span><span class="p">]]</span>
     <span class="n">games_supp_df_copy</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;away&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">team_hash</span><span class="p">[</span><span class="n">games_supp_df_copy</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;away&#39;</span><span class="p">]]</span>
@@ -18978,7 +19017,8 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">game_df</span> <span class="o">=</span> <span class="n">game_df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">games_supp_df_copy</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;away&#39;</span><span class="p">,</span> <span class="s1">&#39;home&#39;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># merge the two data frames using the date of the game, the away team, and the home team</span>
+<span class="n">game_df</span> <span class="o">=</span> <span class="n">game_df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">games_supp_df_copy</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;away&#39;</span><span class="p">,</span> <span class="s1">&#39;home&#39;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">game_df</span><span class="p">)</span>
 </pre></div>
 
@@ -19339,7 +19379,7 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>The first thing we will do is to drop all the row that aren't regular season games (i.e. this means dropping any rows whose game_type value isn't 'REG')</p>
+<p>The next step in our pipeline will be to deal with data management. Essentially, we'll clean up the data and do any other manipulations to make the data easier to work with later on in our exploratory data analysis section. The first thing we will do is to drop all the row that aren't regular season games (i.e. this means dropping any rows whose game_type value isn't 'REG')</p>
 
 </div>
 </div>
@@ -19363,7 +19403,7 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>The next thing we need to do is to calculate new columns for our data frame. For example, one thing that will be helpful is to calculate the average winning percentage by team. Another thing we will want to consider is to add a new column so we can more easily tell who is the winner of the game instead of having to compare the scores for the home and away team every single time we examine an entry. Additionally, the format for columns such as third_down_away and third_downs_home are in a format of a string like '4-11' and this won't be useable for numerical analysis so we'll need to address this. Additionally, we will drop games that were tied since we can't determine a winner. Other things we'll add is a column separating the current format of penalities like '5-29' into 5 for the number of penalities and 29 for the yardage.</p>
+<p>The next thing we need to do is to calculate new columns for our data frame. For example, one thing that will be helpful is to calculate the average winning percentage by team. Another thing we will want to consider is to add a new column so we can more easily tell who is the winner of the game instead of having to compare the scores for the home and away team every single time we examine an entry. Additionally, the format for columns such as third_down_away and third_downs_home are in a format of a string like '4-11' and this won't be useable for numerical analysis so we'll need to address this. Additionally, we will drop games that were tied since we can't determine a winner. Other things we'll add is a column separating the current format of penalities like '5-29' into 5 for the number of penalities and 29 for the yardage, and overall turning any columns in the format of a string like '5-23' into a ratio or other format so we can actually perform numerical anaylsis later.</p>
 
 </div>
 </div>
@@ -19414,37 +19454,38 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <span class="c1"># create a new column for the winner</span>
 <span class="n">game_df</span><span class="p">[</span><span class="s1">&#39;Winner&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
-<span class="c1">######################</span>
+<span class="c1"># create columns for the numerical ratio of completion attempt percentage for the home and away team</span>
 <span class="n">game_df</span><span class="p">[</span><span class="s1">&#39;comp_att_away_ratio&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 <span class="n">game_df</span><span class="p">[</span><span class="s1">&#39;comp_att_home_ratio&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
-
-<span class="c1">#####################</span>
+<span class="c1"># create columns for the number of sacks taken by the home and away team</span>
 <span class="n">game_df</span><span class="p">[</span><span class="s1">&#39;sacks_home_cnt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 <span class="n">game_df</span><span class="p">[</span><span class="s1">&#39;sacks_away_cnt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
 <span class="c1"># assign winners for each row</span>
 <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">game_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="c1"># extract the number of penalties and penalty yards separately for the home team</span>
     <span class="n">game_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;penalty_cnt_home&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">penalties_home</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">row</span><span class="o">.</span><span class="n">penalties_home</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)])</span>
     <span class="n">game_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">index</span><span class="p">,</span><span class="s1">&#39;penalty_yards_home&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">penalties_home</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">penalties_home</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:])</span>
 
-
+    <span class="c1"># extract the number of penalties and penalty yards separately for the away team</span>
     <span class="n">game_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">index</span><span class="p">,</span><span class="s1">&#39;penalty_cnt_away&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">penalties_away</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">row</span><span class="o">.</span><span class="n">penalties_away</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)])</span>
-
     <span class="n">game_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">index</span><span class="p">,</span><span class="s1">&#39;penalty_yards_away&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">penalties_away</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">penalties_away</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:])</span>
     
-    <span class="c1"># fixing the times</span>
+    <span class="c1"># fixing the times by removing the &#39;:&#39;</span>
     <span class="n">game_df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;possession_away&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="n">game_df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;possession_away&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
     <span class="n">game_df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;possession_home&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">game_df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;possession_home&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
     
+    <span class="c1"># extract the sack count for the home and the away teams</span>
     <span class="n">game_df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;sacks_home_cnt&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">sacks_home</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">row</span><span class="o">.</span><span class="n">sacks_home</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)])</span>
     <span class="n">game_df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;sacks_away_cnt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">sacks_away</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">row</span><span class="o">.</span><span class="n">sacks_away</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)])</span>
     
-    <span class="c1"># completion attempts</span>
+    <span class="c1"># completion attempts in terms of percentage for the home and the away team</span>
     <span class="n">game_df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;comp_att_away_ratio&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">comp_att_away</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">row</span><span class="o">.</span><span class="n">comp_att_away</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)])</span> <span class="o">/</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">comp_att_away</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">comp_att_away</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:])</span>
     <span class="n">game_df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;comp_att_home_ratio&#39;</span><span class="p">]</span>   <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">comp_att_home</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">row</span><span class="o">.</span><span class="n">comp_att_home</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)])</span> <span class="o">/</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">comp_att_home</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">comp_att_home</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:])</span>
 
     
+    <span class="c1"># assign the &#39;Winner&#39; column the string &#39;Away&#39; or &#39;Home&#39; depending on which team won the game</span>
     <span class="k">if</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">score_away</span> <span class="o">&gt;</span> <span class="n">row</span><span class="o">.</span><span class="n">score_home</span><span class="p">):</span>
         <span class="n">game_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;Winner&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Away&#39;</span>
         <span class="n">game_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;home_team_winner&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
@@ -19453,26 +19494,32 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
         <span class="n">game_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;home_team_winner&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
         
         
+    <span class="c1"># assign the number of redzone visits and third down conversion percentage for home team</span>
     <span class="n">game_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;redzone_visits_home&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">redzone_home</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">redzone_home</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:])</span>
     <span class="n">game_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;third_down_ratio_home&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">third_downs_home</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">row</span><span class="o">.</span><span class="n">third_downs_home</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)])</span> <span class="o">/</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">third_downs_home</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">third_downs_home</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:])</span>
-        
+    
+    <span class="c1"># make sure the redzone denominator isn&#39;t 0 for the home team so we don&#39;t get an error</span>
     <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">redzone_home</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">redzone_home</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:])</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">game_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;redzone_ratio_home&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">redzone_home</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">row</span><span class="o">.</span><span class="n">redzone_home</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)])</span> <span class="o">/</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">redzone_home</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">redzone_home</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:])</span>
     <span class="k">else</span><span class="p">:</span>
             <span class="n">game_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;redzone_ratio_home&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
             
-            
+    
+    <span class="c1"># assign the number of redzone visits and third down conversion percentage for the away team</span>
     <span class="n">game_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;redzone_visits_away&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">redzone_away</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">redzone_away</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:])</span>
     <span class="n">game_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;third_down_ratio_away&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">third_downs_away</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">row</span><span class="o">.</span><span class="n">third_downs_away</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)])</span> <span class="o">/</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">third_downs_away</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">third_downs_away</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:])</span>
-        
+    
+    <span class="c1"># make sure the redzone denominator isn&#39;t 0  for the away team so we don&#39;t get an error</span>
     <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">redzone_away</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">redzone_away</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:])</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">game_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;redzone_ratio_away&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">redzone_away</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">row</span><span class="o">.</span><span class="n">redzone_away</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)])</span> <span class="o">/</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">redzone_away</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">redzone_away</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:])</span>
     <span class="k">else</span><span class="p">:</span>
             <span class="n">game_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;redzone_ratio_away&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 
-<span class="c1"># convert the strings of time to integers</span>
+<span class="c1"># convert the strings of time to integers so we can do numerical analysis later</span>
 <span class="n">game_df</span><span class="o">.</span><span class="n">possession_away</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">game_df</span><span class="o">.</span><span class="n">possession_away</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
 <span class="n">game_df</span><span class="o">.</span><span class="n">possession_home</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">game_df</span><span class="o">.</span><span class="n">possession_home</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+
+<span class="c1"># output the last 5 rows of the updated dataframe</span>
 <span class="n">display</span><span class="p">(</span><span class="n">game_df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
 </pre></div>
 
@@ -19674,7 +19721,8 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="2.2.-Making-a-New-Dataframe">2.2. Making a New Dataframe<a class="anchor-link" href="#2.2.-Making-a-New-Dataframe">&#182;</a></h2>
+<h2 id="2.2.-Making-a-New-Dataframe">2.2. Making a New Dataframe<a class="anchor-link" href="#2.2.-Making-a-New-Dataframe">&#182;</a></h2><p>The next thing we will do is to make a new dataframe which will be based on individual stats for the 32 different NFL teams (e.g. for each team they will have an average passing yards column which is how many yards they average across all the games they've played). We're making this dataframe so that we have another dataframe that we can perform numerical analysis on later on in our exploratory section.</p>
+
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -19728,7 +19776,9 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <span class="c1"># create list for avg time of possession</span>
 <span class="n">time_lst</span> <span class="o">=</span> <span class="p">[]</span>
 
+<span class="c1"># iterate through all the teams</span>
 <span class="k">for</span> <span class="n">team</span> <span class="ow">in</span> <span class="n">teams</span><span class="p">:</span>
+    <span class="c1"># create variables to store total for each field</span>
     <span class="n">wins</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">third_downs_attempted</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">third_downs_made</span> <span class="o">=</span> <span class="mi">0</span>
@@ -19749,13 +19799,16 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
     <span class="n">turnovers</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">time</span> <span class="o">=</span> <span class="mi">0</span>
     
+    <span class="c1"># create a temporary dataframe that contains only rows where the curr team we&#39;re iterating played in (e.g. it&#39;s either the away or the home team)</span>
     <span class="n">temp_df</span> <span class="o">=</span> <span class="n">game_df</span><span class="p">[(</span><span class="n">game_df</span><span class="p">[</span><span class="s1">&#39;away&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">team</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">game_df</span><span class="p">[</span><span class="s1">&#39;home&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">team</span><span class="p">)]</span>
     <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">temp_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="c1"># add to wins for the team</span>
         <span class="k">if</span> <span class="n">row</span><span class="o">.</span><span class="n">away</span> <span class="o">==</span> <span class="n">team</span> <span class="ow">and</span> <span class="n">row</span><span class="o">.</span><span class="n">score_away</span> <span class="o">&gt;</span> <span class="n">row</span><span class="o">.</span><span class="n">score_home</span><span class="p">:</span>
             <span class="n">wins</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="k">elif</span> <span class="n">row</span><span class="o">.</span><span class="n">home</span> <span class="o">==</span> <span class="n">team</span> <span class="ow">and</span> <span class="n">row</span><span class="o">.</span><span class="n">score_home</span> <span class="o">&gt;</span> <span class="n">row</span><span class="o">.</span><span class="n">score_away</span><span class="p">:</span>
             <span class="n">wins</span> <span class="o">+=</span> <span class="mi">1</span>
-           
+        
+        <span class="c1"># assign the corresponding values for each field depending if the team was the away or the home team</span>
         <span class="k">if</span> <span class="n">row</span><span class="o">.</span><span class="n">away</span> <span class="o">==</span> <span class="n">team</span><span class="p">:</span>
             <span class="n">third_downs_made</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">third_downs_away</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">row</span><span class="o">.</span><span class="n">third_downs_away</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)])</span>
             <span class="n">third_downs_attempted</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">third_downs_away</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">third_downs_away</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:])</span>
@@ -19794,7 +19847,8 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
             <span class="n">redzone_trips</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">redzone_home</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">redzone_home</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:])</span>
             <span class="n">turnovers</span> <span class="o">+=</span> <span class="n">row</span><span class="o">.</span><span class="n">turnovers_home</span>
             <span class="n">time</span> <span class="o">+=</span> <span class="n">row</span><span class="o">.</span><span class="n">possession_home</span>
-        
+    
+    <span class="c1"># calculate averages for all the different fields by dividing by the length or number of rows in the temp_df</span>
     <span class="n">team_win_lst</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">wins</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">temp_df</span><span class="p">))</span>
     <span class="n">third_down_rate_lst</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">third_downs_made</span> <span class="o">/</span> <span class="n">third_downs_attempted</span><span class="p">)</span>
     <span class="n">passing_yards_lst</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">passing_yards</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">temp_df</span><span class="p">))</span>
@@ -19813,6 +19867,7 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
     <span class="n">turnovers_lst</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">turnovers</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">temp_df</span><span class="p">))</span>
     <span class="n">time_lst</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">time</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">temp_df</span><span class="p">))</span>
 
+<span class="c1"># assign the lists to the corresponding column in our new dataframe</span>
 <span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;win_rate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">team_win_lst</span>
 <span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;third_down_rate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">third_down_rate_lst</span>
 <span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;passing_yards_avg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">passing_yards_lst</span>
@@ -19830,6 +19885,8 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;redzone_ratio&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">redzone_ratio_lst</span>
 <span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;turnover_avg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">turnovers_lst</span>
 <span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;possession_avg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">time_lst</span>
+
+<span class="c1"># output the first 10 rows of the newly constructed dataframe</span>
 <span class="n">display</span><span class="p">(</span><span class="n">team_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
 </pre></div>
 
@@ -20125,7 +20182,12 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="3.1:-Exploratory-Data-Analysis">3.1: Exploratory Data Analysis<a class="anchor-link" href="#3.1:-Exploratory-Data-Analysis">&#182;</a></h2>
+<h2 id="3.1:-Exploratory-Data-Analysis">3.1: Exploratory Data Analysis<a class="anchor-link" href="#3.1:-Exploratory-Data-Analysis">&#182;</a></h2><p>In this section we will perform our exploratory data analysis where we will create some plots using our dataset and the dataframes we've created from it to see what insights we can gain about NFL games. Before we continue, I will mention that we will be using matplotlib and seaborn as our libraries for creating plots. If you want to read a little more about these data science tools before continuing on feel free to do so by visiting the following links for the documentation:</p>
+<ul>
+<li><strong><a href="https://matplotlib.org/">https://matplotlib.org/</a></strong></li>
+<li><strong><a href="https://seaborn.pydata.org/">https://seaborn.pydata.org/</a></strong></li>
+</ul>
+
 </div>
 </div>
 </div>
@@ -20144,18 +20206,28 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># create plot instance</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
 
+<span class="c1"># create a tuple for the teams</span>
 <span class="n">teams</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;teams&#39;</span><span class="p">])</span>
+
+<span class="c1"># store number of teams</span>
 <span class="n">y_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">teams</span><span class="p">))</span>
+
+<span class="c1"># store the win rates for each team in a series</span>
 <span class="n">win_rates</span> <span class="o">=</span> <span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;win_rate&#39;</span><span class="p">]</span>
+
+<span class="c1"># create a list of hex digits which corresponds to the color used for each team</span>
 <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#AA0000&#39;</span><span class="p">,</span> <span class="s1">&#39;#125740&#39;</span><span class="p">,</span> <span class="s1">&#39;#4F2683&#39;</span><span class="p">,</span> <span class="s1">&#39;#0080C6&#39;</span><span class="p">,</span> <span class="s1">&#39;#E31837&#39;</span><span class="p">,</span> <span class="s1">&#39;#A71930&#39;</span><span class="p">,</span> <span class="s1">&#39;#004C54&#39;</span><span class="p">,</span> <span class="s1">&#39;#0076B6&#39;</span><span class="p">,</span> <span class="s1">&#39;#97233F&#39;</span><span class="p">,</span> <span class="s1">&#39;#241773&#39;</span><span class="p">,</span> <span class="s1">&#39;#002C5F&#39;</span><span class="p">,</span>
          <span class="s1">&#39;#FFA300&#39;</span><span class="p">,</span> <span class="s1">&#39;#69BE28&#39;</span><span class="p">,</span> <span class="s1">&#39;#D3BC8D&#39;</span><span class="p">,</span> <span class="s1">&#39;#003594&#39;</span><span class="p">,</span> <span class="s1">&#39;#FFB612&#39;</span><span class="p">,</span> <span class="s1">&#39;#C83803&#39;</span><span class="p">,</span> <span class="s1">&#39;#FB4F14&#39;</span><span class="p">,</span> <span class="s1">&#39;#4B92DB&#39;</span><span class="p">,</span> <span class="s1">&#39;#008E97&#39;</span><span class="p">,</span> <span class="s1">&#39;#006778&#39;</span><span class="p">,</span> <span class="s1">&#39;#203731&#39;</span><span class="p">,</span>
          <span class="s1">&#39;#002244&#39;</span><span class="p">,</span> <span class="s1">&#39;#D50A0A&#39;</span><span class="p">,</span> <span class="s1">&#39;#0B2265&#39;</span><span class="p">,</span> <span class="s1">&#39;#00338D&#39;</span><span class="p">,</span> <span class="s1">&#39;#A71930&#39;</span><span class="p">,</span> <span class="s1">&#39;#FB4F14&#39;</span><span class="p">,</span><span class="s1">&#39;#A5ACAF&#39;</span><span class="p">,</span> <span class="s1">&#39;#FF3C00&#39;</span><span class="p">,</span> <span class="s1">&#39;#0085CA&#39;</span><span class="p">,</span> <span class="s1">&#39;#5A1414&#39;</span><span class="p">]</span>
 
+<span class="c1"># create the horizontal bar plot</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">y_pos</span><span class="p">,</span> <span class="n">win_rates</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">colors</span> <span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">y_pos</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">teams</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>  <span class="c1"># labels read top-to-bottom</span>
+<span class="c1"># add labeling to the plot</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Win Rate&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Distribution of Win Rates by NFL Team&#39;</span><span class="p">)</span>
 
@@ -20211,21 +20283,29 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>        
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># instantiate the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="c1"># create the scatter plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;total_yards_avg&#39;</span><span class="p">],</span> <span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;win_rate&#39;</span><span class="p">])</span>
 
+
+<span class="c1"># create list for labels</span>
 <span class="n">team_labels</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;teams&#39;</span><span class="p">])</span>
 <span class="n">avg_total_yards</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;total_yards_avg&#39;</span><span class="p">])</span>
 <span class="n">avg_win_rate</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;win_rate&#39;</span><span class="p">])</span>
 
+<span class="c1"># iterate through the team labels and add the label for the points</span>
 <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">team_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">team_labels</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">team_label</span><span class="p">,</span> <span class="p">(</span><span class="n">avg_total_yards</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="n">avg_win_rate</span><span class="p">[</span><span class="n">index</span><span class="p">]))</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">avg_total_yards</span><span class="p">)</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">avg_win_rate</span><span class="p">)</span>
     
+    <span class="c1"># create the regression line</span>
     <span class="n">m</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">m</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;g&#39;</span><span class="p">)</span>
 
+    
+<span class="c1"># add labels for the axes and the title</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Average Total Yards&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Average Win Rate&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Average Win Rate vs. Average Total Yards by NFL Team&#39;</span><span class="p">)</span>
@@ -20293,7 +20373,8 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>        
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># instantiate the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>        
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;passing_yards_avg&#39;</span><span class="p">],</span> <span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;win_rate&#39;</span><span class="p">])</span>
 
 <span class="n">team_labels</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;teams&#39;</span><span class="p">])</span>
@@ -20308,6 +20389,7 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
     <span class="n">m</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">m</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;g&#39;</span><span class="p">)</span>
 
+<span class="c1"># add labeling</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Average Passing Yards&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Average Win Rate&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Average Win Rate vs. Average Passing Yards by NFL Team&#39;</span><span class="p">)</span>
@@ -20450,14 +20532,19 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">winning_values</span> <span class="o">=</span> <span class="p">[]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># create a list for the winning and losing team values</span>
+<span class="n">winning_values</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">losing_values</span> <span class="o">=</span> <span class="p">[]</span>
 
+
+<span class="c1"># create variable to stroe the yardage total for passing and rushing by winning and losing teams</span>
 <span class="n">win_pass_total</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">win_run_total</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">lose_pass_total</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">lose_run_total</span> <span class="o">=</span> <span class="mi">0</span>
 
+
+<span class="c1"># iterate through the dataframe and add to corresponding total </span>
 <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">game_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
     <span class="k">if</span> <span class="n">row</span><span class="o">.</span><span class="n">Winner</span> <span class="o">==</span> <span class="s1">&#39;Home&#39;</span><span class="p">:</span>
         <span class="n">win_pass_total</span> <span class="o">+=</span> <span class="n">row</span><span class="o">.</span><span class="n">passing_yards_home</span>
@@ -20469,16 +20556,21 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
         <span class="n">win_run_total</span> <span class="o">+=</span> <span class="n">row</span><span class="o">.</span><span class="n">rushing_yards_away</span>
         <span class="n">lose_pass_total</span> <span class="o">+=</span> <span class="n">row</span><span class="o">.</span><span class="n">passing_yards_home</span>
         <span class="n">lose_run_total</span> <span class="o">+=</span> <span class="n">row</span><span class="o">.</span><span class="n">rushing_yards_home</span>
+        
+<span class="c1"># get the average for winning teams passing and rushing yardage</span>
 <span class="n">winning_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">win_pass_total</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">game_df</span><span class="p">))</span>
 <span class="n">winning_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">win_run_total</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">game_df</span><span class="p">))</span>
 
+<span class="c1"># get the average for losing teams passing and rushing average</span>
 <span class="n">losing_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lose_pass_total</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">game_df</span><span class="p">))</span>
 <span class="n">losing_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lose_run_total</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">game_df</span><span class="p">))</span>
 
 
+<span class="c1"># set up the plot index</span>
 <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Winners&#39;</span><span class="p">,</span> <span class="s1">&#39;Losers&#39;</span><span class="p">]</span>
 
 
+<span class="c1"># create the bar plot</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Avg Passing Yards&#39;</span><span class="p">:</span> <span class="n">winning_values</span><span class="p">,</span>
                     <span class="s1">&#39;Avg Rushing Yards&#39;</span><span class="p">:</span> <span class="n">losing_values</span><span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
 
@@ -20534,17 +20626,22 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">splitPeriodPlot</span><span class="p">(</span><span class="n">new_col_name</span><span class="p">,</span> <span class="n">home_stat</span><span class="p">,</span> <span class="n">away_stat</span><span class="p">,</span> <span class="n">plot_color</span><span class="p">,</span> <span class="n">regression_color</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;define a function splitPeriodPlot which will be used to create matplotlib subplots where each subplot corresponds to a period of time of 5 NFL seasons. Parameters are new_col_name</span>
+<span class="sd">   which will be the new column added into the data frame, home_stat which is the game statistic for the home team, the away_stat is the same game corresponding statistic but for the away team, </span>
+<span class="sd">   plot_color which is the color used for the scatter plots, and regression_color which will specify the color of the regression line&quot;&quot;&quot;</span>
+<span class="k">def</span> <span class="nf">splitPeriodPlot</span><span class="p">(</span><span class="n">new_col_name</span><span class="p">,</span> <span class="n">home_stat</span><span class="p">,</span> <span class="n">away_stat</span><span class="p">,</span> <span class="n">plot_color</span><span class="p">,</span> <span class="n">regression_color</span><span class="p">):</span>
+    <span class="c1"># create new subplot with 2 rows and 2 columns</span>
     <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>  
 
     <span class="c1"># create a new column to find the difference between the home team&#39;s passing yards </span>
     <span class="n">game_df</span><span class="p">[</span><span class="n">new_col_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">game_df</span><span class="p">[</span><span class="n">home_stat</span><span class="p">]</span> <span class="o">-</span> <span class="n">game_df</span><span class="p">[</span><span class="n">away_stat</span><span class="p">]</span>
+    <span class="c1"># create separate dataframes for the different time periods</span>
     <span class="n">p1_df</span> <span class="o">=</span> <span class="n">game_df</span><span class="p">[</span><span class="n">game_df</span><span class="p">[</span><span class="s1">&#39;season&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">2002</span><span class="p">,</span> <span class="mi">2003</span><span class="p">,</span> <span class="mi">2004</span><span class="p">,</span> <span class="mi">2005</span><span class="p">,</span> <span class="mi">2006</span><span class="p">])]</span>
     <span class="n">p2_df</span> <span class="o">=</span> <span class="n">game_df</span><span class="p">[</span><span class="n">game_df</span><span class="p">[</span><span class="s1">&#39;season&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">2007</span><span class="p">,</span> <span class="mi">2008</span><span class="p">,</span> <span class="mi">2009</span><span class="p">,</span> <span class="mi">2010</span><span class="p">,</span> <span class="mi">2011</span><span class="p">])]</span>
     <span class="n">p3_df</span> <span class="o">=</span> <span class="n">game_df</span><span class="p">[</span><span class="n">game_df</span><span class="p">[</span><span class="s1">&#39;season&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">2012</span><span class="p">,</span> <span class="mi">2013</span><span class="p">,</span> <span class="mi">2014</span><span class="p">,</span> <span class="mi">2015</span><span class="p">,</span> <span class="mi">2016</span><span class="p">])]</span>
     <span class="n">p4_df</span> <span class="o">=</span> <span class="n">game_df</span><span class="p">[</span><span class="n">game_df</span><span class="p">[</span><span class="s1">&#39;season&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">2018</span><span class="p">,</span> <span class="mi">2019</span><span class="p">,</span> <span class="mi">2020</span><span class="p">,</span> <span class="mi">2021</span><span class="p">])]</span>
 
-
+    <span class="c1"># create the scatter plot for each of the individual subplots. Also adds the labeling for the axes as well as the plot title</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">p1_df</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">],</span> <span class="n">p1_df</span><span class="p">[</span><span class="n">new_col_name</span><span class="p">],</span> <span class="n">c</span> <span class="o">=</span> <span class="n">plot_color</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Game Result (Home Score - Away Score)&#39;</span> <span class="o">+</span> <span class="s1">&#39; vs. &#39;</span> <span class="o">+</span> <span class="n">new_col_name</span> <span class="o">+</span>  <span class="s1">&#39; for NFL Games from 2002 - 2006&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Game Result (Home Score - Away Score) for NFL Games played from 2002 - 2006&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
@@ -20562,31 +20659,35 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
     <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Game Result (Home Score - Away Score) for NFL Games played from 2017 - 2021&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">new_col_name</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
 
+    <span class="c1"># create the regression line for the first subplot</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">p1_df</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">])</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">p1_df</span><span class="p">[</span><span class="n">new_col_name</span><span class="p">])</span>
 
     <span class="n">m</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">m</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">regression_color</span><span class="p">)</span>
 
-
+    <span class="c1"># create the regression line for the second subplot</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">p2_df</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">])</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">p2_df</span><span class="p">[</span><span class="n">new_col_name</span><span class="p">])</span>
 
     <span class="n">m</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">m</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">regression_color</span><span class="p">)</span>
 
+    <span class="c1"># create the regression line for the third subplot</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">p3_df</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">])</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">p3_df</span><span class="p">[</span><span class="n">new_col_name</span><span class="p">])</span>
 
     <span class="n">m</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">m</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">regression_color</span><span class="p">)</span>
 
+    <span class="c1"># create the regression line for the fourth subplot</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">p4_df</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">])</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">p4_df</span><span class="p">[</span><span class="n">new_col_name</span><span class="p">])</span>
 
     <span class="n">m</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">m</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">regression_color</span><span class="p">)</span>
 
+<span class="c1"># call splitPeriodPlot to create the subplots for passing yards and rushing yards</span>
 <span class="n">splitPeriodPlot</span><span class="p">(</span><span class="s1">&#39;passing_yards_diff&#39;</span><span class="p">,</span> <span class="s1">&#39;passing_yards_home&#39;</span><span class="p">,</span> <span class="s1">&#39;passing_yards_away&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;black&#39;</span><span class="p">)</span>
 <span class="n">splitPeriodPlot</span><span class="p">(</span><span class="s1">&#39;rushing_yards_diff&#39;</span><span class="p">,</span> <span class="s1">&#39;rushing_yards_home&#39;</span><span class="p">,</span> <span class="s1">&#39;rushing_yards_away&#39;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;black&#39;</span><span class="p">)</span>
 </pre></div>
@@ -20655,7 +20756,8 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">splitPeriodPlot</span><span class="p">(</span><span class="s1">&#39;completion_attempts_diff&#39;</span><span class="p">,</span> <span class="s1">&#39;comp_att_home_ratio&#39;</span><span class="p">,</span> <span class="s1">&#39;comp_att_away_ratio&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># call splitPeriodPlot function to create subplots for the completion attempt ratio and number of rushing attempts</span>
+<span class="n">splitPeriodPlot</span><span class="p">(</span><span class="s1">&#39;completion_attempts_diff&#39;</span><span class="p">,</span> <span class="s1">&#39;comp_att_home_ratio&#39;</span><span class="p">,</span> <span class="s1">&#39;comp_att_away_ratio&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;black&#39;</span><span class="p">)</span>
 <span class="n">splitPeriodPlot</span><span class="p">(</span><span class="s1">&#39;rushing_attempts_diff&#39;</span><span class="p">,</span> <span class="s1">&#39;rushing_attempts_home&#39;</span><span class="p">,</span> <span class="s1">&#39;rushing_attempts_away&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;black&#39;</span><span class="p">)</span>
 </pre></div>
 
@@ -20738,13 +20840,16 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>        
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># create the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>        
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;third_down_rate&#39;</span><span class="p">],</span> <span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;win_rate&#39;</span><span class="p">])</span>
 
+<span class="c1"># create list for labels</span>
 <span class="n">team_labels</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;teams&#39;</span><span class="p">])</span>
 <span class="n">third_down_rate</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;third_down_rate&#39;</span><span class="p">])</span>
 <span class="n">avg_win_rate</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;win_rate&#39;</span><span class="p">])</span>
 
+<span class="c1"># go through the teams and add labels</span>
 <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">team_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">team_labels</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">team_label</span><span class="p">,</span> <span class="p">(</span><span class="n">third_down_rate</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="n">avg_win_rate</span><span class="p">[</span><span class="n">index</span><span class="p">]))</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">third_down_rate</span><span class="p">)</span>
@@ -20753,6 +20858,7 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
     <span class="n">m</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">m</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;g&#39;</span><span class="p">)</span>
 
+<span class="c1"># labels the axes and the title of the plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Third Down Conversion Rate&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Average Win Rate&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Average Win Rate vs. Third Down Conversion Rate by NFL Team&#39;</span><span class="p">)</span>
@@ -20814,10 +20920,12 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">interception_values</span> <span class="o">=</span> <span class="p">[]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># create lists for the interceptions, fumbles, and turnovers</span>
+<span class="n">interception_values</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">fumble_values</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">turnover_values</span> <span class="o">=</span> <span class="p">[]</span>
 
+<span class="c1"># create total variables for the different features</span>
 <span class="n">win_interception_total</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">win_fumble_total</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">lose_interception_total</span> <span class="o">=</span> <span class="mi">0</span>
@@ -20825,6 +20933,7 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <span class="n">win_turnover_total</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">lose_turnover_total</span> <span class="o">=</span> <span class="mi">0</span>
 
+<span class="c1"># iterate through the dataframe and add to the respective total vavriable based on if the winner of the game was the home team or the away team</span>
 <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">game_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
     <span class="k">if</span> <span class="n">row</span><span class="o">.</span><span class="n">Winner</span> <span class="o">==</span> <span class="s1">&#39;Home&#39;</span><span class="p">:</span>
         <span class="n">win_interception_total</span> <span class="o">+=</span> <span class="n">row</span><span class="o">.</span><span class="n">int_home</span>
@@ -20840,7 +20949,8 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
         <span class="n">lose_fumble_total</span> <span class="o">+=</span> <span class="n">row</span><span class="o">.</span><span class="n">fumbles_home</span>
         <span class="n">win_turnover_total</span> <span class="o">+=</span> <span class="n">row</span><span class="o">.</span><span class="n">turnovers_away</span>
         <span class="n">lose_turnover_total</span> <span class="o">+=</span> <span class="n">row</span><span class="o">.</span><span class="n">turnovers_home</span>
-        
+
+<span class="c1"># calculate the average for each of the different features by dividing by the length of game_df (# of games played)</span>
 <span class="n">interception_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">win_interception_total</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">game_df</span><span class="p">))</span>
 <span class="n">interception_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lose_interception_total</span><span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">game_df</span><span class="p">))</span>
 <span class="n">fumble_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">win_fumble_total</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">game_df</span><span class="p">))</span>
@@ -20848,9 +20958,10 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <span class="n">turnover_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">win_turnover_total</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">game_df</span><span class="p">))</span>
 <span class="n">turnover_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lose_turnover_total</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">game_df</span><span class="p">))</span>
 
+<span class="c1"># create the index for the plot</span>
 <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Winning Teams&#39;</span><span class="p">,</span> <span class="s1">&#39;Losing Teams&#39;</span><span class="p">]</span>
 
-
+<span class="c1"># plot the vertical bar graph</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Avg Interceptions&#39;</span><span class="p">:</span> <span class="n">interception_values</span><span class="p">,</span> <span class="s1">&#39;Avg Fumbles&#39;</span><span class="p">:</span> <span class="n">fumble_values</span><span class="p">,</span> <span class="s1">&#39;Avg Turnovers&#39;</span><span class="p">:</span> <span class="n">turnover_values</span> <span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
 
 <span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">rot</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Avg Interceptions&quot;</span><span class="p">:</span> <span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="s2">&quot;Avg Fumbles&quot;</span><span class="p">:</span> <span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s1">&#39;Avg Turnovers&#39;</span><span class="p">:</span> <span class="s1">&#39;purple&#39;</span><span class="p">},</span> <span class="n">ylabel</span> <span class="o">=</span> <span class="s1">&#39;Count&#39;</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Turnover&#39;</span> <span class="o">+</span> 
@@ -20905,13 +21016,16 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>        
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># instantiate the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>        
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;turnover_avg&#39;</span><span class="p">],</span> <span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;win_rate&#39;</span><span class="p">])</span>
 
+<span class="c1"># create team labels</span>
 <span class="n">team_labels</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;teams&#39;</span><span class="p">])</span>
 <span class="n">turnover_avg</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;turnover_avg&#39;</span><span class="p">])</span>
 <span class="n">avg_win_rate</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;win_rate&#39;</span><span class="p">])</span>
 
+<span class="c1"># label the points</span>
 <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">team_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">team_labels</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">team_label</span><span class="p">,</span> <span class="p">(</span><span class="n">turnover_avg</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="n">avg_win_rate</span><span class="p">[</span><span class="n">index</span><span class="p">]))</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">turnover_avg</span><span class="p">)</span>
@@ -20920,6 +21034,7 @@ AMucOf8AhrP1P85+9/Wfof7z+Uz+V/Ofwc/4vvOTD9P/AAZ+5/jOT4Z+oz9z+85Pzn7Gfpf2z/v8
     <span class="n">m</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">m</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;g&#39;</span><span class="p">)</span>
 
+<span class="c1"># label the title and axes</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Avg. Turnovers Per Game&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Average Win Rate&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Average Win Rate vs. Avg Turnovers per Game by NFL Team&#39;</span><span class="p">)</span>
@@ -26251,8 +26366,10 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># create vertical bar plot for games won by home and away teams </span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Comparison of Number of Games Won By Home and Away Teams Excluding 2020 NFL Season&#39;</span><span class="p">)</span>
+<span class="c1"># pull data for all seaons excluding 2020</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span> <span class="s1">&#39;Winner&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">game_df</span><span class="p">[</span><span class="n">game_df</span><span class="p">[</span><span class="s1">&#39;season&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">2020</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -26297,9 +26414,11 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">season_2020_df</span> <span class="o">=</span> <span class="n">game_df</span><span class="p">[</span><span class="n">game_df</span><span class="p">[</span><span class="s1">&#39;season&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2020</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># select only rows which represent NFL games that were played during the 2020 nfl season</span>
+<span class="n">season_2020_df</span> <span class="o">=</span> <span class="n">game_df</span><span class="p">[</span><span class="n">game_df</span><span class="p">[</span><span class="s1">&#39;season&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2020</span><span class="p">]</span>
 <span class="n">display</span><span class="p">(</span><span class="n">season_2020_df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 
+<span class="c1"># create the bar plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Comparison of Number of Games Won By Home and Away Teams for 2020 NFL Season&#39;</span><span class="p">)</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span> <span class="s1">&#39;Winner&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">season_2020_df</span><span class="p">)</span>
@@ -26540,11 +26659,13 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">penalties_winning_teams</span> <span class="o">=</span> <span class="p">[]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># create the list for penalties and penalty yardage for each winning and losing NFL teams</span>
+<span class="n">penalties_winning_teams</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">penalties_losing_teams</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">penalties_yards_winning_teams</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">penalties_yards_losing_teams</span> <span class="o">=</span> <span class="p">[]</span>
 
+<span class="c1"># iterate through the dataframe and add to respective total variables depending on the winning team</span>
 <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">game_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
     <span class="k">if</span> <span class="n">row</span><span class="o">.</span><span class="n">Winner</span> <span class="o">==</span> <span class="s1">&#39;Home&#39;</span><span class="p">:</span>
         <span class="n">penalties_winning_teams</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">penalty_cnt_home</span><span class="p">)</span>
@@ -26557,23 +26678,25 @@ bh5U8D8q6I4qUfhil8g5T//Z
         <span class="n">penalties_losing_teams</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">penalty_cnt_home</span><span class="p">)</span>
         <span class="n">penalties_yards_losing_teams</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">penalty_yards_home</span><span class="p">)</span>
 
-        
+<span class="c1"># find the average penalty count and penalty yardage for teams that won</span>
 <span class="n">penalties_winning_teams_avg</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">penalties_winning_teams</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">penalties_winning_teams</span><span class="p">)</span>
 <span class="n">penalties_losing_teams_avg</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">penalties_losing_teams</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">penalties_losing_teams</span><span class="p">)</span>
 
+<span class="c1"># find the average penalty count and penalty yardage for teams that lost</span>
 <span class="n">penalties_winning_teams_yards_avg</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">penalties_yards_winning_teams</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">penalties_yards_winning_teams</span><span class="p">)</span>
 <span class="n">penalties_losing_teams_yards_avg</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">penalties_yards_losing_teams</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">penalties_yards_losing_teams</span><span class="p">)</span>
 
+<span class="c1"># instantiate the plot</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
 
-
+<span class="c1"># create the first subplot for penalty counts by winning and losing teams</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="s1">&#39;Average Number of Penalties for Winning and Losing Teams&#39;</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Average Penalty Count&quot;</span><span class="p">)</span>
 <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Winning&#39;</span><span class="p">,</span> <span class="s1">&#39;Losing&#39;</span><span class="p">]</span>
 <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">penalties_winning_teams_avg</span><span class="p">,</span> <span class="n">penalties_losing_teams_avg</span><span class="p">]</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;darkgreen&#39;</span><span class="p">,</span> <span class="s1">&#39;maroon&#39;</span><span class="p">])</span>
 
-
+<span class="c1"># create the second subplot for penalty yardage by winning and losing teams</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Average Penalty Yardage&quot;</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="s1">&#39;Average Number of Penalties (in yardage) for Winning and Losing Teams&#39;</span><span class="p">)</span>
 <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">penalties_winning_teams_yards_avg</span><span class="p">,</span> <span class="n">penalties_losing_teams_yards_avg</span><span class="p">]</span>
@@ -26948,20 +27071,23 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>        
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># instantiate the plots</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>        
 <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;redzone_trips_avg&#39;</span><span class="p">],</span> <span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;win_rate&#39;</span><span class="p">])</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;redzone_ratio&#39;</span><span class="p">],</span> <span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;win_rate&#39;</span><span class="p">])</span>
 
-
+<span class="c1"># create list for labels</span>
 <span class="n">team_labels</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;teams&#39;</span><span class="p">])</span>
 <span class="n">redzone_trips_avg</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;redzone_trips_avg&#39;</span><span class="p">])</span>
 <span class="n">redzone_ratio</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;redzone_ratio&#39;</span><span class="p">])</span>
 <span class="n">avg_win_rate</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">team_df</span><span class="p">[</span><span class="s1">&#39;win_rate&#39;</span><span class="p">])</span>
 
+<span class="c1"># go through the labels and add team label for each point</span>
 <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">team_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">team_labels</span><span class="p">):</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">team_label</span><span class="p">,</span> <span class="p">(</span><span class="n">redzone_trips_avg</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="n">avg_win_rate</span><span class="p">[</span><span class="n">index</span><span class="p">]))</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">team_label</span><span class="p">,</span> <span class="p">(</span><span class="n">redzone_ratio</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="n">avg_win_rate</span><span class="p">[</span><span class="n">index</span><span class="p">]))</span>
     
+<span class="c1"># create the regression for the subplots</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">redzone_trips_avg</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">avg_win_rate</span><span class="p">)</span>
     
@@ -26972,6 +27098,7 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <span class="n">m</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">m</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
 
+<span class="c1"># add title and axes labels for the different subplots</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span> <span class="o">=</span> <span class="s2">&quot;Avg. Red Zone Drives Per Game&quot;</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span> <span class="o">=</span> <span class="s2">&quot;Avg. Win Rate&quot;</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Avg. Red Zones Drives Per Game vs. Avg. Win Rate for NFL Teams&quot;</span><span class="p">)</span>
@@ -27037,8 +27164,11 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[30]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># create the plot instance</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="c1"># get the correlation matrix</span>
 <span class="n">corr</span> <span class="o">=</span> <span class="n">team_df</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+<span class="c1"># plot the heatmap</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corr</span><span class="p">,</span><span class="n">annot</span><span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;BuPu&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -27086,7 +27216,10 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Now we will move onto the next stage of our data science pipeline which will be building a predictive model for who wins an NFL game. In order to do so we will first need to decide which predictors we want to use for our model. As we saw from our exploratory analysis there are a plethora of factors which impact the teams that win the most. In order to decide which factors we will keep we will first run a bunch of hypothesis tests on the different factors. After we decide on our chosen factors we will then run a Machine Learning algorithm and train it to predict the outcome of games.</p>
+<p>Now we will move onto the next stage of our data science pipeline which will be building a predictive model for who wins an NFL game. In order to do so we will first need to decide which predictors we want to use for our model. As we saw from our exploratory analysis there are a plethora of factors which impact the teams that win the most. In order to decide which factors we will keep we will first run a bunch of hypothesis tests on the different factors. After we decide on our chosen factors we will then run a Machine Learning algorithm and train it to predict the outcome of games. In order to run the tests we will be using the statsmodel package which you read about the documentation here:</p>
+<ul>
+<li><strong><a href="https://www.statsmodels.org/dev/generated/statsmodels.regression.linear_model.OLS.html">https://www.statsmodels.org/dev/generated/statsmodels.regression.linear_model.OLS.html</a></strong></li>
+</ul>
 
 </div>
 </div>
@@ -27098,32 +27231,44 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[31]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># function for us to run hypothesis test on each of the different game factors</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># hypothesisTest function for us to run hypothesis test on each of the different game factors. The factor parameter is the feature we want to run regression on so we can get the p and r^2 value out</span>
 <span class="k">def</span> <span class="nf">hypothesisTest</span><span class="p">(</span><span class="n">factor</span><span class="p">):</span>
+    <span class="c1"># create a list for the results</span>
     <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># run regression where y = win_rate and x = the game factor passed</span>
     <span class="n">model2</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;win_rate ~&#39;</span> <span class="o">+</span> <span class="n">factor</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">team_df</span><span class="p">)</span>
+    <span class="c1"># fit the regression model</span>
     <span class="n">model2_</span> <span class="o">=</span> <span class="n">model2</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+    <span class="c1"># add the p value to the result list</span>
     <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model2_</span><span class="o">.</span><span class="n">pvalues</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="c1"># add the r^2 value to the result list</span>
     <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model2_</span><span class="o">.</span><span class="n">rsquared</span><span class="p">)</span>
-    <span class="c1">#print(factor + &#39;: &#39; + str(model2_.pvalues[1]))</span>
+    <span class="c1"># return the result list</span>
     <span class="k">return</span> <span class="n">results</span>
 
 <span class="c1"># create a new dataframe for the game factors and r^2 values</span>
 <span class="n">game_factors_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="c1"># create a lsit of the different game factors or features we want to run regression on </span>
 <span class="n">game_factors_lst</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;third_down_rate&#39;</span><span class="p">,</span> <span class="s1">&#39;passing_yards_avg&#39;</span><span class="p">,</span> <span class="s1">&#39;rushing_yards_avg&#39;</span><span class="p">,</span> <span class="s1">&#39;total_yards_avg&#39;</span><span class="p">,</span> <span class="s1">&#39;fumbles_avg&#39;</span><span class="p">,</span> <span class="s1">&#39;interceptions_avg&#39;</span><span class="p">,</span> <span class="s1">&#39;penalties_avg&#39;</span><span class="p">,</span> <span class="s1">&#39;penalties_yards_avg&#39;</span><span class="p">,</span> <span class="s1">&#39;drives_avg&#39;</span><span class="p">,</span> <span class="s1">&#39;redzone_trips_avg&#39;</span><span class="p">,</span> <span class="s1">&#39;redzone_ratio&#39;</span><span class="p">,</span>
                     <span class="s1">&#39;turnover_avg&#39;</span><span class="p">,</span> <span class="s1">&#39;possession_avg&#39;</span><span class="p">,</span> <span class="s1">&#39;comp_percentage&#39;</span><span class="p">,</span> <span class="s1">&#39;sack_avg&#39;</span><span class="p">,</span> <span class="s1">&#39;rushing_attempts_avg&#39;</span><span class="p">]</span>
+<span class="c1"># create a separate list for the p values and the r^2 values</span>
 <span class="n">pvalues_lst</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">r2values_lst</span> <span class="o">=</span> <span class="p">[]</span>
 
+<span class="c1"># iterate through the different game factors and call hypothesisTest function</span>
 <span class="k">for</span> <span class="n">factor</span> <span class="ow">in</span> <span class="n">game_factors_lst</span><span class="p">:</span>
+    <span class="c1"># get the results returned from helper function</span>
     <span class="n">results</span> <span class="o">=</span> <span class="n">hypothesisTest</span><span class="p">(</span><span class="n">factor</span><span class="p">)</span>
+    <span class="c1"># add the p value and r^2 value to corresponding list</span>
     <span class="n">pvalues_lst</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">r2values_lst</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
     
+<span class="c1"># create new dataframe for the different game factors and corresponding p values and r^2 values to be easier to read</span>
 <span class="n">game_factors_df</span><span class="p">[</span><span class="s1">&#39;factors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">game_factors_lst</span>
 <span class="n">game_factors_df</span><span class="p">[</span><span class="s1">&#39;p-values&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pvalues_lst</span>
 <span class="n">game_factors_df</span><span class="p">[</span><span class="s1">&#39;r-2values&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">r2values_lst</span>
 
+<span class="c1"># output the dataframe</span>
 <span class="n">display</span><span class="p">(</span><span class="n">game_factors_df</span><span class="p">)</span>
 </pre></div>
 
@@ -27301,7 +27446,6 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <span class="n">game_factors_df</span> <span class="o">=</span> <span class="n">game_factors_df</span><span class="p">[</span><span class="n">game_factors_df</span><span class="o">.</span><span class="n">factors</span> <span class="o">!=</span> <span class="s1">&#39;rushing_attempts_avg&#39;</span><span class="p">]</span>
 
 <span class="n">display</span><span class="p">(</span><span class="n">game_factors_df</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">game_df</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -27421,328 +27565,6 @@ bh5U8D8q6I4qUfhil8g5T//Z
 
 </div>
 
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>date</th>
-      <th>away</th>
-      <th>home</th>
-      <th>first_downs_away</th>
-      <th>first_downs_home</th>
-      <th>third_downs_away</th>
-      <th>third_downs_home</th>
-      <th>passing_yards_away</th>
-      <th>passing_yards_home</th>
-      <th>rushing_yards_away</th>
-      <th>...</th>
-      <th>third_down_ratio_away</th>
-      <th>Winner</th>
-      <th>comp_att_away_ratio</th>
-      <th>comp_att_home_ratio</th>
-      <th>sacks_home_cnt</th>
-      <th>sacks_away_cnt</th>
-      <th>passing_yards_diff</th>
-      <th>rushing_yards_diff</th>
-      <th>completion_attempts_diff</th>
-      <th>rushing_attempts_diff</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2002-09-05</td>
-      <td>49ers</td>
-      <td>Giants</td>
-      <td>13</td>
-      <td>21</td>
-      <td>4-12</td>
-      <td>9-16</td>
-      <td>166</td>
-      <td>318</td>
-      <td>113</td>
-      <td>...</td>
-      <td>0.333333</td>
-      <td>Away</td>
-      <td>0.615385</td>
-      <td>0.622222</td>
-      <td>3.0</td>
-      <td>0.0</td>
-      <td>152</td>
-      <td>-70</td>
-      <td>0.006838</td>
-      <td>-3</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2002-09-08</td>
-      <td>Jets</td>
-      <td>Bills</td>
-      <td>18</td>
-      <td>26</td>
-      <td>2-8</td>
-      <td>7-17</td>
-      <td>193</td>
-      <td>242</td>
-      <td>73</td>
-      <td>...</td>
-      <td>0.250000</td>
-      <td>Away</td>
-      <td>0.800000</td>
-      <td>0.666667</td>
-      <td>4.0</td>
-      <td>3.0</td>
-      <td>49</td>
-      <td>69</td>
-      <td>-0.133333</td>
-      <td>18</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2002-09-08</td>
-      <td>Vikings</td>
-      <td>Bears</td>
-      <td>19</td>
-      <td>20</td>
-      <td>5-13</td>
-      <td>7-13</td>
-      <td>228</td>
-      <td>288</td>
-      <td>140</td>
-      <td>...</td>
-      <td>0.384615</td>
-      <td>Home</td>
-      <td>0.571429</td>
-      <td>0.606061</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>60</td>
-      <td>-60</td>
-      <td>0.034632</td>
-      <td>-7</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2002-09-08</td>
-      <td>Chargers</td>
-      <td>Bengals</td>
-      <td>27</td>
-      <td>13</td>
-      <td>6-10</td>
-      <td>4-11</td>
-      <td>160</td>
-      <td>167</td>
-      <td>241</td>
-      <td>...</td>
-      <td>0.600000</td>
-      <td>Away</td>
-      <td>0.789474</td>
-      <td>0.580645</td>
-      <td>4.0</td>
-      <td>1.0</td>
-      <td>7</td>
-      <td>-205</td>
-      <td>-0.208829</td>
-      <td>-32</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2002-09-08</td>
-      <td>Chiefs</td>
-      <td>Browns</td>
-      <td>24</td>
-      <td>24</td>
-      <td>5-11</td>
-      <td>4-11</td>
-      <td>276</td>
-      <td>352</td>
-      <td>194</td>
-      <td>...</td>
-      <td>0.454545</td>
-      <td>Away</td>
-      <td>0.689655</td>
-      <td>0.700000</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>76</td>
-      <td>-135</td>
-      <td>0.010345</td>
-      <td>-10</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>5339</th>
-      <td>2022-01-09</td>
-      <td>49ers</td>
-      <td>Rams</td>
-      <td>23</td>
-      <td>19</td>
-      <td>9-14</td>
-      <td>10-17</td>
-      <td>314</td>
-      <td>201</td>
-      <td>135</td>
-      <td>...</td>
-      <td>0.642857</td>
-      <td>Away</td>
-      <td>0.727273</td>
-      <td>0.656250</td>
-      <td>5.0</td>
-      <td>3.0</td>
-      <td>-113</td>
-      <td>-71</td>
-      <td>-0.071023</td>
-      <td>-4</td>
-    </tr>
-    <tr>
-      <th>5340</th>
-      <td>2022-01-09</td>
-      <td>Patriots</td>
-      <td>Dolphins</td>
-      <td>21</td>
-      <td>23</td>
-      <td>5-10</td>
-      <td>7-15</td>
-      <td>245</td>
-      <td>103</td>
-      <td>134</td>
-      <td>...</td>
-      <td>0.500000</td>
-      <td>Home</td>
-      <td>0.666667</td>
-      <td>0.681818</td>
-      <td>1.0</td>
-      <td>2.0</td>
-      <td>-142</td>
-      <td>61</td>
-      <td>0.015152</td>
-      <td>16</td>
-    </tr>
-    <tr>
-      <th>5341</th>
-      <td>2022-01-09</td>
-      <td>Seahawks</td>
-      <td>Cardinals</td>
-      <td>19</td>
-      <td>20</td>
-      <td>8-12</td>
-      <td>9-18</td>
-      <td>229</td>
-      <td>187</td>
-      <td>202</td>
-      <td>...</td>
-      <td>0.666667</td>
-      <td>Away</td>
-      <td>0.576923</td>
-      <td>0.717949</td>
-      <td>5.0</td>
-      <td>1.0</td>
-      <td>-42</td>
-      <td>-84</td>
-      <td>0.141026</td>
-      <td>-2</td>
-    </tr>
-    <tr>
-      <th>5342</th>
-      <td>2022-01-09</td>
-      <td>Panthers</td>
-      <td>Buccaneers</td>
-      <td>18</td>
-      <td>21</td>
-      <td>4-14</td>
-      <td>4-11</td>
-      <td>207</td>
-      <td>324</td>
-      <td>110</td>
-      <td>...</td>
-      <td>0.285714</td>
-      <td>Home</td>
-      <td>0.674419</td>
-      <td>0.743590</td>
-      <td>1.0</td>
-      <td>2.0</td>
-      <td>117</td>
-      <td>-25</td>
-      <td>0.069171</td>
-      <td>-6</td>
-    </tr>
-    <tr>
-      <th>5343</th>
-      <td>2022-01-09</td>
-      <td>Chargers</td>
-      <td>Raiders</td>
-      <td>27</td>
-      <td>24</td>
-      <td>4-18</td>
-      <td>8-17</td>
-      <td>355</td>
-      <td>172</td>
-      <td>85</td>
-      <td>...</td>
-      <td>0.222222</td>
-      <td>Home</td>
-      <td>0.531250</td>
-      <td>0.567568</td>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>-183</td>
-      <td>89</td>
-      <td>0.036318</td>
-      <td>13</td>
-    </tr>
-  </tbody>
-</table>
-<p>5121 rows × 58 columns</p>
-</div>
-</div>
-
-</div>
-
 </div>
 
 </div>
@@ -27752,7 +27574,7 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Now that we've decided on our factors let's select them from the game_df dataframe (e.g. since third_down_rate is a factor we will keep the third_down_rate for each team in a game). Then, we will build our decision tree model using the decisiontreeclassifier from the scikit-learn library. If you're wondering why decision tree is the chosen model here it's because we have a binary classification problem because we're simply trying to predict if either the home team or the away team won and the decision tree is a model that's very suitable for tasks such as this. In our model, we will use hold out validation where 30% of the data will be used for the test set and 70% of the data will be used to train the model. Here our x will include all the different factors or features we will use to predict the winner of the game and our target is the winner of the game.</p>
-<h1 id="ADD-SECTION-FOR-COMPLETION-ATTEMPTS-AND-SACKS"><strong>ADD SECTION FOR COMPLETION ATTEMPTS AND SACKS</strong><a class="anchor-link" href="#ADD-SECTION-FOR-COMPLETION-ATTEMPTS-AND-SACKS">&#182;</a></h1>
+
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -27763,26 +27585,25 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[33]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">game_df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># select our game factors</span>
 <span class="n">factors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;passing_yards_away&#39;</span><span class="p">,</span> <span class="s1">&#39;passing_yards_home&#39;</span><span class="p">,</span> 
        <span class="s1">&#39;total_yards_away&#39;</span><span class="p">,</span> <span class="s1">&#39;total_yards_home&#39;</span><span class="p">,</span> <span class="s1">&#39;fumbles_away&#39;</span><span class="p">,</span> <span class="s1">&#39;fumbles_home&#39;</span><span class="p">,</span> <span class="s1">&#39;int_away&#39;</span><span class="p">,</span>
        <span class="s1">&#39;int_home&#39;</span><span class="p">,</span> <span class="s1">&#39;turnovers_away&#39;</span><span class="p">,</span> <span class="s1">&#39;turnovers_home&#39;</span><span class="p">,</span> <span class="s1">&#39;redzone_visits_home&#39;</span><span class="p">,</span> <span class="s1">&#39;redzone_ratio_home&#39;</span><span class="p">,</span><span class="s1">&#39;redzone_visits_away&#39;</span><span class="p">,</span> <span class="s1">&#39;redzone_ratio_away&#39;</span><span class="p">,</span>
         <span class="s1">&#39;third_down_ratio_home&#39;</span><span class="p">,</span>
        <span class="s1">&#39;third_down_ratio_away&#39;</span><span class="p">,</span> <span class="s1">&#39;possession_away&#39;</span><span class="p">,</span> <span class="s1">&#39;possession_home&#39;</span><span class="p">,</span> <span class="s1">&#39;comp_att_away_ratio&#39;</span><span class="p">,</span> <span class="s1">&#39;comp_att_home_ratio&#39;</span><span class="p">,</span> <span class="s1">&#39;sacks_home_cnt&#39;</span><span class="p">,</span> <span class="s1">&#39;sacks_away_cnt&#39;</span><span class="p">]</span>
-        
+
+<span class="c1"># assign our target which is the column for the winner of the game</span>
 <span class="n">target</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Winner&#39;</span><span class="p">]</span>
 
-<span class="c1">#game_df[&#39;away&#39;] = game_df[&#39;away&#39;].str.get_dummies().values.tolist()</span>
-<span class="c1">#game_df[&#39;home&#39;] = game_df[&#39;home&#39;].str.get_dummies().values.tolist()</span>
-
+<span class="c1"># assign x and y for the model</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">game_df</span><span class="p">[</span><span class="n">factors</span><span class="p">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">game_df</span><span class="p">[</span><span class="n">target</span><span class="p">]</span>
 
+<span class="c1"># create random split for the testing and training data with 30% of the data set used as the testing set</span>
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.30</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span> <span class="mi">1</span><span class="p">)</span> 
 
 <span class="c1"># create decision tree instance</span>
 <span class="n">dt_classifier</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">()</span>
-
 
 <span class="c1"># fit the data</span>
 <span class="n">dt_classifier</span> <span class="o">=</span> <span class="n">dt_classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
@@ -27790,7 +27611,7 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <span class="c1"># get the predictions on the trained model</span>
 <span class="n">predictions</span> <span class="o">=</span> <span class="n">dt_classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 
-<span class="c1"># output the model&#39;s accuracy</span>
+<span class="c1"># output the decision tree model&#39;s accuracy</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Decision Tree Accuracy: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)))</span>
 </pre></div>
 
@@ -27812,39 +27633,8 @@ bh5U8D8q6I4qUfhil8g5T//Z
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-
-
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>Index([&#39;date&#39;, &#39;away&#39;, &#39;home&#39;, &#39;first_downs_away&#39;, &#39;first_downs_home&#39;,
-       &#39;third_downs_away&#39;, &#39;third_downs_home&#39;, &#39;passing_yards_away&#39;,
-       &#39;passing_yards_home&#39;, &#39;rushing_yards_away&#39;, &#39;rushing_yards_home&#39;,
-       &#39;total_yards_away&#39;, &#39;total_yards_home&#39;, &#39;comp_att_away&#39;,
-       &#39;comp_att_home&#39;, &#39;sacks_away&#39;, &#39;sacks_home&#39;, &#39;rushing_attempts_away&#39;,
-       &#39;rushing_attempts_home&#39;, &#39;fumbles_away&#39;, &#39;fumbles_home&#39;, &#39;int_away&#39;,
-       &#39;int_home&#39;, &#39;turnovers_away&#39;, &#39;turnovers_home&#39;, &#39;penalties_away&#39;,
-       &#39;penalties_home&#39;, &#39;redzone_away&#39;, &#39;redzone_home&#39;, &#39;drives_away&#39;,
-       &#39;drives_home&#39;, &#39;possession_away&#39;, &#39;possession_home&#39;, &#39;score_away&#39;,
-       &#39;score_home&#39;, &#39;season&#39;, &#39;game_type&#39;, &#39;result&#39;, &#39;home_team_winner&#39;,
-       &#39;penalty_cnt_home&#39;, &#39;penalty_yards_home&#39;, &#39;penalty_cnt_away&#39;,
-       &#39;penalty_yards_away&#39;, &#39;redzone_visits_home&#39;, &#39;redzone_ratio_home&#39;,
-       &#39;redzone_visits_away&#39;, &#39;redzone_ratio_away&#39;, &#39;third_down_ratio_home&#39;,
-       &#39;third_down_ratio_away&#39;, &#39;Winner&#39;, &#39;comp_att_away_ratio&#39;,
-       &#39;comp_att_home_ratio&#39;, &#39;sacks_home_cnt&#39;, &#39;sacks_away_cnt&#39;,
-       &#39;passing_yards_diff&#39;, &#39;rushing_yards_diff&#39;, &#39;completion_attempts_diff&#39;,
-       &#39;rushing_attempts_diff&#39;],
-      dtype=&#39;object&#39;)</pre>
-</div>
-
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Decision Tree Accuracy: 0.7553675992192583
+<pre>Decision Tree Accuracy: 0.7508132726089786
 </pre>
 </div>
 </div>
@@ -27880,7 +27670,7 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <span class="n">predictions</span> <span class="o">=</span> <span class="n">rf_classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test2</span><span class="p">)</span>
 
 
-<span class="c1"># output the model&#39;s accuracy</span>
+<span class="c1"># output the random forest model&#39;s accuracy</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Random Forest Accuracy: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test2</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)))</span>
 </pre></div>
 
@@ -27903,7 +27693,7 @@ bh5U8D8q6I4qUfhil8g5T//Z
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Random Forest Accuracy: 0.8516590761223162
+<pre>Random Forest Accuracy: 0.8510084580351334
 </pre>
 </div>
 </div>
@@ -27925,7 +27715,7 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[35]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[61]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># add in stat for rushing</span>
@@ -27944,8 +27734,9 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <span class="n">predictions</span> <span class="o">=</span> <span class="n">rf_classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test2</span><span class="p">)</span>
 
 
-<span class="c1"># output the model&#39;s accuracy</span>
+<span class="c1"># output the random forest model&#39;s accuracy with the additional feature for difference in rushing attempts</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Random Forest Accuracy: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test2</span><span class="p">,</span> <span class="n">predictions</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Predictions</span><span class="se">\n</span><span class="s1">-------------------------------------------------&#39;</span><span class="p">)</span>
+
 <span class="c1"># grab first 200 rows (this is just to avoid outputing over 1000 lines of output)</span>
 <span class="n">output_df</span> <span class="o">=</span> <span class="n">game_df</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span> <span class="mi">200</span><span class="p">]</span>
 <span class="c1">#display(output_df)</span>
@@ -27953,13 +27744,14 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <span class="c1"># output the predictions</span>
 <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">output_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
     <span class="n">predicted_winner</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-    <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">predictions</span><span class="p">):</span>
-        <span class="k">break</span>
+    
+    <span class="c1"># assign the predicted_winner based on if the home or away team won</span>
     <span class="k">if</span> <span class="n">predictions</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Home&#39;</span><span class="p">:</span>
         <span class="n">predicted_winner</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">home</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">predicted_winner</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">away</span>
-        
+    
+    <span class="c1"># output the actual winner and predicted winner in a readable format</span>
     <span class="k">if</span> <span class="n">row</span><span class="o">.</span><span class="n">score_away</span> <span class="o">&gt;</span> <span class="n">row</span><span class="o">.</span><span class="n">score_home</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Actual Winner: &#39;</span> <span class="o">+</span> <span class="n">row</span><span class="o">.</span><span class="n">away</span> <span class="o">+</span> <span class="s1">&#39; Predicted Winner: &#39;</span> <span class="o">+</span>  <span class="n">predicted_winner</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
@@ -27985,10 +27777,10 @@ bh5U8D8q6I4qUfhil8g5T//Z
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Random Forest Accuracy: 0.8776837996096292
+<pre>Random Forest Accuracy: 0.8718282368249838
 Predictions
 -------------------------------------------------
-Actual Winner: 49ers Predicted Winner: 49ers
+Actual Winner: 49ers Predicted Winner: Giants
 Actual Winner: Jets Predicted Winner: Jets
 Acutal Winner: Bears Predicted Winner: Vikings
 Actual Winner: Chargers Predicted Winner: Bengals
@@ -28013,13 +27805,13 @@ Acutal Winner: Saints Predicted Winner: Saints
 Actual Winner: Patriots Predicted Winner: Patriots
 Acutal Winner: Panthers Predicted Winner: Lions
 Actual Winner: Buccaneers Predicted Winner: Ravens
-Actual Winner: Giants Predicted Winner: Giants
+Actual Winner: Giants Predicted Winner: Rams
 Actual Winner: Cardinals Predicted Winner: Seahawks
 Actual Winner: Bills Predicted Winner: Vikings
 Acutal Winner: Chargers Predicted Winner: Chargers
 Actual Winner: Broncos Predicted Winner: 49ers
 Actual Winner: Raiders Predicted Winner: Steelers
-Actual Winner: Eagles Predicted Winner: Eagles
+Actual Winner: Eagles Predicted Winner: Washington
 Actual Winner: Saints Predicted Winner: Bears
 Actual Winner: Browns Predicted Winner: Titans
 Acutal Winner: Dolphins Predicted Winner: Jets
@@ -28034,7 +27826,7 @@ Acutal Winner: Giants Predicted Winner: Giants
 Acutal Winner: 49ers Predicted Winner: 49ers
 Acutal Winner: Falcons Predicted Winner: Bengals
 Acutal Winner: Buccaneers Predicted Winner: Rams
-Acutal Winner: Bills Predicted Winner: Bears
+Acutal Winner: Bills Predicted Winner: Bills
 Acutal Winner: Lions Predicted Winner: Lions
 Acutal Winner: Packers Predicted Winner: Panthers
 Acutal Winner: Chiefs Predicted Winner: Chiefs
@@ -28059,7 +27851,7 @@ Actual Winner: Cardinals Predicted Winner: Panthers
 Acutal Winner: Broncos Predicted Winner: Broncos
 Actual Winner: Chiefs Predicted Winner: Chiefs
 Acutal Winner: 49ers Predicted Winner: 49ers
-Acutal Winner: Jaguars Predicted Winner: Jaguars
+Acutal Winner: Jaguars Predicted Winner: Eagles
 Actual Winner: Ravens Predicted Winner: Browns
 Actual Winner: Packers Predicted Winner: Bears
 Actual Winner: Steelers Predicted Winner: Bengals
@@ -28070,7 +27862,7 @@ Actual Winner: Packers Predicted Winner: Patriots
 Actual Winner: Falcons Predicted Winner: Giants
 Acutal Winner: Buccaneers Predicted Winner: Buccaneers
 Actual Winner: Saints Predicted Winner: Washington
-Actual Winner: Bills Predicted Winner: Texans
+Actual Winner: Bills Predicted Winner: Bills
 Acutal Winner: Titans Predicted Winner: Jaguars
 Acutal Winner: Rams Predicted Winner: Rams
 Acutal Winner: Chargers Predicted Winner: Chargers
@@ -28200,7 +27992,7 @@ Actual Winner: Browns Predicted Winner: Browns
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Nice! It seems adding in the rushing stat was able to give our model another 3% increase in accuracy up to about 87 or 88 percent. Obviosuly, the model can't be perfect but I believe that our current model for predicting the outcome of games is pretty decent from where we started at with our decision tree which only had around 75% accuracy. Above, you can also see nice formatting for the actual winners and predicted winners of the model for the first 200 games in the data frame.</p>
+<p>Nice! It seems adding in the rushing stat was able to give our model another 2-3% increase in accuracy up to about 87 or 88 percent. Obviosuly, the model can't be perfect but I believe that our current model for predicting the outcome of games is pretty decent from where we started at with our decision tree which only had around 75% accuracy. Above, you can also see nice formatting for the actual winners and predicted winners of the model for the first 200 games in the data frame.</p>
 
 </div>
 </div>
