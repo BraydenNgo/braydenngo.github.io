@@ -14580,11 +14580,36 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Table-of-Contents">Table of Contents<a class="anchor-link" href="#Table-of-Contents">&#182;</a></h2><ul>
-<li>1.1 Introduction</li>
+<li>1.1 Introduction<ul>
 <li>1.2 Data Collection</li>
-<li>2.1 Data Management/Representation</li>
-<li>3.1 Exploratory Data Analysis</li>
-<li>4.1 Predictive Model/Hypothesis Testing</li>
+</ul>
+</li>
+<li>2.1 Data Management/Representation<ul>
+<li>2.2 Making a New Dataframe</li>
+</ul>
+</li>
+<li>3.1 Exploratory Data Analysis<ul>
+<li>3.1.2 Win Rates of Teams</li>
+<li>3.1.3 Examing Relation Between Total Yards and Win Rate</li>
+<li>3.1.4 Passing Yards Relationship with Win Rate</li>
+<li>3.1.5 Rushing Yards Relationship with Win Rate</li>
+<li>3.1.6 Comparison Between Rushing and Passing Yards</li>
+<li>3.1.7 Examining Third Down Conversion Rates Effect on Win Rate</li>
+<li>3.1.8 Analysis of Turnovers Impact on NfL Games</li>
+<li>3.1.9 Is there Actually Such Thing as Home Field Advantage?</li>
+<li>3.2.1 Impact of Penalties on Games</li>
+<li>3.2.2 Time is Everything?</li>
+<li>3.2.3 Sack Masters</li>
+<li>3.2.4 Driving to the Zone</li>
+<li>3.2.5 Analysis Summary</li>
+</ul>
+</li>
+<li>4.1 Predictive Model/Hypothesis Testing<ul>
+<li>4.1.1 Initial Model</li>
+<li>4.1.2 Using Random Forest</li>
+<li>4.1.3 Random Forest Additional Feature</li>
+</ul>
+</li>
 <li>5.1 Communication of Insights</li>
 </ul>
 
@@ -27152,7 +27177,7 @@ bh5U8D8q6I4qUfhil8g5T//Z
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="3.1.3-Analysis-Summary">3.1.3 Analysis Summary<a class="anchor-link" href="#3.1.3-Analysis-Summary">&#182;</a></h1><p>The next step in our data science pipeline will be developing our predictive model. However, before we continue on let's try to visually summarize the different aspects of NFL games we've gone in depth with during our exploratory data analsyis section. We can do this by creating a heat map which will show the correlations between the different aspects like third down rate compared to the win rate. From this map, we can quickly recap the information we've discovered in this section before we continue on to creating our model. To read the model, positive numbers indicate a postive correlation while negative numbers in the cell indicate an inverse relationship. For example, for red zone drives average we plotted above we saw a postive correlation and here we see a value of 0.85 for the cell for win_rate and redzone_trips_avg in the lower left hand corner of the plot.</p>
+<h1 id="3.2.5-Analysis-Summary">3.2.5 Analysis Summary<a class="anchor-link" href="#3.2.5-Analysis-Summary">&#182;</a></h1><p>The next step in our data science pipeline will be developing our predictive model. However, before we continue on let's try to visually summarize the different aspects of NFL games we've gone in depth with during our exploratory data analsyis section. We can do this by creating a heat map which will show the correlations between the different aspects like third down rate compared to the win rate. From this map, we can quickly recap the information we've discovered in this section before we continue on to creating our model. To read the model, positive numbers indicate a postive correlation while negative numbers in the cell indicate an inverse relationship. For example, for red zone drives average we plotted above we saw a postive correlation and here we see a value of 0.85 for the cell for win_rate and redzone_trips_avg in the lower left hand corner of the plot.</p>
 
 </div>
 </div>
@@ -27577,6 +27602,13 @@ bh5U8D8q6I4qUfhil8g5T//Z
 
 </div>
 </div>
+</div>
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="4.1.1-Initial-Model">4.1.1 Initial Model<a class="anchor-link" href="#4.1.1-Initial-Model">&#182;</a></h2>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -27634,7 +27666,7 @@ bh5U8D8q6I4qUfhil8g5T//Z
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Decision Tree Accuracy: 0.7508132726089786
+<pre>Decision Tree Accuracy: 0.756668835393624
 </pre>
 </div>
 </div>
@@ -27649,6 +27681,13 @@ bh5U8D8q6I4qUfhil8g5T//Z
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>From the accuracy score, we can see that the decision tree only was able to correctly predict the winner about 74% of the time. Let's try improving that by using a different model, the random forest. Essentially, the random forest is a more powerful version of the decision where we used multiple trees rather than a single tree to make classifications (in our case the winner of the game) which should make the model more accuracte and make it more resistant to overfitting.</p>
 
+</div>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="4.1.2-Using-Random-Forest">4.1.2 Using Random Forest<a class="anchor-link" href="#4.1.2-Using-Random-Forest">&#182;</a></h2>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -27693,7 +27732,7 @@ bh5U8D8q6I4qUfhil8g5T//Z
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Random Forest Accuracy: 0.8510084580351334
+<pre>Random Forest Accuracy: 0.8490566037735849
 </pre>
 </div>
 </div>
@@ -27710,12 +27749,19 @@ bh5U8D8q6I4qUfhil8g5T//Z
 
 </div>
 </div>
+</div>
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="4.1.3-Random-Forest-Additional-Feature">4.1.3 Random Forest Additional Feature<a class="anchor-link" href="#4.1.3-Random-Forest-Additional-Feature">&#182;</a></h2>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[61]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[35]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># add in stat for rushing</span>
@@ -27777,7 +27823,7 @@ bh5U8D8q6I4qUfhil8g5T//Z
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Random Forest Accuracy: 0.8718282368249838
+<pre>Random Forest Accuracy: 0.874430709173715
 Predictions
 -------------------------------------------------
 Actual Winner: 49ers Predicted Winner: Giants
@@ -27805,7 +27851,7 @@ Acutal Winner: Saints Predicted Winner: Saints
 Actual Winner: Patriots Predicted Winner: Patriots
 Acutal Winner: Panthers Predicted Winner: Lions
 Actual Winner: Buccaneers Predicted Winner: Ravens
-Actual Winner: Giants Predicted Winner: Rams
+Actual Winner: Giants Predicted Winner: Giants
 Actual Winner: Cardinals Predicted Winner: Seahawks
 Actual Winner: Bills Predicted Winner: Vikings
 Acutal Winner: Chargers Predicted Winner: Chargers
@@ -27826,7 +27872,7 @@ Acutal Winner: Giants Predicted Winner: Giants
 Acutal Winner: 49ers Predicted Winner: 49ers
 Acutal Winner: Falcons Predicted Winner: Bengals
 Acutal Winner: Buccaneers Predicted Winner: Rams
-Acutal Winner: Bills Predicted Winner: Bills
+Acutal Winner: Bills Predicted Winner: Bears
 Acutal Winner: Lions Predicted Winner: Lions
 Acutal Winner: Packers Predicted Winner: Panthers
 Acutal Winner: Chiefs Predicted Winner: Chiefs
@@ -27842,7 +27888,7 @@ Acutal Winner: Seahawks Predicted Winner: Seahawks
 Acutal Winner: Ravens Predicted Winner: Ravens
 Actual Winner: Buccaneers Predicted Winner: Falcons
 Actual Winner: Raiders Predicted Winner: Bills
-Actual Winner: Giants Predicted Winner: Giants
+Actual Winner: Giants Predicted Winner: Cowboys
 Actual Winner: Washington Predicted Winner: Washington
 Acutal Winner: Colts Predicted Winner: Colts
 Acutal Winner: Dolphins Predicted Winner: Patriots
@@ -27863,7 +27909,7 @@ Actual Winner: Falcons Predicted Winner: Giants
 Acutal Winner: Buccaneers Predicted Winner: Buccaneers
 Actual Winner: Saints Predicted Winner: Washington
 Actual Winner: Bills Predicted Winner: Bills
-Acutal Winner: Titans Predicted Winner: Jaguars
+Acutal Winner: Titans Predicted Winner: Titans
 Acutal Winner: Rams Predicted Winner: Rams
 Acutal Winner: Chargers Predicted Winner: Chargers
 Actual Winner: Dolphins Predicted Winner: Dolphins
@@ -27876,7 +27922,7 @@ Actual Winner: Bills Predicted Winner: Bills
 Acutal Winner: Saints Predicted Winner: 49ers
 Acutal Winner: Jets Predicted Winner: Vikings
 Acutal Winner: Ravens Predicted Winner: Ravens
-Acutal Winner: Browns Predicted Winner: Browns
+Acutal Winner: Browns Predicted Winner: Texans
 Actual Winner: Chargers Predicted Winner: Raiders
 Acutal Winner: Packers Predicted Winner: Washington
 Acutal Winner: Eagles Predicted Winner: Eagles
@@ -27929,7 +27975,7 @@ Acutal Winner: Titans Predicted Winner: Titans
 Acutal Winner: Colts Predicted Winner: Cowboys
 Acutal Winner: Chiefs Predicted Winner: Chiefs
 Acutal Winner: Vikings Predicted Winner: Packers
-Acutal Winner: Giants Predicted Winner: Washington
+Acutal Winner: Giants Predicted Winner: Giants
 Acutal Winner: Eagles Predicted Winner: Eagles
 Actual Winner: Jaguars Predicted Winner: Jaguars
 Acutal Winner: Chargers Predicted Winner: Chargers
